@@ -1,0 +1,78 @@
+# //      /\  == \ /\ \             /\  == \   /\ \_\ \      /\___  \   /\  __ \   /\ \       /\  == \ /\ \_\ \   /\  __ \   /\  __-.  /\  ___\   /\ \ / /    // #
+# //      \ \  _-/ \ \ \____        \ \  __<   \ \____ \     \/_/  /__  \ \  __ \  \ \ \____  \ \  _-/ \ \  __ \  \ \  __ \  \ \ \/\ \ \ \  __\   \ \ \'/    // # 
+# //       \ \_\    \ \_____\        \ \_____\  \/\_____\      /\_____\  \ \_\ \_\  \ \_____\  \ \_\    \ \_\ \_\  \ \_\ \_\  \ \____-  \ \_____\  \ \__|   // #
+# //        \/_/     \/_____/         \/_____/   \/_____/      \/_____/   \/_/\/_/   \/_____/   \/_/     \/_/\/_/   \/_/\/_/   \/____/   \/_____/   \/_/   // #
+# 
+# Plugin ma_FNLOBBY By zAlpha__ #
+# 
+# Versï¿½o 1.0 #
+# 
+# Copyright 2016 zAlpha__  #
+#  
+
+# Grupos Que Devem Ser Criadas No PermissionEx #
+
+# - Normal #
+# - Gold #
+# - Diamond #
+# - Emerald #
+# - Builder #
+# - Youtuber #
+# - Builder #
+# - Ajudante #
+# - Mod #
+# - ModPlus #
+# - Admin #
+# - AdminPlus #
+# - Dev #
+# - Diretor #
+#
+
+Mysql:
+  use: true
+  DB: fndatabase
+  Host: localhost
+  Senha: vertrigo
+  User: root
+Site: 'MC-FantasyNetwork.Tk'
+Twitter: '@FantasyServer_'
+Motd: 'FantasyNetwork'
+Requisitos:
+- '__________________________'
+- ''
+- ''
+- 'Ter um canal com mais de 5000 Inscritos'
+- 'Fazer um video no Servidor'
+- 'O Video deve pegar Mais de 1000 Visualizações'
+- 'O Video deve pegar Mais de 100 Likes'
+- 'Envie seu Video No Twitter &b@FantasyServer_'
+- ''
+- ''
+- '__________________________'
+# Configure Aqui A Mensagem De Quando O Player Entrar #
+# <online> = Jogadores Online # 
+# <jogador> = Nome Do Player # 
+
+Mensagem_Entrar:
+- ''
+- ''
+- ''
+- '        &aBem Vindo ao &5&lFantasy&e&lNetwork'
+- '' 
+- '                         &aCompre &lVIP'
+- '       &aNosso WebSite: &6MC-FantasyNetwork.Tk'
+- ''
+- ''
+- ''
+# Configure Aqui As Mensagens De Broadcast #
+Broadcast:
+- '&5&lFantasy&e&lNetwork  &aQuer Tirar uma Duvida ou Converssar com Algum Staff Entre no TeamSpeak do Servidor &6Fantasynet.magichost.top'
+- '&5&lFantasy&e&lNetwork  &aGostou do Servidor quer ter Mais Vantagens Acesse &6MC-FantasyNetwork.Tk &ae Garanta seu &lVIP'
+- '&5&lFantasy&e&lNetwork  &aComprou &lVIP &ae Aainda nao Chegou?! Espere Entorno de 24H ou Entre em Contato Com &b@FantasyServer_'
+- '&5&lFantasy&e&lNetwork  &aO Servidor Esta Ainda em Fase Beta. Se Encontrar Algum Bug Reporte em &b@FantasyServer_'
+- '&5&lFantasy&e&lNetwork  &aEncontrou Algum &lHACKER, &aReporte-o Utilizando &6/Report (Nick) (Motivo)'
+- '&5&lFantasy&e&lNetwork  &aViu Algum Staff Abuser Reporte Ele em &b@FantasyServer_'
+Broadcast_Delay: 60
+
+BlackList:
+# \n #
