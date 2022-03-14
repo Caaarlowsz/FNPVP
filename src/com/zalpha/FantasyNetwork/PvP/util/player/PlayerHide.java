@@ -6,13 +6,13 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import com.zalpha.FantasyNetwork.PvP.FantasyKits;
+import com.github.caaarlowsz.fantasymc.kitpvp.FantasyPvP;
 import com.zalpha.FantasyNetwork.PvP.util.Manager;
 
 public class PlayerHide {
 	private ArrayList<UUID> hideAllPlayers;
 
-	public PlayerHide(final FantasyKits bc) {
+	public PlayerHide(final FantasyPvP bc) {
 		this.hideAllPlayers = new ArrayList<UUID>();
 	}
 

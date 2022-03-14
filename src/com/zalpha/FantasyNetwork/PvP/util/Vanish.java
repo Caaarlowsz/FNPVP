@@ -3,7 +3,7 @@ package com.zalpha.FantasyNetwork.PvP.util;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import com.zalpha.FantasyNetwork.PvP.FantasyKits;
+import com.github.caaarlowsz.fantasymc.kitpvp.FantasyPvP;
 
 import me.zalpha.FantasyNetwork.PvP.Duelx1.Duelx1;
 
@@ -18,8 +18,8 @@ public class Vanish {
 					player.hidePlayer(p);
 				} else {
 					if (Duelx1.isIn1v1(player) || player.canSee(p)
-							|| FantasyKits.getMain().getPlayerHideManager().isHiding(player.getUniqueId())
-							|| FantasyKits.getMain().getPlayerHideManager().hideForAll(player.getUniqueId())) {
+							|| FantasyPvP.getMain().getPlayerHideManager().isHiding(player.getUniqueId())
+							|| FantasyPvP.getMain().getPlayerHideManager().hideForAll(player.getUniqueId())) {
 						continue;
 					}
 					player.showPlayer(p);

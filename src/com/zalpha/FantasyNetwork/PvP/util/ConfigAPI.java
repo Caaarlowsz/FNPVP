@@ -7,7 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import com.zalpha.FantasyNetwork.PvP.FantasyKits;
+import com.github.caaarlowsz.fantasymc.kitpvp.FantasyPvP;
 
 public class ConfigAPI {
 	public static FileConfiguration configMensagens;
@@ -23,8 +23,8 @@ public class ConfigAPI {
 	}
 
 	public ConfigAPI() {
-		this.Mensagens = new File(FantasyKits.getPlugin().getDataFolder(), "Mensagens.yml");
-		this.Cords = new File(FantasyKits.getPlugin().getDataFolder(), "Cords.yml");
+		this.Mensagens = new File(FantasyPvP.getPlugin().getDataFolder(), "Mensagens.yml");
+		this.Cords = new File(FantasyPvP.getPlugin().getDataFolder(), "Cords.yml");
 	}
 
 	public static ConfigAPI pegarConfig() {
@@ -33,9 +33,9 @@ public class ConfigAPI {
 
 	public void carregarMensagens() {
 		if (!this.Mensagens.exists()) {
-			FantasyKits.getPlugin().saveResource("Mensagens.yml", true);
+			FantasyPvP.getPlugin().saveResource("Mensagens.yml", true);
 		}
-		this.configDeMensagens = new File(FantasyKits.getPlugin().getDataFolder(), "Mensagens.yml");
+		this.configDeMensagens = new File(FantasyPvP.getPlugin().getDataFolder(), "Mensagens.yml");
 		if (!this.configDeMensagens.exists()) {
 			try {
 				this.configDeMensagens.createNewFile();
@@ -62,9 +62,9 @@ public class ConfigAPI {
 
 	public void carregarCords() {
 		if (!this.Cords.exists()) {
-			FantasyKits.getPlugin().saveResource("Cords.yml", true);
+			FantasyPvP.getPlugin().saveResource("Cords.yml", true);
 		}
-		this.configDeCords = new File(FantasyKits.getPlugin().getDataFolder(), "Cords.yml");
+		this.configDeCords = new File(FantasyPvP.getPlugin().getDataFolder(), "Cords.yml");
 		if (!this.configDeCords.exists()) {
 			try {
 				this.configDeCords.createNewFile();

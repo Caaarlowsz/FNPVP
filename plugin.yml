@@ -1,5 +1,5 @@
 name: ma_FNPVP
-main: com.zalpha.FantasyNetwork.PvP.FantasyKits
+main: com.github.caaarlowsz.fantasymc.kitpvp.FantasyKits
 author: zAlpha_
 version: 2.5
 commands:

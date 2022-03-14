@@ -13,7 +13,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
-import com.zalpha.FantasyNetwork.PvP.FantasyKits;
+import com.github.caaarlowsz.fantasymc.kitpvp.FantasyPvP;
 
 public abstract class MenuPaged implements Listener {
 	private Player player;
@@ -29,14 +29,14 @@ public abstract class MenuPaged implements Listener {
 	public static ItemStack warps;
 
 	static {
-		MenuPaged.next = Manager.criarItem2(Material.ARROW, "§a\u25ba Pr\u00f3xima pagina", (short) 0, 1,
-				new String[] { "§7Clique para ir para o proxima pagina" });
-		MenuPaged.previous = Manager.criarItem2(Material.ARROW, "§b\u25ba Pagina anterior", (short) 0, 1,
-				new String[] { "§7Clique para ir para o pagina anterior" });
-		MenuPaged.kits = Manager.criarItem2(Material.CHEST, "§a\u25ba Kits", (short) 0, 1,
-				new String[] { "§7Aqui est\u00e3o os kits que voc\u00ea possui." });
-		MenuPaged.warps = Manager.criarItem2(Material.BOOK, "§a\u25ba Warps", (short) 0, 1,
-				new String[] { "§7Aqui est\u00e3o as warps." });
+		MenuPaged.next = Manager.criarItem2(Material.ARROW, "ï¿½a\u25ba Pr\u00f3xima pagina", (short) 0, 1,
+				new String[] { "ï¿½7Clique para ir para o proxima pagina" });
+		MenuPaged.previous = Manager.criarItem2(Material.ARROW, "ï¿½b\u25ba Pagina anterior", (short) 0, 1,
+				new String[] { "ï¿½7Clique para ir para o pagina anterior" });
+		MenuPaged.kits = Manager.criarItem2(Material.CHEST, "ï¿½a\u25ba Kits", (short) 0, 1,
+				new String[] { "ï¿½7Aqui est\u00e3o os kits que voc\u00ea possui." });
+		MenuPaged.warps = Manager.criarItem2(Material.BOOK, "ï¿½a\u25ba Warps", (short) 0, 1,
+				new String[] { "ï¿½7Aqui est\u00e3o as warps." });
 	}
 
 	public Player getPlayer() {
@@ -55,8 +55,8 @@ public abstract class MenuPaged implements Listener {
 		this.player = p;
 		this.inventorySize = size;
 		this.inventorys = new ArrayList<Inventory>();
-		this.inventoryTitle = title.replace("&", "§");
-		Bukkit.getPluginManager().registerEvents(this, FantasyKits.getPlugin());
+		this.inventoryTitle = title.replace("&", "ï¿½");
+		Bukkit.getPluginManager().registerEvents(this, FantasyPvP.getPlugin());
 	}
 
 	public boolean addNoItems(final ItemStack item, final int... slots) {

@@ -45,7 +45,7 @@ import org.bukkit.util.Vector;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.zalpha.FantasyNetwork.PvP.FantasyKits;
+import com.github.caaarlowsz.fantasymc.kitpvp.FantasyPvP;
 import com.zalpha.FantasyNetwork.PvP.util.player.PlayerData;
 
 import me.zalpha.FantasyNetwork.PvP.Duelx1.Duelx1;
@@ -90,15 +90,15 @@ public class Manager {
 	public static String nmsver;
 
 	static {
-		Manager.prefix = "§5§lFANTASY §e\u279c";
-		Manager.use = String.valueOf(Manager.prefix) + " §cUse: /";
-		Manager.CONSOLE = String.valueOf(Manager.prefix) + " §cDesculpe, mas voc\u00ea n\u00e3o \u00e9 um jogador.";
+		Manager.prefix = "ï¿½5ï¿½lFANTASY ï¿½e\u279c";
+		Manager.use = String.valueOf(Manager.prefix) + " ï¿½cUse: /";
+		Manager.CONSOLE = String.valueOf(Manager.prefix) + " ï¿½cDesculpe, mas voc\u00ea n\u00e3o \u00e9 um jogador.";
 		Manager.SEMPERM = String.valueOf(Manager.prefix)
-				+ " §cDesculpe, mas voc\u00ea n\u00e3o tem permiss\u00e3o para usar isto.";
-		Manager.JOGADORFF = String.valueOf(Manager.prefix) + " §cDesculpe, mas este jogador esta offline.";
+				+ " ï¿½cDesculpe, mas voc\u00ea n\u00e3o tem permiss\u00e3o para usar isto.";
+		Manager.JOGADORFF = String.valueOf(Manager.prefix) + " ï¿½cDesculpe, mas este jogador esta offline.";
 		Manager.UMKITPORVIDA = String.valueOf(Manager.prefix)
-				+ " §cVoc\u00ea esta com um kit ativado,morra ou de /spawn para desativa-lo.";
-		Manager.PEGOUKIT = String.valueOf(Manager.prefix) + " §aVoc\u00ea pegou o kit: §f";
+				+ " ï¿½cVoc\u00ea esta com um kit ativado,morra ou de /spawn para desativa-lo.";
+		Manager.PEGOUKIT = String.valueOf(Manager.prefix) + " ï¿½aVoc\u00ea pegou o kit: ï¿½f";
 		Manager.kit = new HashMap<String, String>();
 		Manager.Rank = new HashMap<String, String>();
 		Manager.Tag = new HashMap<String, Tags>();
@@ -123,7 +123,7 @@ public class Manager {
 	public static void createTop() {
 		try {
 			int counter = 0;
-			final Statement st = FantasyKits.getMain().storage.getConnection().createStatement();
+			final Statement st = FantasyPvP.getMain().storage.getConnection().createStatement();
 			final ResultSet r = st
 					.executeQuery("SELECT UUID FROM kitpvp ORDER BY SUBSTRING_INDEX(stats, ' : ', 1) DESC LIMIT 5");
 			while (r.next()) {
@@ -135,7 +135,7 @@ public class Manager {
 		for (int x = 0; x < 5; ++x) {
 			final int id = x + 1;
 			if (Manager.Top_Kills.get(id) != null) {
-				Bukkit.broadcastMessage("§a\u279c " + id + "º " + Manager.Top_Kills.get(id));
+				Bukkit.broadcastMessage("ï¿½a\u279c " + id + "ï¿½ " + Manager.Top_Kills.get(id));
 			}
 		}
 	}
@@ -193,88 +193,88 @@ public class Manager {
 	public static void darItens(final Player p) {
 		p.getInventory().clear();
 		p.getInventory().setArmorContents((ItemStack[]) null);
-		p.getInventory().setItem(1, criarItem2(Material.EMERALD, "§a\u279c §7Loja", (short) 0, 1,
-				new String[] { "§7", "§7Aqui est\u00e3o as lojas tanto in-game ou on-line." }));
+		p.getInventory().setItem(1, criarItem2(Material.EMERALD, "ï¿½a\u279c ï¿½7Loja", (short) 0, 1,
+				new String[] { "ï¿½7", "ï¿½7Aqui est\u00e3o as lojas tanto in-game ou on-line." }));
 		p.getInventory().setItem(2,
-				criarItem2(Material.CHEST, "§e\u279c §7Kits", (short) 0, 1,
-						new String[] { "§7", "§7Aqui todos os kits que voc\u00ea possui.", "",
-								"§e§lINFORMA\u00c7\u00d5ES:", "",
-								"§7Voce possui: §a" + pegarNumeroDeKits(p) + "§7/§c" + Kits.values().length }));
-		p.getInventory().setItem(4, criarItemSkull("§b\u279c §7Seu perfil",
-				new String[] { "§7Aqui esta seu perfil do kitpvp" }, p.getName(), 1));
-		p.getInventory().setItem(7, criarItem2(Material.BOOK, "§b\u279c §7Warps", (short) 0, 1,
-				new String[] { "§7", "§7Aqui est\u00e3o todas as warps do servidor", "§7que SETADAS." }));
+				criarItem2(Material.CHEST, "ï¿½e\u279c ï¿½7Kits", (short) 0, 1,
+						new String[] { "ï¿½7", "ï¿½7Aqui todos os kits que voc\u00ea possui.", "",
+								"ï¿½eï¿½lINFORMA\u00c7\u00d5ES:", "",
+								"ï¿½7Voce possui: ï¿½a" + pegarNumeroDeKits(p) + "ï¿½7/ï¿½c" + Kits.values().length }));
+		p.getInventory().setItem(4, criarItemSkull("ï¿½b\u279c ï¿½7Seu perfil",
+				new String[] { "ï¿½7Aqui esta seu perfil do kitpvp" }, p.getName(), 1));
+		p.getInventory().setItem(7, criarItem2(Material.BOOK, "ï¿½b\u279c ï¿½7Warps", (short) 0, 1,
+				new String[] { "ï¿½7", "ï¿½7Aqui est\u00e3o todas as warps do servidor", "ï¿½7que SETADAS." }));
 	}
 
 	public static String pegarRank(final Player p) {
 		if (p.hasPermission("tag.dono")) {
-			return "§4Dono";
+			return "ï¿½4Dono";
 		}
 		if (p.hasPermission("tag.dev")) {
-			return "§3Dev";
+			return "ï¿½3Dev";
 		}
 		if (p.hasPermission("tag.coord")) {
-			return "§4Coordenador";
+			return "ï¿½4Coordenador";
 		}
 		if (p.hasPermission("tag.admin")) {
-			return "§cAdmin";
+			return "ï¿½cAdmin";
 		}
 		if (p.hasPermission("tag.mod+")) {
-			return "§5Mod+";
+			return "ï¿½5Mod+";
 		}
 		if (p.hasPermission("tag.mod")) {
-			return "§5Mod";
+			return "ï¿½5Mod";
 		}
 		if (p.hasPermission("tag.ajudante")) {
-			return "§2Ajudante";
+			return "ï¿½2Ajudante";
 		}
 		if (p.hasPermission("tag.youtuber+")) {
-			return "§3Youtuber+";
+			return "ï¿½3Youtuber+";
 		}
 		if (p.hasPermission("tag.construtor")) {
-			return "§eConstrutor";
+			return "ï¿½eConstrutor";
 		}
 		if (p.hasPermission("tag.youtuber")) {
-			return "§bYoutuber";
+			return "ï¿½bYoutuber";
 		}
 		if (p.hasPermission("tag.gold")) {
-			return "§eGold";
+			return "ï¿½eGold";
 		}
 		if (p.hasPermission("tag.gold+")) {
-			return "§eGold+";
+			return "ï¿½eGold+";
 		}
 		if (p.hasPermission("tag.diamond")) {
-			return "§bDiamond";
+			return "ï¿½bDiamond";
 		}
 		if (p.hasPermission("tag.diamond+")) {
-			return "§bDiamond+";
+			return "ï¿½bDiamond+";
 		}
 		if (p.hasPermission("tag.emerald")) {
-			return "§aEmerald";
+			return "ï¿½aEmerald";
 		}
 		if (p.hasPermission("tag.emerald+")) {
-			return "§aEmerald+";
+			return "ï¿½aEmerald+";
 		}
 		if (p.hasPermission("tag.global")) {
-			return "§6Global";
+			return "ï¿½6Global";
 		}
 		if (p.hasPermission("tag.global+")) {
-			return "§6Global+";
+			return "ï¿½6Global+";
 		}
 		if (p.hasPermission("tag.youtuber.mirim")) {
-			return "§BMini YT";
+			return "ï¿½BMini YT";
 		}
 		if (p.hasPermission("tag.normal")) {
-			return "§7Normal";
+			return "ï¿½7Normal";
 		}
-		return "§cNenhum";
+		return "ï¿½cNenhum";
 	}
 
 	public static void sendMessageChat(final Player jogador, final Player senders, final String messagechat) {
 		final PlayerData pd = PlayerData.get(jogador);
 		if (pd == null) {
 			jogador.sendMessage(
-					String.valueOf(Manager.prefix) + " §CSua conta n\u00e3o esta registrada, relogue para resolver.");
+					String.valueOf(Manager.prefix) + " ï¿½CSua conta n\u00e3o esta registrada, relogue para resolver.");
 			return;
 		}
 		double kill = pd.getKills();
@@ -289,21 +289,21 @@ public class Manager {
 		final double value = (kill + death) / 2.0;
 		String kd;
 		if (pd.getKills() == 0 && pd.getDeaths() == 0) {
-			kd = "§cNenhum";
+			kd = "ï¿½cNenhum";
 		} else {
 			kd = String.valueOf(getProgressExact(total, value)) + "%";
 		}
-		final JSONChatMessage message = new JSONChatMessage("§7\u276a ", JSONChatColor.GRAY, null);
+		final JSONChatMessage message = new JSONChatMessage("ï¿½7\u276a ", JSONChatColor.GRAY, null);
 		final JSONChatExtra rank = new JSONChatExtra(pd.getRankSymbol());
 		rank.setHoverEvent(JSONChatHoverEventType.SHOW_TEXT,
 				String.valueOf(pd.getRankSymbol()) + " " + ChatColor.stripColor(pd.getRank()));
 		final JSONChatExtra nome = new JSONChatExtra(jogador.getDisplayName());
-		nome.setHoverEvent(JSONChatHoverEventType.SHOW_TEXT, "§eInforma\u00e7\u00f5es do §f" + jogador.getName()
-				+ "\n§7\u279c Rank: " + pegarRank(jogador) + "\n§7\u279c K.D: " + kd);
+		nome.setHoverEvent(JSONChatHoverEventType.SHOW_TEXT, "ï¿½eInforma\u00e7\u00f5es do ï¿½f" + jogador.getName()
+				+ "\nï¿½7\u279c Rank: " + pegarRank(jogador) + "\nï¿½7\u279c K.D: " + kd);
 		message.addExtra(rank);
-		message.addExtra(new JSONChatExtra(" §7| "));
+		message.addExtra(new JSONChatExtra(" ï¿½7| "));
 		message.addExtra(nome);
-		message.addExtra(new JSONChatExtra(" §7\u276b " + messagechat));
+		message.addExtra(new JSONChatExtra(" ï¿½7\u276b " + messagechat));
 		message.sendToPlayer(senders);
 	}
 
@@ -384,17 +384,17 @@ public class Manager {
 					final PlayerData pd = PlayerData.get(p);
 					if (pd.getScoreB()) {
 						ScoreBoard.unrankedSidebarDisplay(p,
-								new String[] { "§5§lFANTASY §e§lKITPVP", "§1", "§fGrupo: " + Manager.pegarRank(p),
-										"§fLiga: " + pd.getRank(),
-										"§fDinheiro: §a" + Manager.modificarCoins(pd.getMoney()) + "$", "§4",
-										"§fKills: §a" + pd.getKills(), "§fMortes: §c" + pd.getDeaths(), "§0",
-										"§fKS: §9" + pd.getKillStreak(), "§fK.D: §e" + Manager.getKDR(p) + "%",
-										"§fPontua\u00e7\u00e3o: §5" + Manager.modificarCoins(pd.getScore()), "§2",
-										"§ewww." + ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site") });
+								new String[] { "ï¿½5ï¿½lFANTASY ï¿½eï¿½lKITPVP", "ï¿½1", "ï¿½fGrupo: " + Manager.pegarRank(p),
+										"ï¿½fLiga: " + pd.getRank(),
+										"ï¿½fDinheiro: ï¿½a" + Manager.modificarCoins(pd.getMoney()) + "$", "ï¿½4",
+										"ï¿½fKills: ï¿½a" + pd.getKills(), "ï¿½fMortes: ï¿½c" + pd.getDeaths(), "ï¿½0",
+										"ï¿½fKS: ï¿½9" + pd.getKillStreak(), "ï¿½fK.D: ï¿½e" + Manager.getKDR(p) + "%",
+										"ï¿½fPontua\u00e7\u00e3o: ï¿½5" + Manager.modificarCoins(pd.getScore()), "ï¿½2",
+										"ï¿½ewww." + ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site") });
 					}
 				}
 			}
-		}.runTaskTimer(FantasyKits.getPlugin(), 6L, 60L);
+		}.runTaskTimer(FantasyPvP.getPlugin(), 6L, 60L);
 	}
 
 	public static void adicionarSemItemPermissao(final Material material, final String nome, final String permissao,
@@ -626,7 +626,7 @@ public class Manager {
 			Manager.construir.remove(p);
 		}
 		if (Manager.Combate.contains(p)) {
-			p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea §csaiu §7de combate.");
+			p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea ï¿½csaiu ï¿½7de combate.");
 			Manager.Combate.remove(p);
 		}
 		if (Duelx1.playersInQueue.contains(p)) {
@@ -831,53 +831,53 @@ public class Manager {
 		p.getInventory().setArmorContents((ItemStack[]) null);
 		p.getInventory().clear();
 		p.setAllowFlight(false);
-		setarKit(p, kit.getItem().getItemMeta().getDisplayName().replace("§7\u279c §aKit ", ""));
+		setarKit(p, kit.getItem().getItemMeta().getDisplayName().replace("ï¿½7\u279c ï¿½aKit ", ""));
 		for (final Player p2 : Bukkit.getOnlinePlayers()) {
 			p2.showPlayer(p);
 		}
 		if (kit == Kits.KANGAROO) {
-			setarItemInv(Material.FIREWORK, "§a\u25ba Kangaroo Firework", null, (short) 0, 1, 1, p);
+			setarItemInv(Material.FIREWORK, "ï¿½a\u25ba Kangaroo Firework", null, (short) 0, 1, 1, p);
 		}
 		if (kit == Kits.FISHERMAN) {
-			setarItemInv(Material.FISHING_ROD, "§a\u25ba Fisherman Rod", null, (short) 0, 1, 1, p);
+			setarItemInv(Material.FISHING_ROD, "ï¿½a\u25ba Fisherman Rod", null, (short) 0, 1, 1, p);
 		}
 		if (kit == Kits.ARCHER) {
-			setarItemEchantInv(Material.BOW, "§a\u25ba Arco", null, (short) 0, 1, Enchantment.ARROW_DAMAGE, 1,
+			setarItemEchantInv(Material.BOW, "ï¿½a\u25ba Arco", null, (short) 0, 1, Enchantment.ARROW_DAMAGE, 1,
 					Enchantment.ARROW_INFINITE, 1, p);
-			setarItemInv(Material.ARROW, "§a\u25ba Flecha", null, (short) 0, 2, 1, p);
+			setarItemInv(Material.ARROW, "ï¿½a\u25ba Flecha", null, (short) 0, 2, 1, p);
 		}
 		if (kit == Kits.THOR) {
-			setarItemInv(Material.STONE_AXE, "§a\u25ba Machado Do Thor", null, (short) 0, 1, 1, p);
+			setarItemInv(Material.STONE_AXE, "ï¿½a\u25ba Machado Do Thor", null, (short) 0, 1, 1, p);
 		}
 		if (kit == Kits.GLADIATOR) {
-			setarItemInv(Material.IRON_FENCE, "§a\u25ba Jogo Sombrio", null, (short) 0, 1, 1, p);
+			setarItemInv(Material.IRON_FENCE, "ï¿½a\u25ba Jogo Sombrio", null, (short) 0, 1, 1, p);
 		}
 		if (kit == Kits.SWITCHER) {
-			setarItemInv(Material.SNOW_BALL, "§a\u25ba Bolas De Neve", null, (short) 0, 1, 16, p);
+			setarItemInv(Material.SNOW_BALL, "ï¿½a\u25ba Bolas De Neve", null, (short) 0, 1, 16, p);
 		}
 		if (kit == Kits.PHANTOM) {
-			setarItemInv(Material.FEATHER, "§a\u25ba Pena Do Phantom", null, (short) 0, 1, 1, p);
+			setarItemInv(Material.FEATHER, "ï¿½a\u25ba Pena Do Phantom", null, (short) 0, 1, 1, p);
 		}
 		if (kit == Kits.SNIPER) {
-			setarItemInv(Material.BLAZE_ROD, "§a\u25ba Sniper", null, (short) 0, 1, 1, p);
+			setarItemInv(Material.BLAZE_ROD, "ï¿½a\u25ba Sniper", null, (short) 0, 1, 1, p);
 		}
 		if (kit == Kits.DESHFIRE) {
-			setarItemInv(Material.REDSTONE_BLOCK, "§a\u25ba Deshfire", null, (short) 0, 1, 1, p);
+			setarItemInv(Material.REDSTONE_BLOCK, "ï¿½a\u25ba Deshfire", null, (short) 0, 1, 1, p);
 		}
 		if (kit == Kits.SONIC) {
-			setarItemInv(Material.LAPIS_BLOCK, "§a\u25ba Sonic", null, (short) 0, 1, 1, p);
+			setarItemInv(Material.LAPIS_BLOCK, "ï¿½a\u25ba Sonic", null, (short) 0, 1, 1, p);
 		}
 		if (kit == Kits.FLASH) {
-			setarItemInv(Material.REDSTONE_BLOCK, "§a\u25ba Flash", null, (short) 0, 1, 1, p);
+			setarItemInv(Material.REDSTONE_BLOCK, "ï¿½a\u25ba Flash", null, (short) 0, 1, 1, p);
 		}
 		if (kit == Kits.DRAIG) {
-			setarItemInv(Material.BLAZE_POWDER, "§a\u25ba Draig", null, (short) 0, 1, 1, p);
+			setarItemInv(Material.BLAZE_POWDER, "ï¿½a\u25ba Draig", null, (short) 0, 1, 1, p);
 		}
 		if (kit == Kits.THRESH) {
-			setarItemInv(Material.LEASH, "§a\u25ba Corda Thresh", null, (short) 0, 1, 1, p);
+			setarItemInv(Material.LEASH, "ï¿½a\u25ba Corda Thresh", null, (short) 0, 1, 1, p);
 		}
 		if (kit == Kits.THRESH) {
-			setarItemInv(Material.LEASH, "§a\u25ba Corda Thresh", null, (short) 0, 1, 1, p);
+			setarItemInv(Material.LEASH, "ï¿½a\u25ba Corda Thresh", null, (short) 0, 1, 1, p);
 		}
 		removerCooldown(p);
 		final int x = numeroaleatorio(ConfigAPI.pegarConfig().pegarconfigCords().getInt("Coordenadas.Arena.Min.x"),
@@ -890,8 +890,8 @@ public class Manager {
 		p.setGameMode(GameMode.SURVIVAL);
 		p.getInventory().setArmorContents((ItemStack[]) null);
 		p.teleport(Local);
-		adicionarItemInv(Material.STONE_SWORD, "§e" + pegarKit(p), "", (short) 0, p);
-		setarItemInv(Material.COMPASS, "§a\u25ba Bussola", " ", (short) 0, 8, 1, p);
+		adicionarItemInv(Material.STONE_SWORD, "ï¿½e" + pegarKit(p), "", (short) 0, p);
+		setarItemInv(Material.COMPASS, "ï¿½a\u25ba Bussola", " ", (short) 0, 8, 1, p);
 		adicionarFullSopa(p);
 	}
 
@@ -920,12 +920,12 @@ public class Manager {
 
 	public static void mensagemCooldown(final Player jogador) {
 		if (pegarCooldown(jogador) == 1L) {
-			jogador.sendMessage(String.valueOf(Manager.prefix) + " §7Seu kit §c" + pegarKit(jogador)
-					+ " §7esta em um cooldown de §f" + pegarCooldown(jogador) + " segundo§7.");
+			jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Seu kit ï¿½c" + pegarKit(jogador)
+					+ " ï¿½7esta em um cooldown de ï¿½f" + pegarCooldown(jogador) + " segundoï¿½7.");
 		}
 		if (pegarCooldown(jogador) > 1L) {
-			jogador.sendMessage(String.valueOf(Manager.prefix) + " §7Seu kit §c" + pegarKit(jogador)
-					+ " §7esta em um cooldown de §f" + pegarCooldown(jogador) + " segundos§7.");
+			jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Seu kit ï¿½c" + pegarKit(jogador)
+					+ " ï¿½7esta em um cooldown de ï¿½f" + pegarCooldown(jogador) + " segundosï¿½7.");
 		}
 	}
 
@@ -938,11 +938,11 @@ public class Manager {
 
 	public static void adicionarFullSopa(final Player p) {
 		for (int sopas = 0; sopas < p.getInventory().getSize(); ++sopas) {
-			setarItemInv(Material.BOWL, "§b\u25ba Tigela", "", (short) 0, 13, 64, p);
-			setarItemInv(Material.RED_MUSHROOM, "§c\u25ba Cogumelo", "", (short) 0, 14, 64, p);
-			setarItemInv(Material.BROWN_MUSHROOM, "§6\u25ba Cogumelo", "", (short) 0, 15, 64, p);
+			setarItemInv(Material.BOWL, "ï¿½b\u25ba Tigela", "", (short) 0, 13, 64, p);
+			setarItemInv(Material.RED_MUSHROOM, "ï¿½c\u25ba Cogumelo", "", (short) 0, 14, 64, p);
+			setarItemInv(Material.BROWN_MUSHROOM, "ï¿½6\u25ba Cogumelo", "", (short) 0, 15, 64, p);
 			while (p.getInventory().getItem(sopas) == null) {
-				setarItemInv(Material.MUSHROOM_SOUP, "§a\u25ba Sopa", "§7Tome Para Regenerar Sua Vida.", (short) 0,
+				setarItemInv(Material.MUSHROOM_SOUP, "ï¿½a\u25ba Sopa", "ï¿½7Tome Para Regenerar Sua Vida.", (short) 0,
 						sopas, 1, p);
 			}
 		}
@@ -959,11 +959,11 @@ public class Manager {
 		if (aleatorio <= chance) {
 			if (!Magma) {
 				if (efeito == PotionEffectType.POISON) {
-					jogador.sendMessage(String.valueOf(Manager.prefix) + " §aUm Viper Te Envenenou.");
+					jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aUm Viper Te Envenenou.");
 				}
 				if (efeito == PotionEffectType.SLOW) {
 					jogador.sendMessage(
-							String.valueOf(Manager.prefix) + " §aUm Snail Te Bateu E Voce Ficou Mais Lento.");
+							String.valueOf(Manager.prefix) + " ï¿½aUm Snail Te Bateu E Voce Ficou Mais Lento.");
 				}
 				jogador.addPotionEffect(new PotionEffect(efeito, tempo, escala));
 			} else {
@@ -1009,17 +1009,17 @@ public class Manager {
 
 	public static void mandamensagemKillStreak(final PlayerData pd) {
 		if (pd.getKillStreak() % 5 == 0) {
-			mandarMensagem(String.valueOf(Manager.prefix) + " §f" + pd.getPlayer().getName()
-					+ " §aconseguiu um killstreak de §f" + pd.getKillStreak() + "§a.");
+			mandarMensagem(String.valueOf(Manager.prefix) + " ï¿½f" + pd.getPlayer().getName()
+					+ " ï¿½aconseguiu um killstreak de ï¿½f" + pd.getKillStreak() + "ï¿½a.");
 		}
 		if (pd.getKillStreak() % 100 == 0) {
-			mandarMensagem(String.valueOf(Manager.prefix) + " §f" + pd.getPlayer().getName()
-					+ " §aconseguiu um killstreak de §f100§a.");
+			mandarMensagem(String.valueOf(Manager.prefix) + " ï¿½f" + pd.getPlayer().getName()
+					+ " ï¿½aconseguiu um killstreak de ï¿½f100ï¿½a.");
 			for (final Player online : Bukkit.getOnlinePlayers()) {
-				mandarTituloCima(online, "§7O jogador §a" + pd.getPlayer().getName());
-				mandarTituloBaixo(online, "§eEst\u00e1 imbativel!!");
+				mandarTituloCima(online, "ï¿½7O jogador ï¿½a" + pd.getPlayer().getName());
+				mandarTituloBaixo(online, "ï¿½eEst\u00e1 imbativel!!");
 				mandarMensagem(
-						String.valueOf(Manager.prefix) + " §f" + pd.getPlayer().getName() + " §aEst\u00e1 imbativel!");
+						String.valueOf(Manager.prefix) + " ï¿½f" + pd.getPlayer().getName() + " ï¿½aEst\u00e1 imbativel!");
 			}
 		}
 	}
@@ -1049,19 +1049,19 @@ public class Manager {
 	public static void teleportarWarp(final Player jogador, final String warp) {
 		if (ConfigAPI.pegarConfig().pegarconfigCords().getString("Coordenadas." + warp) == null) {
 			jogador.sendMessage(
-					String.valueOf(Manager.prefix) + " §cDesculpe, Mas A Warp §f" + warp + "§c N\u00e3o Foi Setada.");
+					String.valueOf(Manager.prefix) + " ï¿½cDesculpe, Mas A Warp ï¿½f" + warp + "ï¿½c N\u00e3o Foi Setada.");
 			return;
 		}
 		if (warp.equalsIgnoreCase("fps")) {
 			jogador.getInventory().clear();
 			setarKit(jogador, "Fps");
-			jogador.getInventory().setItem(0, criarItem2(Material.DIAMOND_SWORD, "§eFps", (short) 0, 1, new String[0]));
+			jogador.getInventory().setItem(0, criarItem2(Material.DIAMOND_SWORD, "ï¿½eFps", (short) 0, 1, new String[0]));
 			adicionarFullSopa(jogador);
-			jogador.getInventory().setHelmet(criarItem(Material.IRON_HELMET, "§eFps", (short) 0, new String[0]));
+			jogador.getInventory().setHelmet(criarItem(Material.IRON_HELMET, "ï¿½eFps", (short) 0, new String[0]));
 			jogador.getInventory()
-					.setChestplate(criarItem(Material.IRON_CHESTPLATE, "§eFps", (short) 0, new String[0]));
-			jogador.getInventory().setLeggings(criarItem(Material.IRON_LEGGINGS, "§eFps", (short) 0, new String[0]));
-			jogador.getInventory().setBoots(criarItem(Material.IRON_BOOTS, "§eFps", (short) 0, new String[0]));
+					.setChestplate(criarItem(Material.IRON_CHESTPLATE, "ï¿½eFps", (short) 0, new String[0]));
+			jogador.getInventory().setLeggings(criarItem(Material.IRON_LEGGINGS, "ï¿½eFps", (short) 0, new String[0]));
+			jogador.getInventory().setBoots(criarItem(Material.IRON_BOOTS, "ï¿½eFps", (short) 0, new String[0]));
 		} else if (warp.equalsIgnoreCase("lava")) {
 			jogador.getInventory().clear();
 			jogador.getInventory().setItem(0, (ItemStack) null);
@@ -1069,47 +1069,47 @@ public class Manager {
 			adicionarFullSopa(jogador);
 		} else if (warp.equalsIgnoreCase("Mdr")) {
 			jogador.getInventory().clear();
-			jogador.getInventory().setItem(0, criarItem2(Material.STONE_SWORD, "§eMdr", (short) 0, 1, new String[0]));
+			jogador.getInventory().setItem(0, criarItem2(Material.STONE_SWORD, "ï¿½eMdr", (short) 0, 1, new String[0]));
 			adicionarFullSopa(jogador);
 			setarKit(jogador, "Mdr");
 		} else if (warp.equalsIgnoreCase("main")) {
 			jogador.getInventory().clear();
 			jogador.getInventory().setItem(0, (ItemStack) null);
 			setarKit(jogador, "Main");
-			adicionarItemEnchantGUI(Material.DIAMOND_SWORD, "§eMain", null, null, null, (short) 0,
+			adicionarItemEnchantGUI(Material.DIAMOND_SWORD, "ï¿½eMain", null, null, null, (short) 0,
 					Enchantment.DAMAGE_ALL, 1, Enchantment.KNOCKBACK, 1, jogador.getInventory());
 			adicionarEfeito(jogador, 1000000, 0, PotionEffectType.SPEED);
 			adicionarEfeito(jogador, 1000000, 0, PotionEffectType.INCREASE_DAMAGE);
 			adicionarFullSopa(jogador);
-			jogador.getInventory().setHelmet(criarItem(Material.IRON_HELMET, "§eMain", (short) 0, new String[0]));
+			jogador.getInventory().setHelmet(criarItem(Material.IRON_HELMET, "ï¿½eMain", (short) 0, new String[0]));
 			jogador.getInventory()
-					.setChestplate(criarItem(Material.IRON_CHESTPLATE, "§eMain", (short) 0, new String[0]));
-			jogador.getInventory().setLeggings(criarItem(Material.IRON_LEGGINGS, "§eMain", (short) 0, new String[0]));
-			jogador.getInventory().setBoots(criarItem(Material.IRON_BOOTS, "§eMain", (short) 0, new String[0]));
+					.setChestplate(criarItem(Material.IRON_CHESTPLATE, "ï¿½eMain", (short) 0, new String[0]));
+			jogador.getInventory().setLeggings(criarItem(Material.IRON_LEGGINGS, "ï¿½eMain", (short) 0, new String[0]));
+			jogador.getInventory().setBoots(criarItem(Material.IRON_BOOTS, "ï¿½eMain", (short) 0, new String[0]));
 		} else if (warp.equalsIgnoreCase("potion")) {
 			jogador.getInventory().clear();
 			jogador.getInventory().setItem(0, (ItemStack) null);
 			setarKit(jogador, "Potion");
-			adicionarItemEnchantGUI(Material.DIAMOND_SWORD, "§ePotion", null, null, null, (short) 0,
+			adicionarItemEnchantGUI(Material.DIAMOND_SWORD, "ï¿½ePotion", null, null, null, (short) 0,
 					Enchantment.DAMAGE_ALL, 1, Enchantment.FIRE_ASPECT, 1, jogador.getInventory());
 			jogador.getInventory().setItem(1,
-					criarItem2(Material.GOLDEN_APPLE, "§6\u25ba Ma\u00e7a", (short) 1, 10, new String[0]));
+					criarItem2(Material.GOLDEN_APPLE, "ï¿½6\u25ba Ma\u00e7a", (short) 1, 10, new String[0]));
 			jogador.getInventory().setItem(2,
-					criarItem(Material.POTION, "§e\u25ba Po\u00e7\u00e3o", (short) 16424, new String[0]));
+					criarItem(Material.POTION, "ï¿½e\u25ba Po\u00e7\u00e3o", (short) 16424, new String[0]));
 			jogador.getInventory().setItem(3,
-					criarItem(Material.POTION, "§e\u25ba Po\u00e7\u00e3o", (short) 16419, new String[0]));
+					criarItem(Material.POTION, "ï¿½e\u25ba Po\u00e7\u00e3o", (short) 16419, new String[0]));
 			jogador.getInventory().setItem(4,
-					criarItem(Material.POTION, "§e\u25ba Po\u00e7\u00e3o", (short) 8226, new String[0]));
+					criarItem(Material.POTION, "ï¿½e\u25ba Po\u00e7\u00e3o", (short) 8226, new String[0]));
 			jogador.getInventory().setItem(5,
-					criarItem(Material.POTION, "§e\u25ba Po\u00e7\u00e3o", (short) 8226, new String[0]));
+					criarItem(Material.POTION, "ï¿½e\u25ba Po\u00e7\u00e3o", (short) 8226, new String[0]));
 			jogador.getInventory().setItem(6,
-					criarItem(Material.POTION, "§e\u25ba Po\u00e7\u00e3o", (short) 8233, new String[0]));
+					criarItem(Material.POTION, "ï¿½e\u25ba Po\u00e7\u00e3o", (short) 8233, new String[0]));
 			jogador.getInventory().setItem(7,
-					criarItem(Material.POTION, "§e\u25ba Po\u00e7\u00e3o", (short) 8233, new String[0]));
+					criarItem(Material.POTION, "ï¿½e\u25ba Po\u00e7\u00e3o", (short) 8233, new String[0]));
 			jogador.getInventory().setItem(8,
-					criarItem2(Material.ENDER_PEARL, "§c\u25ba EnderPearl", (short) 0, 16, new String[0]));
+					criarItem2(Material.ENDER_PEARL, "ï¿½c\u25ba EnderPearl", (short) 0, 16, new String[0]));
 			jogador.getInventory().setItem(9,
-					criarItem2(Material.COOKED_BEEF, "§a\u25ba Bife", (short) 0, 64, new String[0]));
+					criarItem2(Material.COOKED_BEEF, "ï¿½a\u25ba Bife", (short) 0, 64, new String[0]));
 			jogador.getInventory().setHelmet(criarItemEnchantamento(Material.DIAMOND_HELMET, "Capacete",
 					Enchantment.PROTECTION_ENVIRONMENTAL, 1, (short) 0, new String[0]));
 			jogador.getInventory().setChestplate(criarItemEnchantamento(Material.DIAMOND_CHESTPLATE, "Peitoral",
@@ -1145,7 +1145,7 @@ public class Manager {
 			jogador.sendMessage("");
 			jogador.sendMessage("");
 			jogador.sendMessage("");
-			jogador.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea teleportou para o(a): §a" + warp);
+			jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea teleportou para o(a): ï¿½a" + warp);
 		}
 		jogador.teleport(lobby);
 	}
@@ -1153,8 +1153,8 @@ public class Manager {
 	public static void adicionarFullPotion(final Player p) {
 		for (int sopas = 0; sopas < p.getInventory().getSize(); ++sopas) {
 			while (p.getInventory().getItem(sopas) == null) {
-				setarItemInv(Material.POTION, "§a\u25ba Po\u00e7\u00e3o",
-						"§7Jogue No Ch\u00e3o Para Regenerar Sua Vida.", (short) 16453, sopas, 1, p);
+				setarItemInv(Material.POTION, "ï¿½a\u25ba Po\u00e7\u00e3o",
+						"ï¿½7Jogue No Ch\u00e3o Para Regenerar Sua Vida.", (short) 16453, sopas, 1, p);
 			}
 		}
 	}
@@ -1163,15 +1163,15 @@ public class Manager {
 		final PlayerInventory i = p.getInventory();
 		final ItemStack bastao = new ItemStack(Material.BLAZE_ROD);
 		final ItemMeta nomekits = bastao.getItemMeta();
-		nomekits.setDisplayName("§a\u25ba 1v1 Normal");
+		nomekits.setDisplayName("ï¿½a\u25ba 1v1 Normal");
 		bastao.setItemMeta(nomekits);
 		final ItemStack grade = new ItemStack(Material.ANVIL);
 		final ItemMeta nomevips = grade.getItemMeta();
-		nomevips.setDisplayName("§b\u25ba 1v1 Custom");
+		nomevips.setDisplayName("ï¿½b\u25ba 1v1 Custom");
 		grade.setItemMeta(nomevips);
 		final ItemStack fast = new ItemStack(Material.INK_SACK, 1, (short) 8);
 		final ItemMeta nomefast = fast.getItemMeta();
-		nomefast.setDisplayName("§e\u25ba 1v1 Rapido");
+		nomefast.setDisplayName("ï¿½e\u25ba 1v1 Rapido");
 		fast.setItemMeta(nomefast);
 		i.clear();
 		p.getInventory().setHeldItemSlot(0);
@@ -1235,13 +1235,13 @@ public class Manager {
 	}
 
 	public enum Tags {
-		NORMAL("NORMAL", 0, "§7"), GOLD("GOLD", 1, "§e§lGOLD "), DIAMOND("DIAMOND", 2, "§b§lDIAMOND "),
-		EMERALD("EMERALD", 3, "§a§lEMERALD "), YOUTUBER("YOUTUBER", 4, "§c§lY§f§lT "),
-		YOUTUBERMIRIM("YOUTUBERMIRIM", 5, "§b§lYTMIRIM "), BUILDER("BUILDER", 6, "§6§lBUILDER "),
-		TRIAL("TRIAL", 7, "§d§lTRIAL "), AJUDANTE("AJUDANTE", 8, "§2§lAJUDANTE "),
-		YOUTUBERPLUS("YOUTUBERPLUS", 9, "§c§lY§f§lT+ "), MOD("MOD", 10, "§5§lMOD "),
-		MODPLUS("MODPLUS", 11, "§5§lMOD+ "), ADMIN("ADMIN", 12, "§c§lADMIN "), COORD("COORD", 13, "§4§lCOORD "),
-		DEV("DEV", 14, "§3§lDEV "), DONO("DONO", 15, "§4§lDONO ");
+		NORMAL("NORMAL", 0, "ï¿½7"), GOLD("GOLD", 1, "ï¿½eï¿½lGOLD "), DIAMOND("DIAMOND", 2, "ï¿½bï¿½lDIAMOND "),
+		EMERALD("EMERALD", 3, "ï¿½aï¿½lEMERALD "), YOUTUBER("YOUTUBER", 4, "ï¿½cï¿½lYï¿½fï¿½lT "),
+		YOUTUBERMIRIM("YOUTUBERMIRIM", 5, "ï¿½bï¿½lYTMIRIM "), BUILDER("BUILDER", 6, "ï¿½6ï¿½lBUILDER "),
+		TRIAL("TRIAL", 7, "ï¿½dï¿½lTRIAL "), AJUDANTE("AJUDANTE", 8, "ï¿½2ï¿½lAJUDANTE "),
+		YOUTUBERPLUS("YOUTUBERPLUS", 9, "ï¿½cï¿½lYï¿½fï¿½lT+ "), MOD("MOD", 10, "ï¿½5ï¿½lMOD "),
+		MODPLUS("MODPLUS", 11, "ï¿½5ï¿½lMOD+ "), ADMIN("ADMIN", 12, "ï¿½cï¿½lADMIN "), COORD("COORD", 13, "ï¿½4ï¿½lCOORD "),
+		DEV("DEV", 14, "ï¿½3ï¿½lDEV "), DONO("DONO", 15, "ï¿½4ï¿½lDONO ");
 
 		private String msg;
 
@@ -1255,11 +1255,11 @@ public class Manager {
 	}
 
 	public enum TagsTeams {
-		DIRETOR("DIRETOR", 0, "b§4§lDIRETOR "), ADMINPLUS("ADMINPLUS", 1, "c§c§lADMIN+ "),
-		ADMIN("ADMIN", 2, "d§c§lADMIN "), MODPLUS("MODPLUS", 3, "e§5§lMOD+ "), MOD("MOD", 4, "f§5§lMOD "),
-		AJUDANTE("AJUDANTE", 5, "g§2§lAJUDANTE "), BUILDER("BUILDER", 6, "h§6§lBUILDER "),
-		YOUTUBER("YOUTUBER", 7, "i§c§lY§f§lT "), DEV("DEV", 8, "a§3§lDEV "), GOLD("GOLD", 9, "m§e§lGOLD "),
-		DIAMOND("DIAMOND", 10, "k§b§lDIAMOND "), EMERALD("EMERALD", 11, "j§a§lEMERALD "), NORMAL("NORMAL", 12, "n§7");
+		DIRETOR("DIRETOR", 0, "bï¿½4ï¿½lDIRETOR "), ADMINPLUS("ADMINPLUS", 1, "cï¿½cï¿½lADMIN+ "),
+		ADMIN("ADMIN", 2, "dï¿½cï¿½lADMIN "), MODPLUS("MODPLUS", 3, "eï¿½5ï¿½lMOD+ "), MOD("MOD", 4, "fï¿½5ï¿½lMOD "),
+		AJUDANTE("AJUDANTE", 5, "gï¿½2ï¿½lAJUDANTE "), BUILDER("BUILDER", 6, "hï¿½6ï¿½lBUILDER "),
+		YOUTUBER("YOUTUBER", 7, "iï¿½cï¿½lYï¿½fï¿½lT "), DEV("DEV", 8, "aï¿½3ï¿½lDEV "), GOLD("GOLD", 9, "mï¿½eï¿½lGOLD "),
+		DIAMOND("DIAMOND", 10, "kï¿½bï¿½lDIAMOND "), EMERALD("EMERALD", 11, "jï¿½aï¿½lEMERALD "), NORMAL("NORMAL", 12, "nï¿½7");
 
 		private String msg;
 

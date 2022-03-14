@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.zalpha.FantasyNetwork.PvP.FantasyKits;
+import com.github.caaarlowsz.fantasymc.kitpvp.FantasyPvP;
 
 public class SQLite implements Sql {
 	private File file;
@@ -82,6 +82,6 @@ public class SQLite implements Sql {
 					e.printStackTrace();
 				}
 			}
-		}.runTaskAsynchronously(FantasyKits.getPlugin());
+		}.runTaskAsynchronously(FantasyPvP.getPlugin());
 	}
 }

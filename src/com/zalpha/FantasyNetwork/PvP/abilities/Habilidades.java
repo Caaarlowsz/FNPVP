@@ -51,7 +51,7 @@ import org.bukkit.util.BlockIterator;
 import org.bukkit.util.Vector;
 
 import com.google.common.collect.Lists;
-import com.zalpha.FantasyNetwork.PvP.FantasyKits;
+import com.github.caaarlowsz.fantasymc.kitpvp.FantasyPvP;
 import com.zalpha.FantasyNetwork.PvP.util.Manager;
 
 import net.minecraft.server.v1_8_R3.EntitySnowball;
@@ -114,7 +114,7 @@ public class Habilidades implements Listener {
 			if (Manager.pegarKit(p).equalsIgnoreCase("anchor")) {
 				p.setVelocity(new Vector());
 				p.playSound(p.getLocation(), Sound.ANVIL_USE, 2.0f, 2.0f);
-				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(FantasyKits.getPlugin(),
+				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(FantasyPvP.getPlugin(),
 						new Runnable() {
 							@Override
 							public void run() {
@@ -125,7 +125,7 @@ public class Habilidades implements Listener {
 			if (Manager.pegarKit(a).equalsIgnoreCase("anchor")) {
 				a.playSound(a.getLocation(), Sound.ANVIL_USE, 2.0f, 2.0f);
 				p.setVelocity(new Vector());
-				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(FantasyKits.getPlugin(),
+				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(FantasyPvP.getPlugin(),
 						new Runnable() {
 							@Override
 							public void run() {
@@ -166,13 +166,13 @@ public class Habilidades implements Listener {
 			final Vector velo1 = p.getLocation().getDirection().normalize().multiply(10);
 			h.setVelocity(velo1);
 			h.setMetadata("Goku",
-					new FixedMetadataValue(FantasyKits.getInstace(), true));
+					new FixedMetadataValue(FantasyPvP.getInstace(), true));
 			Manager.Cooldown.put(p.getName(), System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(15L));
-			p.sendMessage(String.valueOf(Manager.prefix) + "§aVoc\u00ea usou seu §fGOKU§a!");
+			p.sendMessage(String.valueOf(Manager.prefix) + "ï¿½aVoc\u00ea usou seu ï¿½fGOKUï¿½a!");
 		} else if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)
 				&& Manager.pegarKit(p) == "Goku" && p.getItemInHand().getType() == Material.IRON_BLOCK) {
-			p.sendMessage(String.valueOf(Manager.prefix) + "§cAguarde mais §f" + Manager.pegarCooldown(p)
-					+ "§c Segundos para usar o GOKU!");
+			p.sendMessage(String.valueOf(Manager.prefix) + "ï¿½cAguarde mais ï¿½f" + Manager.pegarCooldown(p)
+					+ "ï¿½c Segundos para usar o GOKU!");
 			e.setCancelled(true);
 		}
 	}
@@ -193,7 +193,7 @@ public class Habilidades implements Listener {
 			final Player jogador = e.getPlayer();
 			final Player fisgado = (Player) e.getCaught();
 			if (Manager.pegarKit(jogador).equalsIgnoreCase("fisherman")) {
-				jogador.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Puxou §f" + fisgado.getName() + "§a.");
+				jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Puxou ï¿½f" + fisgado.getName() + "ï¿½a.");
 				fisgado.teleport(jogador.getLocation());
 			}
 		}
@@ -218,7 +218,7 @@ public class Habilidades implements Listener {
 			e.setCancelled(true);
 			if (Manager.pegarCombat(jogador)) {
 				jogador.sendMessage(String.valueOf(Manager.prefix)
-						+ " §cDesculpe, Mais Voce Esta Em Combate Ou Seja Seu Kit Foi Desabilitado Temporariamante.");
+						+ " ï¿½cDesculpe, Mais Voce Esta Em Combate Ou Seja Seu Kit Foi Desabilitado Temporariamante.");
 				Manager.adicionarEfeito(jogador, 20, 1, PotionEffectType.SLOW);
 				Manager.adicionarCooldown(jogador, 5);
 				return;
@@ -326,8 +326,8 @@ public class Habilidades implements Listener {
 							if (jogador.getLocation().distance(hitado.getLocation()) < 25.0) {
 								Manager.adicionarCooldown(jogador, 7);
 								jogador.teleport(this.NinjaLocal.get(jogador));
-								jogador.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Teleportou Para §f§l"
-										+ hitado.getName() + "§a.");
+								jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Teleportou Para ï¿½fï¿½l"
+										+ hitado.getName() + "ï¿½a.");
 								jogador.getWorld().playEffect(jogador.getLocation(), Effect.SMOKE, 1);
 								jogador.getWorld().playEffect(jogador.getLocation(), Effect.SMOKE, 1);
 								jogador.getWorld().playEffect(jogador.getLocation(), Effect.SMOKE, 1);
@@ -336,15 +336,15 @@ public class Habilidades implements Listener {
 								jogador.getWorld().playEffect(jogador.getLocation(), Effect.SMOKE, 1);
 							} else {
 								jogador.sendMessage(String.valueOf(Manager.prefix)
-										+ " §cDesculpe, Mais O Ultimo Jogador Hitado Esta Muito Longe.");
+										+ " ï¿½cDesculpe, Mais O Ultimo Jogador Hitado Esta Muito Longe.");
 							}
 						} else {
 							jogador.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cDesculpe, Mais O Ultimo Jogador Hitado Esta No Gladiator.");
+									+ " ï¿½cDesculpe, Mais O Ultimo Jogador Hitado Esta No Gladiator.");
 						}
 					} else {
 						jogador.sendMessage(String.valueOf(Manager.prefix)
-								+ " §cDesculpe, Mais Voce Nao Pode Usar O Ninja No Gladiator.");
+								+ " ï¿½cDesculpe, Mais Voce Nao Pode Usar O Ninja No Gladiator.");
 					}
 				}
 			} else {
@@ -372,7 +372,7 @@ public class Habilidades implements Listener {
 					p.getLocation().getBlockY() + 73, p.getLocation().getBlockZ() - 5);
 			if (Habilidades.fighting.containsKey(p.getName()) || Habilidades.fighting.containsKey(r.getName())) {
 				event.setCancelled(true);
-				p.sendMessage(String.valueOf(Manager.prefix) + " §cDesculpe, Mais Voce Ja Esta Em Um Gladiator.");
+				p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cDesculpe, Mais Voce Ja Esta Em Um Gladiator.");
 				return;
 			}
 			final Integer currentID = Habilidades.nextID;
@@ -393,7 +393,7 @@ public class Habilidades implements Listener {
 							if (!b.isEmpty()) {
 								event.setCancelled(true);
 								p.sendMessage(
-										String.valueOf(Manager.prefix) + " §cVoce Nao Pode Gerar Um Gladiator Aqui.");
+										String.valueOf(Manager.prefix) + " ï¿½cVoce Nao Pode Gerar Um Gladiator Aqui.");
 								return;
 							}
 							if (bY == 7) {
@@ -417,16 +417,16 @@ public class Habilidades implements Listener {
 				p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 17, 5));
 				r.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 17, 5));
 				p.sendMessage(
-						String.valueOf(Manager.prefix) + " §aVoce Desafiou §f" + r.getName() + " §aPara Um Batalha.");
+						String.valueOf(Manager.prefix) + " ï¿½aVoce Desafiou ï¿½f" + r.getName() + " ï¿½aPara Um Batalha.");
 				p.sendMessage(String.valueOf(Manager.prefix)
-						+ " §aCaso N\u00e3o Tenha Um Vencedor Definido Apos §f4 Minutos §aVoce Voltar\u00e1 Ao Seu Lugar De Origem.");
-				r.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Foi Desafiado Por §f" + p.getName()
-						+ " §aPara Um Batalha.");
+						+ " ï¿½aCaso N\u00e3o Tenha Um Vencedor Definido Apos ï¿½f4 Minutos ï¿½aVoce Voltar\u00e1 Ao Seu Lugar De Origem.");
+				r.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Foi Desafiado Por ï¿½f" + p.getName()
+						+ " ï¿½aPara Um Batalha.");
 				r.sendMessage(String.valueOf(Manager.prefix)
-						+ " §aCaso N\u00e3o Tenha Um Vencedor Definido Apos §f4 Minutos §aVoce Voltar\u00e1 Ao Seu Lugar De Origem.");
+						+ " ï¿½aCaso N\u00e3o Tenha Um Vencedor Definido Apos ï¿½f4 Minutos ï¿½aVoce Voltar\u00e1 Ao Seu Lugar De Origem.");
 				Habilidades.fighting.put(p.getName(), r.getName());
 				Habilidades.fighting.put(r.getName(), p.getName());
-				Habilidades.id2 = Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyKits.getPlugin(),
+				Habilidades.id2 = Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyPvP.getPlugin(),
 						new Runnable() {
 							@Override
 							public void run() {
@@ -439,7 +439,7 @@ public class Habilidades implements Listener {
 								}
 							}
 						}, 2400L);
-				Habilidades.id1 = Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyKits.getPlugin(),
+				Habilidades.id1 = Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyPvP.getPlugin(),
 						new Runnable() {
 							@Override
 							public void run() {
@@ -454,9 +454,9 @@ public class Habilidades implements Listener {
 									Habilidades.oldl.remove(p.getName());
 									Habilidades.oldl.remove(r.getName());
 									p.sendMessage(String.valueOf(Manager.prefix)
-											+ " §cN\u00e3o Houve Um Vencedor Definido, Voce Voltou Ao Seu Lugar De Origem.");
+											+ " ï¿½cN\u00e3o Houve Um Vencedor Definido, Voce Voltou Ao Seu Lugar De Origem.");
 									r.sendMessage(String.valueOf(Manager.prefix)
-											+ " §cN\u00e3o Houve Um Vencedor Definido, Voce Voltou Ao Seu Lugar De Origem.");
+											+ " ï¿½cN\u00e3o Houve Um Vencedor Definido, Voce Voltou Ao Seu Lugar De Origem.");
 									r.removePotionEffect(PotionEffectType.WITHER);
 									p.removePotionEffect(PotionEffectType.WITHER);
 									final Location loc = Habilidades.localizacao.get(p);
@@ -501,7 +501,7 @@ public class Habilidades implements Listener {
 				&& Habilidades.fighting.containsKey(e.getPlayer().getName())) {
 			e.setCancelled(true);
 			e.getClickedBlock().setType(Material.BEDROCK);
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(FantasyKits.getPlugin(),
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(FantasyPvP.getPlugin(),
 					new Runnable() {
 						@Override
 						public void run() {
@@ -522,7 +522,7 @@ public class Habilidades implements Listener {
 			Habilidades.fighting.remove(p.getName());
 			final Location old = Habilidades.oldl.get(t.getName());
 			t.teleport(old);
-			t.sendMessage(String.valueOf(Manager.prefix) + " §cSeu Oponente Deslogou.");
+			t.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cSeu Oponente Deslogou.");
 			Bukkit.getScheduler().cancelTask(Habilidades.id1);
 			Bukkit.getScheduler().cancelTask(Habilidades.id2);
 			t.removePotionEffect(PotionEffectType.WITHER);
@@ -564,8 +564,8 @@ public class Habilidades implements Listener {
 			final Location old = Habilidades.oldl.get(p.getName());
 			k.teleport(old);
 			p.getInventory().clear();
-			k.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Ganhou A Batalha Contra §f" + p.getName() + "§a.");
-			p.sendMessage(String.valueOf(Manager.prefix) + " §cVoce Perdeu A Batalha Contra §f" + k.getName() + "§c.");
+			k.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Ganhou A Batalha Contra ï¿½f" + p.getName() + "ï¿½a.");
+			p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cVoce Perdeu A Batalha Contra ï¿½f" + k.getName() + "ï¿½c.");
 			Bukkit.getScheduler().cancelTask(Habilidades.id1);
 			Bukkit.getScheduler().cancelTask(Habilidades.id2);
 			k.removePotionEffect(PotionEffectType.WITHER);
@@ -635,24 +635,24 @@ public class Habilidades implements Listener {
 			if (Manager.naoTemCooldown(jogador)) {
 				jogador.setAllowFlight(true);
 				Manager.adicionarCooldown(jogador, 30);
-				jogador.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Tem §f10 Segundos §aDe V\u00f4o.");
+				jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Tem ï¿½f10 Segundos ï¿½aDe V\u00f4o.");
 				for (final Entity pertos : jogador.getNearbyEntities(10.0, 10.0, 10.0)) {
 					if (pertos instanceof Player) {
 						final Player jogadores = (Player) pertos;
-						jogadores.sendMessage(String.valueOf(Manager.prefix) + " §a§lH\u00e1 Um Phantom Por Perto...");
+						jogadores.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aï¿½lH\u00e1 Um Phantom Por Perto...");
 						jogadores.sendMessage(
-								String.valueOf(Manager.prefix) + " §a§lIsto N\u00e3o E Um Hack E Sim Um Kit.");
+								String.valueOf(Manager.prefix) + " ï¿½aï¿½lIsto N\u00e3o E Um Hack E Sim Um Kit.");
 					}
 				}
 				Habilidades.armaduras.put(jogador.getName(), jogador.getInventory().getArmorContents());
 				jogador.getInventory()
-						.setHelmet(Manager.setarCor(Material.LEATHER_HELMET, Color.WHITE, "§8Armadura Fantasma"));
+						.setHelmet(Manager.setarCor(Material.LEATHER_HELMET, Color.WHITE, "ï¿½8Armadura Fantasma"));
 				jogador.getInventory().setChestplate(
-						Manager.setarCor(Material.LEATHER_CHESTPLATE, Color.WHITE, "§8Armadura Fantasma"));
+						Manager.setarCor(Material.LEATHER_CHESTPLATE, Color.WHITE, "ï¿½8Armadura Fantasma"));
 				jogador.getInventory()
-						.setLeggings(Manager.setarCor(Material.LEATHER_LEGGINGS, Color.WHITE, "§8Armadura Fantasma"));
+						.setLeggings(Manager.setarCor(Material.LEATHER_LEGGINGS, Color.WHITE, "ï¿½8Armadura Fantasma"));
 				jogador.getInventory()
-						.setBoots(Manager.setarCor(Material.LEATHER_BOOTS, Color.WHITE, "§8Armadura Fantasma"));
+						.setBoots(Manager.setarCor(Material.LEATHER_BOOTS, Color.WHITE, "ï¿½8Armadura Fantasma"));
 				jogador.updateInventory();
 				new BukkitRunnable() {
 					int tempophantom = 10;
@@ -662,15 +662,15 @@ public class Habilidades implements Listener {
 						jogador.setAllowFlight(true);
 						if (this.tempophantom > 0) {
 							if (this.tempophantom == 1) {
-								jogador.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Tem §f"
-										+ this.tempophantom + " Segundo §aDe V\u00f4o.");
+								jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Tem ï¿½f"
+										+ this.tempophantom + " Segundo ï¿½aDe V\u00f4o.");
 							} else {
-								jogador.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Tem §f"
-										+ this.tempophantom + " Segundos §aDe V\u00f4o.");
+								jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Tem ï¿½f"
+										+ this.tempophantom + " Segundos ï¿½aDe V\u00f4o.");
 							}
 						}
 						if (this.tempophantom == 0) {
-							jogador.sendMessage(String.valueOf(Manager.prefix) + " §cVoce N\u00e3o Pode Mais Voar.");
+							jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cVoce N\u00e3o Pode Mais Voar.");
 							jogador.setAllowFlight(false);
 							jogador.getInventory()
 									.setArmorContents(Habilidades.armaduras.get(jogador.getName()));
@@ -681,7 +681,7 @@ public class Habilidades implements Listener {
 							this.cancel();
 						}
 					}
-				}.runTaskTimer(FantasyKits.getPlugin(), 20L, 20L);
+				}.runTaskTimer(FantasyPvP.getPlugin(), 20L, 20L);
 			} else {
 				Manager.mensagemCooldown(jogador);
 			}
@@ -693,17 +693,17 @@ public class Habilidades implements Listener {
 		final Player jogador = (Player) e.getWhoClicked();
 		if (e.getCurrentItem() != null && e.getCurrentItem().getItemMeta() != null
 				&& e.getCurrentItem().getItemMeta().getDisplayName() != null) {
-			if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§8Armadura Fantasma")
+			if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("ï¿½8Armadura Fantasma")
 					&& Manager.pegarKit(jogador).equalsIgnoreCase("phantom")) {
 				e.setCancelled(true);
 				jogador.updateInventory();
 			}
-			if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDeshfire")
+			if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("ï¿½cDeshfire")
 					&& Manager.pegarKit(jogador).equalsIgnoreCase("deshfire")) {
 				e.setCancelled(true);
 				jogador.updateInventory();
 			}
-			if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§9Sonic")
+			if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("ï¿½9Sonic")
 					&& Manager.pegarKit(jogador).equalsIgnoreCase("sonic")) {
 				e.setCancelled(true);
 				jogador.updateInventory();
@@ -738,13 +738,13 @@ public class Habilidades implements Listener {
 					public void run() {
 						Habilidades.Cancel.add(jogador);
 					}
-				}.runTaskLater(FantasyKits.getPlugin(), 20L);
-				jogador.getInventory().setHelmet(Manager.setarCor(Material.LEATHER_HELMET, Color.RED, "§cDeshfire"));
+				}.runTaskLater(FantasyPvP.getPlugin(), 20L);
+				jogador.getInventory().setHelmet(Manager.setarCor(Material.LEATHER_HELMET, Color.RED, "ï¿½cDeshfire"));
 				jogador.getInventory()
-						.setChestplate(Manager.setarCor(Material.LEATHER_CHESTPLATE, Color.RED, "§cDeshfire"));
+						.setChestplate(Manager.setarCor(Material.LEATHER_CHESTPLATE, Color.RED, "ï¿½cDeshfire"));
 				jogador.getInventory()
-						.setLeggings(Manager.setarCor(Material.LEATHER_LEGGINGS, Color.RED, "§cDeshfire"));
-				jogador.getInventory().setBoots(Manager.setarCor(Material.LEATHER_BOOTS, Color.RED, "§cDeshfire"));
+						.setLeggings(Manager.setarCor(Material.LEATHER_LEGGINGS, Color.RED, "ï¿½cDeshfire"));
+				jogador.getInventory().setBoots(Manager.setarCor(Material.LEATHER_BOOTS, Color.RED, "ï¿½cDeshfire"));
 				jogador.updateInventory();
 				for (final Entity pertos : jogador.getNearbyEntities(10.0, 10.0, 10.0)) {
 					if (pertos instanceof Player) {
@@ -763,7 +763,7 @@ public class Habilidades implements Listener {
 							jogador.updateInventory();
 						}
 					}
-				}.runTaskLater(FantasyKits.getPlugin(), 200L);
+				}.runTaskLater(FantasyPvP.getPlugin(), 200L);
 			} else {
 				Manager.mensagemCooldown(jogador);
 			}
@@ -785,12 +785,12 @@ public class Habilidades implements Listener {
 					public void run() {
 						Habilidades.Cancel.add(jogador);
 					}
-				}.runTaskLater(FantasyKits.getPlugin(), 20L);
-				jogador.getInventory().setHelmet(Manager.setarCor(Material.LEATHER_HELMET, Color.BLUE, "§9Sonic"));
+				}.runTaskLater(FantasyPvP.getPlugin(), 20L);
+				jogador.getInventory().setHelmet(Manager.setarCor(Material.LEATHER_HELMET, Color.BLUE, "ï¿½9Sonic"));
 				jogador.getInventory()
-						.setChestplate(Manager.setarCor(Material.LEATHER_CHESTPLATE, Color.BLUE, "§9Sonic"));
-				jogador.getInventory().setLeggings(Manager.setarCor(Material.LEATHER_LEGGINGS, Color.BLUE, "§9Sonic"));
-				jogador.getInventory().setBoots(Manager.setarCor(Material.LEATHER_BOOTS, Color.BLUE, "§9Sonic"));
+						.setChestplate(Manager.setarCor(Material.LEATHER_CHESTPLATE, Color.BLUE, "ï¿½9Sonic"));
+				jogador.getInventory().setLeggings(Manager.setarCor(Material.LEATHER_LEGGINGS, Color.BLUE, "ï¿½9Sonic"));
+				jogador.getInventory().setBoots(Manager.setarCor(Material.LEATHER_BOOTS, Color.BLUE, "ï¿½9Sonic"));
 				jogador.updateInventory();
 				jogador.setVelocity(jogador.getEyeLocation().getDirection().multiply(3).add(new Vector(0, 1, 0)));
 				new BukkitRunnable() {
@@ -803,7 +803,7 @@ public class Habilidades implements Listener {
 							jogador.updateInventory();
 						}
 					}
-				}.runTaskLater(FantasyKits.getPlugin(), 200L);
+				}.runTaskLater(FantasyPvP.getPlugin(), 200L);
 			} else {
 				Manager.mensagemCooldown(jogador);
 			}
@@ -881,7 +881,7 @@ public class Habilidades implements Listener {
 			final Player jogador = (Player) e.getDamager();
 			if (Manager.pegarKit(jogador).equalsIgnoreCase("turtle") && jogador.isSneaking()) {
 				jogador.sendMessage(
-						String.valueOf(Manager.prefix) + " §cVoc\u00ea N\u00e3o Pode Bater Enquanto Estiver No Shift.");
+						String.valueOf(Manager.prefix) + " ï¿½cVoc\u00ea N\u00e3o Pode Bater Enquanto Estiver No Shift.");
 				e.setCancelled(true);
 			}
 		}
@@ -939,11 +939,11 @@ public class Habilidades implements Listener {
 				Habilidades.armaduras.put(jogador.getName(), jogador.getInventory().getArmorContents());
 				Manager.adicionarCooldown(jogador, 20);
 				Manager.adicionarEfeito(jogador, 200, 2, PotionEffectType.SPEED);
-				jogador.getInventory().setHelmet(Manager.setarCor(Material.LEATHER_HELMET, Color.RED, "§4Flash"));
+				jogador.getInventory().setHelmet(Manager.setarCor(Material.LEATHER_HELMET, Color.RED, "ï¿½4Flash"));
 				jogador.getInventory()
-						.setChestplate(Manager.setarCor(Material.LEATHER_CHESTPLATE, Color.RED, "§4Flash"));
-				jogador.getInventory().setLeggings(Manager.setarCor(Material.LEATHER_LEGGINGS, Color.RED, "§4Flash"));
-				jogador.getInventory().setBoots(Manager.setarCor(Material.LEATHER_BOOTS, Color.RED, "§4Flash"));
+						.setChestplate(Manager.setarCor(Material.LEATHER_CHESTPLATE, Color.RED, "ï¿½4Flash"));
+				jogador.getInventory().setLeggings(Manager.setarCor(Material.LEATHER_LEGGINGS, Color.RED, "ï¿½4Flash"));
+				jogador.getInventory().setBoots(Manager.setarCor(Material.LEATHER_BOOTS, Color.RED, "ï¿½4Flash"));
 				jogador.updateInventory();
 				for (final Entity pertos : jogador.getNearbyEntities(10.0, 10.0, 10.0)) {
 					if (pertos instanceof Player) {
@@ -953,7 +953,7 @@ public class Habilidades implements Listener {
 							public void run() {
 								Habilidades.Congelar.remove(jogadores.getName());
 							}
-						}.runTaskLater(FantasyKits.getPlugin(), 200L);
+						}.runTaskLater(FantasyPvP.getPlugin(), 200L);
 					}
 				}
 				new BukkitRunnable() {
@@ -963,7 +963,7 @@ public class Habilidades implements Listener {
 								.setArmorContents(Habilidades.armaduras.get(jogador.getName()));
 						jogador.updateInventory();
 					}
-				}.runTaskLater(FantasyKits.getPlugin(), 200L);
+				}.runTaskLater(FantasyPvP.getPlugin(), 200L);
 			} else {
 				Manager.mensagemCooldown(jogador);
 			}
@@ -1025,7 +1025,7 @@ public class Habilidades implements Listener {
 				final Snowball h = (Snowball) jogador.launchProjectile(Snowball.class);
 				final Vector velo1 = jogador.getLocation().getDirection().normalize().multiply(10);
 				h.setVelocity(velo1);
-				h.setMetadata("Draig", new FixedMetadataValue(FantasyKits.getPlugin(), true));
+				h.setMetadata("Draig", new FixedMetadataValue(FantasyPvP.getPlugin(), true));
 			} else {
 				Manager.mensagemCooldown(jogador);
 			}
@@ -1044,15 +1044,15 @@ public class Habilidades implements Listener {
 						jogador.setAllowFlight(true);
 						if (this.tempodraig > 0) {
 							if (this.tempodraig == 1) {
-								jogador.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Tem §f" + this.tempodraig
-										+ " Segundo §aDe V\u00f4o.");
+								jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Tem ï¿½f" + this.tempodraig
+										+ " Segundo ï¿½aDe V\u00f4o.");
 							} else {
-								jogador.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Tem §f" + this.tempodraig
-										+ " Segundos §aDe V\u00f4o.");
+								jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Tem ï¿½f" + this.tempodraig
+										+ " Segundos ï¿½aDe V\u00f4o.");
 							}
 						}
 						if (this.tempodraig == 0) {
-							jogador.sendMessage(String.valueOf(Manager.prefix) + " §cVoce N\u00e3o Pode Mais Voar.");
+							jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cVoce N\u00e3o Pode Mais Voar.");
 							jogador.setAllowFlight(false);
 							this.cancel();
 						}
@@ -1060,7 +1060,7 @@ public class Habilidades implements Listener {
 							this.cancel();
 						}
 					}
-				}.runTaskTimer(FantasyKits.getPlugin(), 20L, 20L);
+				}.runTaskTimer(FantasyPvP.getPlugin(), 20L, 20L);
 			} else {
 				Manager.mensagemCooldown(jogador);
 			}
@@ -1103,9 +1103,9 @@ public class Habilidades implements Listener {
 				jogador.getWorld().playEffect(jogador.getLocation(), Effect.SMOKE, 20);
 				jogador.getWorld().playEffect(jogador.getLocation(), Effect.SMOKE, 20);
 				jogador.getWorld().playEffect(jogador.getLocation(), Effect.SMOKE, 20);
-				jogador.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Lan\u00e7ou Sua Corda Thresh.");
+				jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Lan\u00e7ou Sua Corda Thresh.");
 				snow.setMetadata("thresh",
-						new FixedMetadataValue(FantasyKits.getPlugin(), true));
+						new FixedMetadataValue(FantasyPvP.getPlugin(), true));
 			} else {
 				Manager.mensagemCooldown(jogador);
 			}
@@ -1132,7 +1132,7 @@ public class Habilidades implements Listener {
 		if (Habilidades.fighting.containsKey(p.getName()) && event.getMessage().toLowerCase().startsWith("/")) {
 			event.setCancelled(true);
 			p.sendMessage(
-					String.valueOf(Manager.prefix) + " §cDesculpe, Mais E Este Comando Esta Bloqueado No Gladiator.");
+					String.valueOf(Manager.prefix) + " ï¿½cDesculpe, Mais E Este Comando Esta Bloqueado No Gladiator.");
 		}
 	}
 
@@ -1144,23 +1144,23 @@ public class Habilidades implements Listener {
 		lapis.setAmount(3);
 		if (e.getInventory() instanceof EnchantingInventory) {
 			e.getInventory().setItem(1, lapis);
-			FantasyKits.getMain().inventories.add((EnchantingInventory) e.getInventory());
+			FantasyPvP.getMain().inventories.add((EnchantingInventory) e.getInventory());
 		}
 	}
 
 	@EventHandler
 	public void closeInventoryEvent(final InventoryCloseEvent e) {
 		if (e.getInventory() instanceof EnchantingInventory
-				&& FantasyKits.getMain().inventories.contains(e.getInventory())) {
+				&& FantasyPvP.getMain().inventories.contains(e.getInventory())) {
 			e.getInventory().setItem(1, (ItemStack) null);
-			FantasyKits.getMain().inventories.remove(e.getInventory());
+			FantasyPvP.getMain().inventories.remove(e.getInventory());
 		}
 	}
 
 	@EventHandler
 	public void inventoryClickEvent(final InventoryClickEvent e) {
 		if (e.getClickedInventory() instanceof EnchantingInventory
-				&& FantasyKits.getMain().inventories.contains(e.getInventory()) && e.getSlot() == 1) {
+				&& FantasyPvP.getMain().inventories.contains(e.getInventory()) && e.getSlot() == 1) {
 			e.setCancelled(true);
 		}
 	}
@@ -1171,7 +1171,7 @@ public class Habilidades implements Listener {
 		d.setColor(DyeColor.BLUE);
 		final ItemStack lapis = d.toItemStack();
 		lapis.setAmount(3);
-		if (FantasyKits.getMain().inventories.contains(e.getInventory())) {
+		if (FantasyPvP.getMain().inventories.contains(e.getInventory())) {
 			e.getInventory().setItem(1, lapis);
 		}
 	}
@@ -1198,7 +1198,7 @@ public class Habilidades implements Listener {
 				h.setVelocity(velo1);
 				p.removePotionEffect(PotionEffectType.SLOW);
 				Habilidades.Zoom.remove(p);
-				h.setMetadata("sniper", new FixedMetadataValue(FantasyKits.getPlugin(), true));
+				h.setMetadata("sniper", new FixedMetadataValue(FantasyPvP.getPlugin(), true));
 				Manager.adicionarCooldown(p, 10);
 			} else {
 				Manager.mensagemCooldown(p);

@@ -29,7 +29,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
-import com.zalpha.FantasyNetwork.PvP.FantasyKits;
+import com.github.caaarlowsz.fantasymc.kitpvp.FantasyPvP;
 import com.zalpha.FantasyNetwork.PvP.util.Manager;
 
 public class Admin implements Listener, CommandExecutor {
@@ -67,40 +67,40 @@ public class Admin implements Listener, CommandExecutor {
 					p.getInventory().setArmorContents(Admin.SalvarArmadura.get(p.getName()));
 					Admin.SalvarInventario.remove(p.getName());
 					Admin.SalvarArmadura.remove(p.getName());
-					p.sendMessage(String.valueOf(Manager.prefix) + " §cVoce Saiu Do Modo Admin.");
-					Manager.mandarMensagemComPermissao("§7[§a" + p.getName() + " §7saiu do modo ADMIN]", "veravisos",
+					p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cVoce Saiu Do Modo Admin.");
+					Manager.mandarMensagemComPermissao("ï¿½7[ï¿½a" + p.getName() + " ï¿½7saiu do modo ADMIN]", "veravisos",
 							false);
 					for (final Player p2 : Bukkit.getOnlinePlayers()) {
 						p2.showPlayer(p);
 					}
 				} else if (!Manager.Admin.contains(p)) {
 					Manager.Admin.add(p);
-					p.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Entrou No Modo Admin.");
-					Manager.mandarMensagemComPermissao("§7[§a" + p.getName() + " §7entrou do modo ADMIN]", "veravisos",
+					p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Entrou No Modo Admin.");
+					Manager.mandarMensagemComPermissao("ï¿½7[ï¿½a" + p.getName() + " ï¿½7entrou do modo ADMIN]", "veravisos",
 							false);
 					Admin.SalvarArmadura.put(p.getName(), p.getInventory().getArmorContents());
 					Admin.SalvarInventario.put(p.getName(), p.getInventory().getContents());
 					p.getInventory().setArmorContents((ItemStack[]) null);
 					p.setGameMode(GameMode.CREATIVE);
 					p.getInventory().clear();
-					p.getInventory().setItem(1, Manager.criarItem2(Material.DIAMOND_SWORD, "§6\u25ba Players Em PvP",
-							(short) 0, 1, new String[] { "§7Clique Para Usar." }));
+					p.getInventory().setItem(1, Manager.criarItem2(Material.DIAMOND_SWORD, "ï¿½6\u25ba Players Em PvP",
+							(short) 0, 1, new String[] { "ï¿½7Clique Para Usar." }));
 					p.getInventory().setItem(2,
-							Manager.criarItem2(Material.BONE, "§b\u25ba Teste De KnockBack (Player)", (short) 0, 1,
-									new String[] { "§7Clique Para Usar." }));
+							Manager.criarItem2(Material.BONE, "ï¿½b\u25ba Teste De KnockBack (Player)", (short) 0, 1,
+									new String[] { "ï¿½7Clique Para Usar." }));
 					p.getInventory().setItem(3, Manager.criarItem2(Material.IRON_FENCE,
-							"§b\u25ba Criar Uma Arena (Player)", (short) 0, 1, new String[] { "§7Clique Para Usar." }));
+							"ï¿½b\u25ba Criar Uma Arena (Player)", (short) 0, 1, new String[] { "ï¿½7Clique Para Usar." }));
 					p.getInventory().setItem(4,
-							Manager.criarItem2(Material.INK_SACK, "§b\u25ba ACABA COM O PC Do Jogador (Player)",
-									(short) 15, 1, new String[] { "§7Clique Para Usar." }));
+							Manager.criarItem2(Material.INK_SACK, "ï¿½b\u25ba ACABA COM O PC Do Jogador (Player)",
+									(short) 15, 1, new String[] { "ï¿½7Clique Para Usar." }));
 					p.getInventory().setItem(5,
-							Manager.criarItem2(Material.MUSHROOM_SOUP, "§b\u25ba Checar Auto-Soup (Player)", (short) 0,
-									1, new String[] { "§7Clique Para Usar." }));
+							Manager.criarItem2(Material.MUSHROOM_SOUP, "ï¿½b\u25ba Checar Auto-Soup (Player)", (short) 0,
+									1, new String[] { "ï¿½7Clique Para Usar." }));
 					p.getInventory().setItem(6,
-							Manager.criarItem2(Material.PAPER, "§b\u25ba Teste Force-Field/Kill-Aura (Player)",
-									(short) 0, 1, new String[] { "§7Clique Para Usar." }));
-					p.getInventory().setItem(7, Manager.criarItem2(Material.MAGMA_CREAM, "§b\u25ba Troca R\u00e1pida",
-							(short) 0, 1, new String[] { "§7Clique Para Usar." }));
+							Manager.criarItem2(Material.PAPER, "ï¿½b\u25ba Teste Force-Field/Kill-Aura (Player)",
+									(short) 0, 1, new String[] { "ï¿½7Clique Para Usar." }));
+					p.getInventory().setItem(7, Manager.criarItem2(Material.MAGMA_CREAM, "ï¿½b\u25ba Troca R\u00e1pida",
+							(short) 0, 1, new String[] { "ï¿½7Clique Para Usar." }));
 					for (final Player p2 : Bukkit.getOnlinePlayers()) {
 						if (!p2.hasPermission("fantasy.admin")) {
 							p2.hidePlayer(p);
@@ -141,13 +141,13 @@ public class Admin implements Listener, CommandExecutor {
 			if (jogador.getItemInHand().getType() == Material.BONE) {
 				if (Admin.Testando.contains(clicado)) {
 					jogador.sendMessage(
-							String.valueOf(Manager.prefix) + " §cDesculpe, Mas Ja Tem Alguem Testando Este Jogador.");
+							String.valueOf(Manager.prefix) + " ï¿½cDesculpe, Mas Ja Tem Alguem Testando Este Jogador.");
 					return;
 				}
 				final double localTestado = clicado.getLocation().getY();
 				Admin.Testando.add(clicado);
 				clicado.setVelocity(new Vector(0, 3, 0));
-				Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyKits.getPlugin(), new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyPvP.getPlugin(), new Runnable() {
 					@Override
 					public void run() {
 						if (clicado.isOnline()) {
@@ -155,21 +155,21 @@ public class Admin implements Listener, CommandExecutor {
 						}
 					}
 				}, 5L);
-				Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyKits.getPlugin(), new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyPvP.getPlugin(), new Runnable() {
 					@Override
 					public void run() {
 						if (clicado.isOnline()) {
 							Admin.Testando.remove(clicado);
 							if (clicado.getLocation().getY() == localTestado) {
 								jogador.sendMessage(String.valueOf(Manager.prefix)
-										+ " §aEste Jogador §fProvavelmente §aPode Estar De Anti-KnockBack.");
+										+ " ï¿½aEste Jogador ï¿½fProvavelmente ï¿½aPode Estar De Anti-KnockBack.");
 							} else {
 								jogador.sendMessage(String.valueOf(Manager.prefix)
-										+ " §cEste Jogador §cN\u00e3o Esta De Anti-KnockBack.");
+										+ " ï¿½cEste Jogador ï¿½cN\u00e3o Esta De Anti-KnockBack.");
 							}
 						} else {
 							jogador.sendMessage(String.valueOf(Manager.prefix)
-									+ " §aEste Jogador Deslogou Enquanto O Teste Estava Sendo Feito.");
+									+ " ï¿½aEste Jogador Deslogou Enquanto O Teste Estava Sendo Feito.");
 							Admin.Testando.remove(clicado);
 						}
 					}
@@ -183,29 +183,29 @@ public class Admin implements Listener, CommandExecutor {
 				clicado.getLocation().add(-1.0, 11.0, 0.0).getBlock().setType(Material.BEDROCK);
 				clicado.getLocation().add(0.0, 10.0, 0.0).getBlock().setType(Material.BEDROCK);
 				clicado.teleport(clicado.getLocation().add(0.0, 11.0, -0.05));
-				jogador.sendMessage(String.valueOf(Manager.prefix) + " §aVoc\u00ea Criou Uma Arena Para §f"
-						+ clicado.getName() + "§a.");
+				jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoc\u00ea Criou Uma Arena Para ï¿½f"
+						+ clicado.getName() + "ï¿½a.");
 				Manager.mandarMensagemComPermissao(
-						"§7[§a" + jogador.getName() + " §7criou uma arena para " + clicado.getName() + "§7]",
+						"ï¿½7[ï¿½a" + jogador.getName() + " ï¿½7criou uma arena para " + clicado.getName() + "ï¿½7]",
 						"veravisos", false);
 			}
 			if (jogador.getItemInHand().getType() == Material.INK_SACK) {
 				clicado.openInventory(Bukkit.createInventory((InventoryHolder) null, 8100));
 				jogador.sendMessage(
-						String.valueOf(Manager.prefix) + " §aVoc\u00ea Crashou §f" + clicado.getName() + "§a.");
+						String.valueOf(Manager.prefix) + " ï¿½aVoc\u00ea Crashou ï¿½f" + clicado.getName() + "ï¿½a.");
 			}
 			if (jogador.getItemInHand().getType().equals(Material.AIR)) {
-				jogador.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Esta Vendo O Inventario De §f"
-						+ clicado.getName() + "§a.");
+				jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Esta Vendo O Inventario De ï¿½f"
+						+ clicado.getName() + "ï¿½a.");
 				Manager.mandarMensagemComPermissao(
-						"§7[§a" + jogador.getName() + " §7esta vendo o inventario de " + clicado.getName() + "§7]",
+						"ï¿½7[ï¿½a" + jogador.getName() + " ï¿½7esta vendo o inventario de " + clicado.getName() + "ï¿½7]",
 						"veravisos", false);
 				jogador.openInventory(clicado.getInventory());
 			}
 			if (jogador.getItemInHand().getType() == Material.MUSHROOM_SOUP) {
 				if (Admin.Testando.contains(clicado)) {
 					jogador.sendMessage(
-							String.valueOf(Manager.prefix) + " §cDesculpe, Mas Ja Tem Alguem Testando Este Jogador.");
+							String.valueOf(Manager.prefix) + " ï¿½cDesculpe, Mas Ja Tem Alguem Testando Este Jogador.");
 					return;
 				}
 				Admin.SalvarInventarioAutoSoup.put(clicado.getName(), clicado.getInventory().getContents());
@@ -216,7 +216,7 @@ public class Admin implements Listener, CommandExecutor {
 				clicado.getInventory().setArmorContents((ItemStack[]) null);
 				final ItemStack Sopa = new ItemStack(Material.MUSHROOM_SOUP);
 				clicado.getInventory().setItem(10, Sopa);
-				Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyKits.getPlugin(), new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyPvP.getPlugin(), new Runnable() {
 					@Override
 					public void run() {
 						if (clicado.isOnline()) {
@@ -228,7 +228,7 @@ public class Admin implements Listener, CommandExecutor {
 										Admin.SalvarArmaduraAutoSoup.get(clicado.getName()));
 								clicado.updateInventory();
 								jogador.sendMessage(String.valueOf(Manager.prefix)
-										+ " §aEste Jogador §fDefinitivamente §aEsta De Auto-Soup.");
+										+ " ï¿½aEste Jogador ï¿½fDefinitivamente ï¿½aEsta De Auto-Soup.");
 								clicado.setHealth(20.0);
 							} else {
 								clicado.getInventory().setContents(
@@ -237,22 +237,22 @@ public class Admin implements Listener, CommandExecutor {
 										Admin.SalvarArmaduraAutoSoup.get(clicado.getName()));
 								clicado.updateInventory();
 								jogador.sendMessage(String.valueOf(Manager.prefix)
-										+ " §cEste Jogador §fProvavelmente §cN\u00e3o Pode Estar De Auto-Soup.");
+										+ " ï¿½cEste Jogador ï¿½fProvavelmente ï¿½cN\u00e3o Pode Estar De Auto-Soup.");
 								clicado.setHealth(20.0);
 							}
 						} else {
 							jogador.sendMessage(String.valueOf(Manager.prefix)
-									+ " §aEste Jogador Deslogou Enquanto O Teste Estava Sendo Feito.");
+									+ " ï¿½aEste Jogador Deslogou Enquanto O Teste Estava Sendo Feito.");
 							Admin.Testando.remove(clicado);
 						}
 					}
 				}, 10L);
 			}
 			if (jogador.getItemInHand().getType() == Material.PAPER && jogador.getItemInHand().getItemMeta()
-					.getDisplayName().equalsIgnoreCase("§b\u25ba Teste Force-Field/Kill-Aura (Player)")) {
+					.getDisplayName().equalsIgnoreCase("ï¿½b\u25ba Teste Force-Field/Kill-Aura (Player)")) {
 				if (Admin.Testando.contains(clicado)) {
 					jogador.sendMessage(
-							String.valueOf(Manager.prefix) + " §cDesculpe, Mas Ja Tem Alguem Testando Este Jogador.");
+							String.valueOf(Manager.prefix) + " ï¿½cDesculpe, Mas Ja Tem Alguem Testando Este Jogador.");
 					return;
 				}
 				final int LocalX = clicado.getLocation().getBlockX();
@@ -263,14 +263,14 @@ public class Admin implements Listener, CommandExecutor {
 						LocalZ);
 				final Bat Morcego = (Bat) clicado.getWorld().spawnEntity(Local, EntityType.BAT);
 				Morcego.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 9999999, 99999999));
-				Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyKits.getPlugin(), new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyPvP.getPlugin(), new Runnable() {
 					@Override
 					public void run() {
 						Morcego.remove();
 						Admin.Testando.remove(clicado);
 					}
 				}, 11L);
-				Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyKits.getPlugin(), new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyPvP.getPlugin(), new Runnable() {
 					@Override
 					public void run() {
 						if (clicado.isOnline()) {
@@ -278,15 +278,15 @@ public class Admin implements Listener, CommandExecutor {
 								Admin.Bateu.remove(clicado);
 								Admin.Testando.remove(clicado);
 								jogador.sendMessage(String.valueOf(Manager.prefix)
-										+ " §aEste Jogador §fDefinitivamente §aEsta De Forcefield.");
+										+ " ï¿½aEste Jogador ï¿½fDefinitivamente ï¿½aEsta De Forcefield.");
 							} else {
 								jogador.sendMessage(String.valueOf(Manager.prefix)
-										+ " §cEste Jogador §fProvavelmente §cN\u00e3o Pode Estar De Forcefield.");
+										+ " ï¿½cEste Jogador ï¿½fProvavelmente ï¿½cN\u00e3o Pode Estar De Forcefield.");
 								Admin.Bateu.remove(clicado);
 							}
 						} else {
 							jogador.sendMessage(String.valueOf(Manager.prefix)
-									+ " §aEste Jogador Deslogou Enquanto O Teste Estava Sendo Feito.");
+									+ " ï¿½aEste Jogador Deslogou Enquanto O Teste Estava Sendo Feito.");
 							Admin.Testando.remove(clicado);
 						}
 					}
@@ -364,10 +364,10 @@ public class Admin implements Listener, CommandExecutor {
 				for (final Player jogadores : Bukkit.getOnlinePlayers()) {
 					jogadores.showPlayer(jogador);
 				}
-				Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyKits.getPlugin(), new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyPvP.getPlugin(), new Runnable() {
 					@Override
 					public void run() {
-						jogador.sendMessage(String.valueOf(Manager.prefix) + " §aTroca Rapida Efeuada Com Sucesso.");
+						jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aTroca Rapida Efeuada Com Sucesso.");
 						Admin.TrocaRapida.remove(jogador);
 						jogador.setGameMode(GameMode.CREATIVE);
 						for (final Player p2 : Bukkit.getOnlinePlayers()) {
@@ -388,7 +388,7 @@ public class Admin implements Listener, CommandExecutor {
 					}
 				} else {
 					jogador.sendMessage(
-							String.valueOf(Manager.prefix) + " §cDesculpe, Mas N\u00e3o Existe Um Player Em Combate.");
+							String.valueOf(Manager.prefix) + " ï¿½cDesculpe, Mas N\u00e3o Existe Um Player Em Combate.");
 				}
 			}
 		}

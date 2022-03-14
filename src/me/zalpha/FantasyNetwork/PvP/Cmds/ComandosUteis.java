@@ -18,7 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.zalpha.FantasyNetwork.PvP.FantasyKits;
+import com.github.caaarlowsz.fantasymc.kitpvp.FantasyPvP;
 import com.zalpha.FantasyNetwork.PvP.util.ConfigAPI;
 import com.zalpha.FantasyNetwork.PvP.util.Inventarios;
 import com.zalpha.FantasyNetwork.PvP.util.Manager;
@@ -40,8 +40,8 @@ public class ComandosUteis implements CommandExecutor {
 					if (Manager.argumentoNumero(args[0])) {
 						final int raio = Integer.valueOf(args[0]);
 						jogador.sendMessage(
-								String.valueOf(Manager.prefix) + " §7Seu inventario foi setado em um raio de §a" + raio
-										+ " " + ((raio == 1) ? "bloco" : "blocos") + "§7.");
+								String.valueOf(Manager.prefix) + " ï¿½7Seu inventario foi setado em um raio de ï¿½a" + raio
+										+ " " + ((raio == 1) ? "bloco" : "blocos") + "ï¿½7.");
 						for (final Entity entidades : jogador.getNearbyEntities(raio, raio,
 								raio)) {
 							if (entidades instanceof Player) {
@@ -53,12 +53,12 @@ public class ComandosUteis implements CommandExecutor {
 								jogadores.getInventory().setArmorContents(jogador.getInventory().getArmorContents());
 								jogadores.getInventory().setContents(jogador.getInventory().getContents());
 								jogadores.sendMessage(String.valueOf(Manager.prefix)
-										+ " §7Seu inventario foi trocado para o invent\u00c3¡rio de §f"
-										+ jogador.getName() + "§7.");
+										+ " ï¿½7Seu inventario foi trocado para o invent\u00c3ï¿½rio de ï¿½f"
+										+ jogador.getName() + "ï¿½7.");
 							}
 						}
 					} else {
-						jogador.sendMessage(String.valueOf(Manager.prefix) + " §7O argumento \"" + args[0]
+						jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7O argumento \"" + args[0]
 								+ "\" nao se trata de um numero inteiro.");
 					}
 				} else {
@@ -73,10 +73,10 @@ public class ComandosUteis implements CommandExecutor {
 			if (p.hasPermission("fantasy.staffchat")) {
 				if (Manager.comStaffAtivado(p)) {
 					Manager.StaffChat.remove(p.getName());
-					p.sendMessage(String.valueOf(Manager.prefix) + " §cVoce Saiu Do Staff Chat.");
+					p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cVoce Saiu Do Staff Chat.");
 				} else if (!Manager.comStaffAtivado(p)) {
 					Manager.StaffChat.add(p.getName());
-					p.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Entrou No Staff Chat.");
+					p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Entrou No Staff Chat.");
 				}
 			} else {
 				p.sendMessage(Manager.SEMPERM);
@@ -86,7 +86,7 @@ public class ComandosUteis implements CommandExecutor {
 			if (Manager.pegarKit(p).equalsIgnoreCase("1v1")) {
 				p.getInventory().clear();
 				Manager.darItens(p);
-				p.sendMessage(String.valueOf(Manager.prefix) + " §cVoce Saiu Da 1v1.");
+				p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cVoce Saiu Da 1v1.");
 				p.getInventory().setArmorContents((ItemStack[]) null);
 				p.teleport(p.getWorld().getSpawnLocation());
 				Manager.removerArrays(p);
@@ -99,13 +99,13 @@ public class ComandosUteis implements CommandExecutor {
 			final Block blockBelow = below.getBlock();
 			if (blockBelow.getType() == Material.AIR) {
 				p.sendMessage(String.valueOf(Manager.prefix)
-						+ " §cVoce N\u00c3O Pode Teleportar Para A 1v1 Enquanto Estiver No Ar.");
+						+ " ï¿½cVoce N\u00c3O Pode Teleportar Para A 1v1 Enquanto Estiver No Ar.");
 				return true;
 			}
 			p.getInventory().clear();
 			Manager.darItens(p);
 			Manager.removerArrays(p);
-			p.sendMessage(String.valueOf(Manager.prefix) + " §aVoce entrou na 1v1.");
+			p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce entrou na 1v1.");
 			p.getInventory().setArmorContents((ItemStack[]) null);
 			Duelx1.teleport1v1(p);
 			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1.0f, 1.0f);
@@ -115,19 +115,19 @@ public class ComandosUteis implements CommandExecutor {
 			if (label.equalsIgnoreCase("score")) {
 				if (PlayerData.get(p).getScoreB()) {
 					PlayerData.get(p).setScore(false);
-					p.sendMessage(String.valueOf(Manager.prefix) + " §cVoce desativou a scoreboard.");
+					p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cVoce desativou a scoreboard.");
 				} else if (!PlayerData.get(p).getScoreB()) {
 					PlayerData.get(p).setScore(true);
-					p.sendMessage(String.valueOf(Manager.prefix) + " §aVoce ativou a scoreboard");
+					p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce ativou a scoreboard");
 				}
 			}
 			if (cmd.getName().equalsIgnoreCase("limpar")) {
 				if (!p.hasPermission("fantasy.clear")) {
-					p.sendMessage("§5§lFANTASY §8\u279c§c Voc\u00ea nao possui permiss\u00f5es para isso.");
+					p.sendMessage("ï¿½5ï¿½lFANTASY ï¿½8\u279cï¿½c Voc\u00ea nao possui permiss\u00f5es para isso.");
 					return true;
 				}
 				Bukkit.broadcastMessage(" ");
-				Bukkit.broadcastMessage("§5§lFANTASY §8\u279c§a Iniciando uma varredura geral...");
+				Bukkit.broadcastMessage("ï¿½5ï¿½lFANTASY ï¿½8\u279cï¿½a Iniciando uma varredura geral...");
 				Bukkit.broadcastMessage(" ");
 				final Runtime r2 = Runtime.getRuntime();
 				final long Lused2 = (r2.totalMemory() - r2.freeMemory()) / 5120L / 5120L;
@@ -135,11 +135,11 @@ public class ComandosUteis implements CommandExecutor {
 				final long Lused3 = (r2.totalMemory() - r2.freeMemory()) / 5120L / 5120L;
 				for (final Player s : Bukkit.getOnlinePlayers()) {
 					if (p.hasPermission("fantasy.clear")) {
-						s.sendMessage("§5§lFANTASY §8\u279c§a Limpos §f" + Long.toString(Lused2 - Lused3)
-								+ "M §7De RAM§a do servidor.");
+						s.sendMessage("ï¿½5ï¿½lFANTASY ï¿½8\u279cï¿½a Limpos ï¿½f" + Long.toString(Lused2 - Lused3)
+								+ "M ï¿½7De RAMï¿½a do servidor.");
 					}
 				}
-				Bukkit.broadcastMessage("§5§lFANTASY §8\u279c§e A Varredura foi finalizada com sucesso.");
+				Bukkit.broadcastMessage("ï¿½5ï¿½lFANTASY ï¿½8\u279cï¿½e A Varredura foi finalizada com sucesso.");
 				return false;
 			} else {
 				if (label.equalsIgnoreCase("setwarp")) {
@@ -165,20 +165,20 @@ public class ComandosUteis implements CommandExecutor {
 						ConfigAPI.pegarConfig().pegarconfigCords().set("Coordenadas.Feast",
 								Manager.serializeLocation(p.getLocation()));
 						ConfigAPI.pegarConfig().salvarCords();
-						p.sendMessage(String.valueOf(Manager.prefix) + " §aFeast Setado Com Sucesso.");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aFeast Setado Com Sucesso.");
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("fps")) {
 						ConfigAPI.pegarConfig().pegarconfigCords().set("Coordenadas.Fps",
 								Manager.serializeLocation(p.getLocation()));
 						ConfigAPI.pegarConfig().salvarCords();
-						p.sendMessage(String.valueOf(Manager.prefix) + " §aFps Setado Com Sucesso.");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aFps Setado Com Sucesso.");
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("lava")) {
 						ConfigAPI.pegarConfig().pegarconfigCords().set("Coordenadas.Lava",
 								Manager.serializeLocation(p.getLocation()));
-						p.sendMessage(String.valueOf(Manager.prefix) + " §aLava Setado Com Sucesso.");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aLava Setado Com Sucesso.");
 						ConfigAPI.pegarConfig().salvarCords();
 						return true;
 					}
@@ -186,42 +186,42 @@ public class ComandosUteis implements CommandExecutor {
 						ConfigAPI.pegarConfig().pegarconfigCords().set("Coordenadas.Main",
 								Manager.serializeLocation(p.getLocation()));
 						ConfigAPI.pegarConfig().salvarCords();
-						p.sendMessage(String.valueOf(Manager.prefix) + " §aMain Setado Com Sucesso.");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aMain Setado Com Sucesso.");
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("1v1")) {
 						ConfigAPI.pegarConfig().pegarconfigCords().set("Coordenadas.1v1",
 								Manager.serializeLocation(p.getLocation()));
 						ConfigAPI.pegarConfig().salvarCords();
-						p.sendMessage(String.valueOf(Manager.prefix) + " §a1v1 Setado Com Sucesso.");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½a1v1 Setado Com Sucesso.");
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("potion")) {
 						ConfigAPI.pegarConfig().pegarconfigCords().set("Coordenadas.Potion",
 								Manager.serializeLocation(p.getLocation()));
 						ConfigAPI.pegarConfig().salvarCords();
-						p.sendMessage(String.valueOf(Manager.prefix) + " §aPotion Setado Com Sucesso.");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aPotion Setado Com Sucesso.");
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("mdr")) {
 						ConfigAPI.pegarConfig().pegarconfigCords().set("Coordenadas.Mdr",
 								Manager.serializeLocation(p.getLocation()));
 						ConfigAPI.pegarConfig().salvarCords();
-						p.sendMessage(String.valueOf(Manager.prefix) + " §aMdr Setado Com Sucesso.");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aMdr Setado Com Sucesso.");
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("PosP1")) {
 						ConfigAPI.pegarConfig().pegarconfigCords().set("Coordenadas.1v1_Position1",
 								Manager.serializeLocation(p.getLocation()));
 						ConfigAPI.pegarConfig().salvarCords();
-						p.sendMessage(String.valueOf(Manager.prefix) + " §a1v1 PosP1 Setado Com Sucesso.");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½a1v1 PosP1 Setado Com Sucesso.");
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("PosP2")) {
 						ConfigAPI.pegarConfig().pegarconfigCords().set("Coordenadas.1v1_Position2",
 								Manager.serializeLocation(p.getLocation()));
 						ConfigAPI.pegarConfig().salvarCords();
-						p.sendMessage(String.valueOf(Manager.prefix) + " §a1v1 PosP2 Setado Com Sucesso.");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½a1v1 PosP2 Setado Com Sucesso.");
 						return true;
 					}
 					sender.sendMessage(String.valueOf(Manager.use)
@@ -250,25 +250,25 @@ public class ComandosUteis implements CommandExecutor {
 						}
 						if (args[0].equalsIgnoreCase("on")) {
 							if (!Manager.Chat) {
-								Manager.mandarMensagem(String.valueOf(Manager.prefix) + " §aChat Ativado!");
-								Manager.mandarMensagemComPermissao("§7[§a" + p.getName() + " §7ativou o chat]",
+								Manager.mandarMensagem(String.valueOf(Manager.prefix) + " ï¿½aChat Ativado!");
+								Manager.mandarMensagemComPermissao("ï¿½7[ï¿½a" + p.getName() + " ï¿½7ativou o chat]",
 										"veravisos", false);
 								Manager.Chat = true;
 							} else {
 								p.sendMessage(
-										String.valueOf(Manager.prefix) + " §cDesculpe, Mas O Chat Ja Esta Ativado.");
+										String.valueOf(Manager.prefix) + " ï¿½cDesculpe, Mas O Chat Ja Esta Ativado.");
 							}
 							return true;
 						}
 						if (args[0].equalsIgnoreCase("off")) {
 							if (Manager.Chat) {
-								Manager.mandarMensagem(String.valueOf(Manager.prefix) + " §cChat Desativado!");
-								Manager.mandarMensagemComPermissao("§7[§a" + p.getName() + " §7desativou o chat]",
+								Manager.mandarMensagem(String.valueOf(Manager.prefix) + " ï¿½cChat Desativado!");
+								Manager.mandarMensagemComPermissao("ï¿½7[ï¿½a" + p.getName() + " ï¿½7desativou o chat]",
 										"veravisos", false);
 								Manager.Chat = false;
 							} else {
 								p.sendMessage(
-										String.valueOf(Manager.prefix) + " §cDesculpe, Mas O Chat Ja Esta Desativado.");
+										String.valueOf(Manager.prefix) + " ï¿½cDesculpe, Mas O Chat Ja Esta Desativado.");
 							}
 							return true;
 						}
@@ -276,8 +276,8 @@ public class ComandosUteis implements CommandExecutor {
 							for (int x = 1; x < 100; ++x) {
 								Manager.mandarMensagem("");
 							}
-							Manager.mandarMensagem(String.valueOf(Manager.prefix) + " §aChat Limpo!");
-							Manager.mandarMensagemComPermissao("§7[§a" + p.getName() + " §7limpou chat]", "veravisos",
+							Manager.mandarMensagem(String.valueOf(Manager.prefix) + " ï¿½aChat Limpo!");
+							Manager.mandarMensagemComPermissao("ï¿½7[ï¿½a" + p.getName() + " ï¿½7limpou chat]", "veravisos",
 									false);
 							return true;
 						}
@@ -295,7 +295,7 @@ public class ComandosUteis implements CommandExecutor {
 							}
 							bcast = ChatColor.translateAlternateColorCodes('&', bcast);
 							Manager.mandarMensagem("");
-							Manager.mandarMensagem(String.valueOf(Manager.prefix) + " " + bcast.replace("&", "§"));
+							Manager.mandarMensagem(String.valueOf(Manager.prefix) + " " + bcast.replace("&", "ï¿½"));
 							Manager.mandarMensagem("");
 						} else {
 							p.sendMessage(String.valueOf(Manager.use) + "bc <mensagem...>");
@@ -327,19 +327,19 @@ public class ComandosUteis implements CommandExecutor {
 						}
 						final String Motivo = sb.toString().trim();
 						if (jogadorencontrado != null) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §aDenuncia Envianda Com Sucesso§a.");
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aDenuncia Envianda Com Sucessoï¿½a.");
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §aVoce Entrou Em Um Cooldown De §f10 Segundos§a Para Usar O Report Novamente.");
+									+ " ï¿½aVoce Entrou Em Um Cooldown De ï¿½f10 Segundosï¿½a Para Usar O Report Novamente.");
 							Manager.mandarMensagemComPermissao("", "veravisos", true);
-							Manager.mandarMensagemComPermissao("§c§m---(-)--------------------(-)---", "veravisos",
+							Manager.mandarMensagemComPermissao("ï¿½cï¿½m---(-)--------------------(-)---", "veravisos",
 									true);
-							Manager.mandarMensagemComPermissao("   §a§lNOVA DENUNCIA§7 ", "veravisos", true);
+							Manager.mandarMensagemComPermissao("   ï¿½aï¿½lNOVA DENUNCIAï¿½7 ", "veravisos", true);
 							Manager.mandarMensagemComPermissao("", "veravisos", true);
-							Manager.mandarMensagemComPermissao("§7» Suspeito: §a" + jogadorencontrado.getName(),
+							Manager.mandarMensagemComPermissao("ï¿½7ï¿½ Suspeito: ï¿½a" + jogadorencontrado.getName(),
 									"veravisos", true);
-							Manager.mandarMensagemComPermissao("§7» Vitima: §e" + p.getName(), "veravisos", true);
-							Manager.mandarMensagemComPermissao("§7» Motivo: §e" + Motivo, "veravisos", true);
-							Manager.mandarMensagemComPermissao("§c§m---(-)--------------------(-)---", "veravisos",
+							Manager.mandarMensagemComPermissao("ï¿½7ï¿½ Vitima: ï¿½e" + p.getName(), "veravisos", true);
+							Manager.mandarMensagemComPermissao("ï¿½7ï¿½ Motivo: ï¿½e" + Motivo, "veravisos", true);
+							Manager.mandarMensagemComPermissao("ï¿½cï¿½m---(-)--------------------(-)---", "veravisos",
 									true);
 							Manager.CooldownReport.add(p);
 							new BukkitRunnable() {
@@ -348,23 +348,23 @@ public class ComandosUteis implements CommandExecutor {
 										Manager.CooldownReport.remove(p);
 									}
 								}
-							}.runTaskLater(FantasyKits.getPlugin(), 200L);
+							}.runTaskLater(FantasyPvP.getPlugin(), 200L);
 						} else {
 							p.sendMessage(Manager.JOGADORFF);
 						}
 					} else {
-						p.sendMessage(String.valueOf(Manager.prefix) + " §cAguarde Para Reportar Alguem Novamente.");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cAguarde Para Reportar Alguem Novamente.");
 						p.playSound(p.getLocation(), Sound.IRONGOLEM_HIT, 2.0f, 2.0f);
 					}
 				}
 				if (label.equalsIgnoreCase("construir")) {
 					if (p.hasPermission("fantasy.construir")) {
 						if (Manager.construir.contains(p)) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §cAgora Voce Nao Pode Mas Construir.");
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cAgora Voce Nao Pode Mas Construir.");
 							p.playSound(p.getLocation(), Sound.BLAZE_HIT, 1.0f, 1.0f);
 							Manager.construir.remove(p);
 						} else if (!Manager.construir.contains(p)) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §aAgora Voce Pode Construir.");
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aAgora Voce Pode Construir.");
 							p.playSound(p.getLocation(), Sound.ITEM_PICKUP, 1.0f, 1.0f);
 							Manager.construir.add(p);
 						}
@@ -379,1094 +379,1094 @@ public class ComandosUteis implements CommandExecutor {
 					if (args.length == 0) {
 						if (p.hasPermission("tag.*")) {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cUse: /tag <DONO,DEV,COORD,ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+									+ " ï¿½cUse: /tag <DONO,DEV,COORD,ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 							return true;
 						}
 						if (p.hasPermission("tag.dev")) {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cUse: /tag <DONO,DEV,COORD,ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+									+ " ï¿½cUse: /tag <DONO,DEV,COORD,ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 							return true;
 						}
 						if (p.hasPermission("tag.coord")) {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cUse: /tag <COORD,ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+									+ " ï¿½cUse: /tag <COORD,ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 							return true;
 						}
 						if (p.hasPermission("tag.admin")) {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cUse: /tag <ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+									+ " ï¿½cUse: /tag <ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 							return true;
 						}
 						if (p.hasPermission("tag.modplus")) {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cUse: /tag <MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+									+ " ï¿½cUse: /tag <MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 							return true;
 						}
 						if (p.hasPermission("tag.mod")) {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cUse: /tag <MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+									+ " ï¿½cUse: /tag <MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 							return true;
 						}
 						if (p.hasPermission("tag.youtuberplus")) {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cUse: /tag <YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+									+ " ï¿½cUse: /tag <YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 							return true;
 						}
 						if (p.hasPermission("tag.trial")) {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cUse: /tag <TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+									+ " ï¿½cUse: /tag <TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 							return true;
 						}
 						if (p.hasPermission("tag.ajudante")) {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cUse: /tag <AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+									+ " ï¿½cUse: /tag <AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 							return true;
 						}
 						if (p.hasPermission("tag.builder")) {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cUse: /tag <BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+									+ " ï¿½cUse: /tag <BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 							return true;
 						}
 						if (p.hasPermission("tag.youtuber")) {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cUse: /tag <YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+									+ " ï¿½cUse: /tag <YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 							return true;
 						}
 						if (p.hasPermission("tag.youtubermirim")) {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cUse: /tag <YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+									+ " ï¿½cUse: /tag <YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 							return true;
 						}
 						if (p.hasPermission("tag.emerald")) {
 							p.sendMessage(
-									String.valueOf(Manager.prefix) + " §cUse: /tag <EMERALD,DIAMOND,GOLD,NORMAL>");
+									String.valueOf(Manager.prefix) + " ï¿½cUse: /tag <EMERALD,DIAMOND,GOLD,NORMAL>");
 							return true;
 						}
 						if (p.hasPermission("tag.diamond")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §cUse: /tag <DIAMOND,GOLD,NORMAL>");
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cUse: /tag <DIAMOND,GOLD,NORMAL>");
 							return true;
 						}
 						if (p.hasPermission("tag.gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §cUse: /tag <GOLD,NORMAL>");
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cUse: /tag <GOLD,NORMAL>");
 							return true;
 						}
 						if (p.hasPermission("tag.normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §cUse: /tag <NORMAL>");
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cUse: /tag <NORMAL>");
 							return true;
 						}
-						p.sendMessage(String.valueOf(Manager.prefix) + " §cUse: /tag <NORMAL>");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cUse: /tag <NORMAL>");
 						return true;
 					} else if (args.length > 0 && p.hasPermission("tag.*")) {
 						if (args[0].toLowerCase().equals("dono")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DONO);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("dev")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DEV);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("coord")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.COORD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("admin")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.ADMIN);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("mod+")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.MODPLUS);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("mod")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.MOD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber+")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERPLUS);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("trial")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.TRIAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("ajudante")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.AJUDANTE);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("builder")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.BUILDER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtubermirim")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERMIRIM);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("emerald")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.EMERALD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("diamond")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DIAMOND);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.GOLD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						p.sendMessage(String.valueOf(Manager.prefix)
-								+ " §cUse: /tag <DONO,DEV,COORD,ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+								+ " ï¿½cUse: /tag <DONO,DEV,COORD,ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 						return true;
 					} else if (args.length > 0 && p.hasPermission("tag.dev")) {
 						if (args[0].toLowerCase().equals("dev")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DEV);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("coord")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.COORD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("admin")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.ADMIN);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("mod+")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.MODPLUS);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("mod")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.MOD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber+")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERPLUS);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("trial")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.TRIAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("ajudante")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.AJUDANTE);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("builder")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.BUILDER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtubermirim")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERMIRIM);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("emerald")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.EMERALD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("diamond")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DIAMOND);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.GOLD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						p.sendMessage(String.valueOf(Manager.prefix)
-								+ " §cUse: /tag <DEV,COORD,ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+								+ " ï¿½cUse: /tag <DEV,COORD,ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 						return true;
 					} else if (args.length > 0 && p.hasPermission("tag.coord")) {
 						if (args[0].toLowerCase().equals("coord")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.COORD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("admin")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.ADMIN);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("mod+")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.MODPLUS);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("mod")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.MOD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber+")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERPLUS);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("trial")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.TRIAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("ajudante")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.AJUDANTE);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("builder")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.BUILDER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtubermirim")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERMIRIM);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("emerald")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.EMERALD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("diamond")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DIAMOND);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.GOLD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						p.sendMessage(String.valueOf(Manager.prefix)
-								+ " §cUse: /tag <COORD,ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+								+ " ï¿½cUse: /tag <COORD,ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 						return true;
 					} else if (args.length > 0 && p.hasPermission("tag.admin")) {
 						if (args[0].toLowerCase().equals("admin")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.ADMIN);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("mod+")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.MODPLUS);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("mod")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.MOD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber+")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERPLUS);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("trial")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.TRIAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("ajudante")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.AJUDANTE);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("builder")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.BUILDER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtubermirim")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERMIRIM);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("emerald")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.EMERALD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("diamond")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DIAMOND);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.GOLD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						p.sendMessage(String.valueOf(Manager.prefix)
-								+ " §cUse: /tag <ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+								+ " ï¿½cUse: /tag <ADMIN,MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 						return true;
 					} else if (args.length > 0 && p.hasPermission("tag.modplus")) {
 						if (args[0].toLowerCase().equals("mod+")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.MODPLUS);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("mod")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.MOD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber+")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERPLUS);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("trial")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.TRIAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("ajudante")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.AJUDANTE);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("builder")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.BUILDER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtubermirim")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERMIRIM);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("emerald")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.EMERALD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("diamond")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DIAMOND);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.GOLD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						p.sendMessage(String.valueOf(Manager.prefix)
-								+ " §cUse: /tag <MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+								+ " ï¿½cUse: /tag <MOD+,MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 						return true;
 					} else if (args.length > 0 && p.hasPermission("tag.mod")) {
 						if (args[0].toLowerCase().equals("mod")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.MOD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber+")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERPLUS);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("trial")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.TRIAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("ajudante")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.AJUDANTE);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("builder")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.BUILDER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtubermirim")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERMIRIM);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("emerald")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.EMERALD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("diamond")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DIAMOND);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.GOLD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						p.sendMessage(String.valueOf(Manager.prefix)
-								+ " §cUse: /tag <MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+								+ " ï¿½cUse: /tag <MOD,YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 						return true;
 					} else if (args.length > 0 && p.hasPermission("tag.youtuberplus")) {
 						if (args[0].toLowerCase().equals("youtuber+")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERPLUS);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("trial")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.TRIAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("ajudante")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.AJUDANTE);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("builder")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.BUILDER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtubermirim")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERMIRIM);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("emerald")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.EMERALD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("diamond")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DIAMOND);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.GOLD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						p.sendMessage(String.valueOf(Manager.prefix)
-								+ " §cUse: /tag <YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+								+ " ï¿½cUse: /tag <YOUTUBER+,TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 						return true;
 					} else if (args.length > 0 && p.hasPermission("tag.trial")) {
 						if (args[0].toLowerCase().equals("trial")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.TRIAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("ajudante")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.AJUDANTE);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("builder")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.BUILDER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtubermirim")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERMIRIM);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("emerald")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.EMERALD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("diamond")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DIAMOND);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.GOLD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						p.sendMessage(String.valueOf(Manager.prefix)
-								+ " §cUse: /tag <TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+								+ " ï¿½cUse: /tag <TRIAL,AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 						return true;
 					} else if (args.length > 0 && p.hasPermission("tag.ajudante")) {
 						if (args[0].toLowerCase().equals("ajudante")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.AJUDANTE);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("builder")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.BUILDER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtubermirim")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERMIRIM);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("emerald")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.EMERALD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("diamond")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DIAMOND);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.GOLD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						p.sendMessage(String.valueOf(Manager.prefix)
-								+ " §cUse: /tag <AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+								+ " ï¿½cUse: /tag <AJUDANTE,BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 						return true;
 					} else if (args.length > 0 && p.hasPermission("tag.builder")) {
 						if (args[0].toLowerCase().equals("builder")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.BUILDER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtuber")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtubermirim")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERMIRIM);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("emerald")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.EMERALD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("diamond")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DIAMOND);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.GOLD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						p.sendMessage(String.valueOf(Manager.prefix)
-								+ " §cUse: /tag <BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+								+ " ï¿½cUse: /tag <BUILDER,YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 						return true;
 					} else if (args.length > 0 && p.hasPermission("tag.youtuber")) {
 						if (args[0].toLowerCase().equals("youtuber")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBER);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("youtubermirim")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERMIRIM);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("emerald")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.EMERALD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("diamond")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DIAMOND);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.GOLD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						p.sendMessage(String.valueOf(Manager.prefix)
-								+ " §cUse: /tag <YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+								+ " ï¿½cUse: /tag <YOUTUBER,YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 						return true;
 					} else if (args.length > 0 && p.hasPermission("tag.youtubermirim")) {
 						if (args[0].toLowerCase().equals("youtubermirim")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.YOUTUBERMIRIM);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("emerald")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.EMERALD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("diamond")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DIAMOND);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.GOLD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						p.sendMessage(String.valueOf(Manager.prefix)
-								+ " §cUse: /tag <YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
+								+ " ï¿½cUse: /tag <YOUTUBERMIRIM,EMERALD,DIAMOND,GOLD,NORMAL>");
 						return true;
 					} else if (args.length > 0 && p.hasPermission("tag.emerald")) {
 						if (args[0].toLowerCase().equals("emerald")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.EMERALD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("diamond")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DIAMOND);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.GOLD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
-						p.sendMessage(String.valueOf(Manager.prefix) + " §cUse: /tag <EMERALD,DIAMOND,GOLD,NORMAL>");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cUse: /tag <EMERALD,DIAMOND,GOLD,NORMAL>");
 						return true;
 					} else if (args.length > 0 && p.hasPermission("tag.diamond")) {
 						if (args[0].toLowerCase().equals("diamond")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.DIAMOND);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.GOLD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
-						p.sendMessage(String.valueOf(Manager.prefix) + " §cUse: /tag <DIAMOND,GOLD,NORMAL>");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cUse: /tag <DIAMOND,GOLD,NORMAL>");
 						return true;
 					} else if (args.length > 0 && p.hasPermission("tag.gold")) {
 						if (args[0].toLowerCase().equals("gold")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.GOLD);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
-						p.sendMessage(String.valueOf(Manager.prefix) + " §cUse: /tag <GOLD,NORMAL>");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cUse: /tag <GOLD,NORMAL>");
 						return true;
 					} else if (args.length > 0) {
 						if (args[0].toLowerCase().equals("normal")) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea agora esta com a tag: §f"
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea agora esta com a tag: ï¿½f"
 									+ args[0].toUpperCase());
 							Manager.setarTag(p, Manager.Tags.NORMAL);
-							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "§7" + p.getName());
+							p.setDisplayName(String.valueOf(Manager.pegarTagDisplay(p)) + "ï¿½7" + p.getName());
 							return true;
 						}
-						p.sendMessage(String.valueOf(Manager.prefix) + " §cUse: /tag <NORMAL>");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cUse: /tag <NORMAL>");
 						return true;
 					}
 				}
@@ -1488,7 +1488,7 @@ public class ComandosUteis implements CommandExecutor {
 						final Block blockBelow = below.getBlock();
 						if (blockBelow.getType() == Material.AIR) {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cVoc\u00ea N\u00c3O Pode Teleportar Para O Spawn Enquanto Estiver No Ar.");
+									+ " ï¿½cVoc\u00ea N\u00c3O Pode Teleportar Para O Spawn Enquanto Estiver No Ar.");
 							return true;
 						}
 						Boolean encontrou = false;
@@ -1499,9 +1499,9 @@ public class ComandosUteis implements CommandExecutor {
 							}
 						}
 						if (encontrou) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §cExiste Jogadores Perto De Voce.");
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cExiste Jogadores Perto De Voce.");
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cAguarde 5 Segundos Para Teleportar-se,Nao Se Mova.");
+									+ " ï¿½cAguarde 5 Segundos Para Teleportar-se,Nao Se Mova.");
 							Manager.teleportnaomover.add(p);
 							new BukkitRunnable() {
 								public void run() {
@@ -1519,16 +1519,16 @@ public class ComandosUteis implements CommandExecutor {
 										p.playSound(p.getLocation(), Sound.LEVEL_UP, 1.0f, 1.0f);
 									} else {
 										p.sendMessage(String.valueOf(Manager.prefix)
-												+ " §cVoce Se Moveu E O Teleporte Foi Cancelado.");
+												+ " ï¿½cVoce Se Moveu E O Teleporte Foi Cancelado.");
 										Manager.teleportnaomover.remove(p);
 									}
 								}
-							}.runTaskLater(FantasyKits.getPlugin(), 100L);
+							}.runTaskLater(FantasyPvP.getPlugin(), 100L);
 						}
 						if (!encontrou) {
 							if (blockBelow.getType() == Material.AIR) {
 								p.sendMessage(String.valueOf(Manager.prefix)
-										+ " §cVoc\u00ea N\u00c3o Pode Teleportar Para O Spawn Enquanto Estiver No Ar.");
+										+ " ï¿½cVoc\u00ea N\u00c3o Pode Teleportar Para O Spawn Enquanto Estiver No Ar.");
 								return true;
 							}
 							for (int msg2 = 1; msg2 < 100; ++msg2) {
@@ -1556,14 +1556,14 @@ public class ComandosUteis implements CommandExecutor {
 					final Player jogadorencontrado = Bukkit.getPlayer(args[0]);
 					if (jogadorencontrado != null) {
 						if (jogadorencontrado != p) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Esta Vendo O Inventario De §f"
-									+ jogadorencontrado.getName() + "§a.");
-							Manager.mandarMensagemComPermissao("§7[§a" + p.getName() + " §7esta vendo o inventario de "
-									+ jogadorencontrado.getName() + "§7]", "veravisos", false);
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Esta Vendo O Inventario De ï¿½f"
+									+ jogadorencontrado.getName() + "ï¿½a.");
+							Manager.mandarMensagemComPermissao("ï¿½7[ï¿½a" + p.getName() + " ï¿½7esta vendo o inventario de "
+									+ jogadorencontrado.getName() + "ï¿½7]", "veravisos", false);
 							p.openInventory(jogadorencontrado.getInventory());
 						} else {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cDesculpe, Mas Voce N\u00c3O Pode Ver Seu Proprio Inventario.");
+									+ " ï¿½cDesculpe, Mas Voce N\u00c3O Pode Ver Seu Proprio Inventario.");
 						}
 					} else {
 						p.sendMessage(Manager.JOGADORFF);
@@ -1583,13 +1583,13 @@ public class ComandosUteis implements CommandExecutor {
 						if (targetPlayer == null) {
 							p.sendMessage(Manager.JOGADORFF);
 						} else if (Manager.comTellAtivado(targetPlayer)) {
-							targetPlayer.sendMessage(String.valueOf(Manager.prefix) + " §aMensagem De §f" + p.getName()
-									+ " §8\ufffdª§a " + message + "§8\ufffd«");
-							p.sendMessage(String.valueOf(Manager.prefix) + " §aMensagem Enviada Para §f"
-									+ targetPlayer.getName() + " §8\ufffdª§a " + message + "§8\ufffd«");
+							targetPlayer.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aMensagem De ï¿½f" + p.getName()
+									+ " ï¿½8\ufffdï¿½ï¿½a " + message + "ï¿½8\ufffdï¿½");
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aMensagem Enviada Para ï¿½f"
+									+ targetPlayer.getName() + " ï¿½8\ufffdï¿½ï¿½a " + message + "ï¿½8\ufffdï¿½");
 						} else {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §cDesculpe, Mas Este Jogador Esta Com O Tell Desativado.");
+									+ " ï¿½cDesculpe, Mas Este Jogador Esta Com O Tell Desativado.");
 						}
 					}
 				}
@@ -1603,14 +1603,14 @@ public class ComandosUteis implements CommandExecutor {
 							}
 							if (!Manager.pegarKit(player).equalsIgnoreCase("none")) {
 								player.sendMessage(String.valueOf(Manager.prefix)
-										+ " §cDesculpe, Mas O Fly So Pode Ser Usado No Spawn.");
+										+ " ï¿½cDesculpe, Mas O Fly So Pode Ser Usado No Spawn.");
 								return true;
 							}
 							if (!player.getAllowFlight()) {
-								player.sendMessage(String.valueOf(Manager.prefix) + " §aSeu §fFly §aFoi Habilitado.");
+								player.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aSeu ï¿½fFly ï¿½aFoi Habilitado.");
 								player.setAllowFlight(true);
 							} else {
-								player.sendMessage(String.valueOf(Manager.prefix) + " §cSeu §fFly §cFoi Desabilitado.");
+								player.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cSeu ï¿½fFly ï¿½cFoi Desabilitado.");
 								player.setAllowFlight(false);
 							}
 						}
@@ -1626,21 +1626,21 @@ public class ComandosUteis implements CommandExecutor {
 							}
 							if (!Manager.pegarKit(player2).equalsIgnoreCase("none")) {
 								player.sendMessage(String.valueOf(Manager.prefix)
-										+ " §cDesculpe, Mas O Fly So Pode Ser Usado No Spawn.");
+										+ " ï¿½cDesculpe, Mas O Fly So Pode Ser Usado No Spawn.");
 								return true;
 							}
 							if (!player.getAllowFlight()) {
-								player.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Habilitou O §fFly §aDe §f"
-										+ player2.getName() + "§a.");
+								player.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Habilitou O ï¿½fFly ï¿½aDe ï¿½f"
+										+ player2.getName() + "ï¿½a.");
 								player2.setAllowFlight(true);
 								player2.sendMessage(String.valueOf(Manager.prefix)
-										+ " §aSeu §fFly §aFoi Habilitado Por §f" + player.getName() + "§a.");
+										+ " ï¿½aSeu ï¿½fFly ï¿½aFoi Habilitado Por ï¿½f" + player.getName() + "ï¿½a.");
 							} else {
 								sender.sendMessage(String.valueOf(Manager.prefix)
-										+ " §cVoce Desabilitou O §fFly §cDe §f" + player2.getName() + "§a.");
+										+ " ï¿½cVoce Desabilitou O ï¿½fFly ï¿½cDe ï¿½f" + player2.getName() + "ï¿½a.");
 								player2.setAllowFlight(false);
 								player2.sendMessage(String.valueOf(Manager.prefix)
-										+ " §cSeu §fFly §cFoi Desabilitado Por §f" + player.getName() + "§c.");
+										+ " ï¿½cSeu ï¿½fFly ï¿½cFoi Desabilitado Por ï¿½f" + player.getName() + "ï¿½c.");
 							}
 						}
 					}
@@ -1648,12 +1648,12 @@ public class ComandosUteis implements CommandExecutor {
 						final PlayerData pd = PlayerData.get(p);
 						if (pd == null) {
 							p.sendMessage(String.valueOf(Manager.prefix)
-									+ " §CSua conta n\u00c3O esta registrada, relogue para resolver.");
+									+ " ï¿½CSua conta n\u00c3O esta registrada, relogue para resolver.");
 							return true;
 						}
 						if (args.length == 0) {
-							p.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Possui §f"
-									+ Manager.modificarCoins(pd.getMoney()) + "$ §aNa Sua Conta.");
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Possui ï¿½f"
+									+ Manager.modificarCoins(pd.getMoney()) + "$ ï¿½aNa Sua Conta.");
 							return true;
 						}
 						if (args.length == 1) {
@@ -1665,30 +1665,30 @@ public class ComandosUteis implements CommandExecutor {
 							final PlayerData pdtarget = PlayerData.get(target2);
 							if (pdtarget == null) {
 								p.sendMessage(String.valueOf(Manager.prefix)
-										+ " §CEste player n\u00c3O tem uma conta registrada.");
+										+ " ï¿½CEste player n\u00c3O tem uma conta registrada.");
 								return true;
 							}
-							p.sendMessage(String.valueOf(Manager.prefix) + " §f" + target2.getName() + "§a Possui §f"
-									+ Manager.modificarCoins(pdtarget.getMoney()) + "$ §aNa Sua Conta.");
+							p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½f" + target2.getName() + "ï¿½a Possui ï¿½f"
+									+ Manager.modificarCoins(pdtarget.getMoney()) + "$ ï¿½aNa Sua Conta.");
 							return true;
 						} else {
 							if (args.length == 2) {
 								if (!p.hasPermission("fantasy.coinsadd") || !p.hasPermission("fantasy.coinsset")) {
 									p.sendMessage(String.valueOf(Manager.prefix)
-											+ " §cUse: /dinheiro <jogador> ou /dinherio <doar> <jogador> <valor>.");
+											+ " ï¿½cUse: /dinheiro <jogador> ou /dinherio <doar> <jogador> <valor>.");
 									return true;
 								}
 								p.sendMessage(String.valueOf(Manager.prefix)
-										+ " §cUse: /dinheiro <setar,add> <jogador> <valor>.");
+										+ " ï¿½cUse: /dinheiro <setar,add> <jogador> <valor>.");
 							}
 							if (args.length > 3) {
 								if (!p.hasPermission("fantasy.coinsadd") || !p.hasPermission("fantasy.coinsset")) {
 									p.sendMessage(String.valueOf(Manager.prefix)
-											+ " §cUse: /dinheiro <jogador> ou /dinherio <doar> <jogador> <valor>.");
+											+ " ï¿½cUse: /dinheiro <jogador> ou /dinherio <doar> <jogador> <valor>.");
 									return true;
 								}
 								p.sendMessage(String.valueOf(Manager.prefix)
-										+ " §cUse: /dinheiro <setar,add> <jogador> <valor>.");
+										+ " ï¿½cUse: /dinheiro <setar,add> <jogador> <valor>.");
 							}
 							if (args.length == 3) {
 								if (args[0].equals("setar")) {
@@ -1706,18 +1706,18 @@ public class ComandosUteis implements CommandExecutor {
 										final PlayerData pdtarget2 = PlayerData.get(target2);
 										if (pdtarget2 == null) {
 											p.sendMessage(String.valueOf(Manager.prefix)
-													+ " §CEste player n\u00c3O tem uma conta registrada.");
+													+ " ï¿½CEste player n\u00c3O tem uma conta registrada.");
 											return true;
 										}
 										pdtarget2.setMoney(numero);
-										p.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Setou O Saldo De §f"
-												+ target2.getName() + " §aPara §f" + Manager.modificarCoins(numero)
-												+ "$§a.");
-										target2.sendMessage(String.valueOf(Manager.prefix) + " §f" + p.getName()
-												+ " §aSetou Seu Saldo Para §f" + Manager.modificarCoins(numero)
-												+ "$§a.");
+										p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Setou O Saldo De ï¿½f"
+												+ target2.getName() + " ï¿½aPara ï¿½f" + Manager.modificarCoins(numero)
+												+ "$ï¿½a.");
+										target2.sendMessage(String.valueOf(Manager.prefix) + " ï¿½f" + p.getName()
+												+ " ï¿½aSetou Seu Saldo Para ï¿½f" + Manager.modificarCoins(numero)
+												+ "$ï¿½a.");
 									} catch (Exception e) {
-										p.sendMessage(String.valueOf(Manager.prefix) + " §cDesculpe Mas " + args[2]
+										p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cDesculpe Mas " + args[2]
 												+ " Nao Em Um Numero.");
 									}
 									return true;
@@ -1729,13 +1729,13 @@ public class ComandosUteis implements CommandExecutor {
 									}
 									if (target2 == p) {
 										p.sendMessage(String.valueOf(Manager.prefix)
-												+ " §cDesculpe Mas Voce N\u00c3O Pode Doar Para Si Mesmo.");
+												+ " ï¿½cDesculpe Mas Voce N\u00c3O Pode Doar Para Si Mesmo.");
 										return true;
 									}
 									final PlayerData pdtarget = PlayerData.get(target2);
 									if (pdtarget == null) {
 										p.sendMessage(String.valueOf(Manager.prefix)
-												+ " §CEste player n\u00c3O tem uma conta registrada.");
+												+ " ï¿½CEste player n\u00c3O tem uma conta registrada.");
 										return true;
 									}
 									try {
@@ -1743,19 +1743,19 @@ public class ComandosUteis implements CommandExecutor {
 										if (pd.getMoney() >= numero2) {
 											pdtarget.addMoney(numero2);
 											pd.removeMoney(numero2);
-											p.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Doou Para §f"
-													+ target2.getName() + " §aUm Valor De§f"
-													+ Manager.modificarCoins(numero2) + "$§a.");
-											target2.sendMessage(String.valueOf(Manager.prefix) + " §f" + p.getName()
-													+ " §aVoce Doou Para Voce §f" + Manager.modificarCoins(numero2)
-													+ "$§a.");
+											p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Doou Para ï¿½f"
+													+ target2.getName() + " ï¿½aUm Valor Deï¿½f"
+													+ Manager.modificarCoins(numero2) + "$ï¿½a.");
+											target2.sendMessage(String.valueOf(Manager.prefix) + " ï¿½f" + p.getName()
+													+ " ï¿½aVoce Doou Para Voce ï¿½f" + Manager.modificarCoins(numero2)
+													+ "$ï¿½a.");
 										} else {
 											p.sendMessage(String.valueOf(Manager.prefix)
-													+ " §cDesculpe Mas Voc\u00ea N\u00c3O Possui §f"
-													+ Manager.modificarCoins(numero2) + "$§c.");
+													+ " ï¿½cDesculpe Mas Voc\u00ea N\u00c3O Possui ï¿½f"
+													+ Manager.modificarCoins(numero2) + "$ï¿½c.");
 										}
 									} catch (Exception e2) {
-										p.sendMessage(String.valueOf(Manager.prefix) + " §cDesculpe Mas " + args[2]
+										p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cDesculpe Mas " + args[2]
 												+ " Nao Em Um Numero.");
 									}
 									return true;
@@ -1772,36 +1772,36 @@ public class ComandosUteis implements CommandExecutor {
 									final PlayerData pdtarget = PlayerData.get(target2);
 									if (pdtarget == null) {
 										p.sendMessage(String.valueOf(Manager.prefix)
-												+ " §CEste player n\u00c3O tem uma conta registrada.");
+												+ " ï¿½CEste player n\u00c3O tem uma conta registrada.");
 										return true;
 									}
 									try {
 										final Integer numero2 = Integer.valueOf(args[2]);
 										if (pdtarget.getMoney() + numero2 >= 200000000) {
 											p.sendMessage(String.valueOf(Manager.prefix)
-													+ " §cDesculpe Mas Voce N\u00c3O Pode Adicionar Mas Dinheiro.");
+													+ " ï¿½cDesculpe Mas Voce N\u00c3O Pode Adicionar Mas Dinheiro.");
 											return true;
 										}
 										pdtarget.addMoney(numero2);
-										p.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Adicionou §f"
-												+ Manager.modificarCoins(numero2) + "$ §aNa Conta De §f"
-												+ target2.getName() + "§a.");
+										p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Adicionou ï¿½f"
+												+ Manager.modificarCoins(numero2) + "$ ï¿½aNa Conta De ï¿½f"
+												+ target2.getName() + "ï¿½a.");
 										target2.sendMessage(
-												String.valueOf(Manager.prefix) + " §f" + p.getName() + "§a Adicionou §f"
-														+ Manager.modificarCoins(numero2) + "$ §aNa Sua Conta§a.");
+												String.valueOf(Manager.prefix) + " ï¿½f" + p.getName() + "ï¿½a Adicionou ï¿½f"
+														+ Manager.modificarCoins(numero2) + "$ ï¿½aNa Sua Contaï¿½a.");
 									} catch (Exception e2) {
-										p.sendMessage(String.valueOf(Manager.prefix) + " §cDesculpe Mas " + args[2]
+										p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cDesculpe Mas " + args[2]
 												+ " Nao Em Um Numero.");
 									}
 									return true;
 								} else {
 									if (!p.hasPermission("fantasy.coinsadd") || !p.hasPermission("fantasy.coinsset")) {
 										p.sendMessage(String.valueOf(Manager.prefix)
-												+ " §cUse: /dinheiro <jogador> ou /dinherio <doar> <jogador> <valor>.");
+												+ " ï¿½cUse: /dinheiro <jogador> ou /dinherio <doar> <jogador> <valor>.");
 										return true;
 									}
 									p.sendMessage(String.valueOf(Manager.prefix)
-											+ " §cUse: /dinheiro <setar,add> <jogador> <valor>.");
+											+ " ï¿½cUse: /dinheiro <setar,add> <jogador> <valor>.");
 								}
 							}
 						}
@@ -1813,22 +1813,22 @@ public class ComandosUteis implements CommandExecutor {
 						}
 						if (args.length == 0) {
 							p.sendMessage(
-									String.valueOf(Manager.prefix) + " §cUse: /caixas <setar,add> <jogador> <valor>.");
+									String.valueOf(Manager.prefix) + " ï¿½cUse: /caixas <setar,add> <jogador> <valor>.");
 							return true;
 						}
 						if (args.length == 1) {
 							p.sendMessage(
-									String.valueOf(Manager.prefix) + " §cUse: /caixas <setar,add> <jogador> <valor>.");
+									String.valueOf(Manager.prefix) + " ï¿½cUse: /caixas <setar,add> <jogador> <valor>.");
 							return true;
 						}
 						if (args.length == 2) {
 							p.sendMessage(
-									String.valueOf(Manager.prefix) + " §cUse: /caixas <setar,add> <jogador> <valor>.");
+									String.valueOf(Manager.prefix) + " ï¿½cUse: /caixas <setar,add> <jogador> <valor>.");
 							return true;
 						}
 						if (args.length > 3) {
 							p.sendMessage(
-									String.valueOf(Manager.prefix) + " §cUse: /caixas <setar,add> <jogador> <valor>.");
+									String.valueOf(Manager.prefix) + " ï¿½cUse: /caixas <setar,add> <jogador> <valor>.");
 							return true;
 						}
 						if (args.length == 3) {
@@ -1843,18 +1843,18 @@ public class ComandosUteis implements CommandExecutor {
 									final int numerototal = Manager.pegarChaves(p) + Manager.pegarCaixas(p);
 									if (numerototal + numero3 > 28 && numero3 != 0) {
 										p.sendMessage(String.valueOf(Manager.prefix)
-												+ " §cDesculpe Mas Voce N\u00c3O Pode Setar §f" + numero3
-												+ " §cCaixas.");
+												+ " ï¿½cDesculpe Mas Voce N\u00c3O Pode Setar ï¿½f" + numero3
+												+ " ï¿½cCaixas.");
 										return true;
 									}
 									p.sendMessage(String.valueOf(Manager.prefix)
-											+ " §aVoce Setou O Numero De Caixas De §f" + target.getName() + " §aPara §f"
-											+ Manager.modificarCoins(numero3) + " Caixas§a.");
-									target.sendMessage(String.valueOf(Manager.prefix) + " §f" + p.getName()
-											+ " §aSetou Seu Numero De Caixas Para §f" + Manager.modificarCoins(numero3)
-											+ " Caixas§a.");
+											+ " ï¿½aVoce Setou O Numero De Caixas De ï¿½f" + target.getName() + " ï¿½aPara ï¿½f"
+											+ Manager.modificarCoins(numero3) + " Caixasï¿½a.");
+									target.sendMessage(String.valueOf(Manager.prefix) + " ï¿½f" + p.getName()
+											+ " ï¿½aSetou Seu Numero De Caixas Para ï¿½f" + Manager.modificarCoins(numero3)
+											+ " Caixasï¿½a.");
 								} catch (Exception e3) {
-									p.sendMessage(String.valueOf(Manager.prefix) + " §cDesculpe Mas " + args[2]
+									p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cDesculpe Mas " + args[2]
 											+ " Nao Em Um Numero.");
 								}
 								return true;
@@ -1869,25 +1869,25 @@ public class ComandosUteis implements CommandExecutor {
 									final int numerototal = Manager.pegarChaves(p) + Manager.pegarCaixas(p);
 									if (numerototal + numero3 > 28 && numero3 != 0) {
 										p.sendMessage(String.valueOf(Manager.prefix)
-												+ " §cDesculpe Mas Voce N\u00c3O Pode Adicionar Mas §f" + numero3
-												+ " §cCaixas.");
+												+ " ï¿½cDesculpe Mas Voce N\u00c3O Pode Adicionar Mas ï¿½f" + numero3
+												+ " ï¿½cCaixas.");
 										return true;
 									}
 									Manager.adicionarCaixas(target, numero3);
-									p.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Adicionou §f"
-											+ Manager.modificarCoins(numero3) + " Caixas §aNa Conta De §f"
-											+ target.getName() + "§a.");
+									p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Adicionou ï¿½f"
+											+ Manager.modificarCoins(numero3) + " Caixas ï¿½aNa Conta De ï¿½f"
+											+ target.getName() + "ï¿½a.");
 									target.sendMessage(
-											String.valueOf(Manager.prefix) + " §f" + p.getName() + "§a Adicionou §f"
-													+ Manager.modificarCoins(numero3) + " Caixas §aNa Sua Conta§a.");
+											String.valueOf(Manager.prefix) + " ï¿½f" + p.getName() + "ï¿½a Adicionou ï¿½f"
+													+ Manager.modificarCoins(numero3) + " Caixas ï¿½aNa Sua Contaï¿½a.");
 								} catch (Exception e3) {
-									p.sendMessage(String.valueOf(Manager.prefix) + " §cDesculpe Mas " + args[2]
+									p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cDesculpe Mas " + args[2]
 											+ " Nao Em Um Numero.");
 								}
 								return true;
 							} else {
 								p.sendMessage(String.valueOf(Manager.prefix)
-										+ " §cUse: /caixas <setar,add> <jogador> <valor>.");
+										+ " ï¿½cUse: /caixas <setar,add> <jogador> <valor>.");
 							}
 						}
 					}
@@ -1898,22 +1898,22 @@ public class ComandosUteis implements CommandExecutor {
 						}
 						if (args.length == 0) {
 							p.sendMessage(
-									String.valueOf(Manager.prefix) + " §cUse: /chaves <setar,add> <jogador> <valor>.");
+									String.valueOf(Manager.prefix) + " ï¿½cUse: /chaves <setar,add> <jogador> <valor>.");
 							return true;
 						}
 						if (args.length == 1) {
 							p.sendMessage(
-									String.valueOf(Manager.prefix) + " §cUse: /chaves <setar,add> <jogador> <valor>.");
+									String.valueOf(Manager.prefix) + " ï¿½cUse: /chaves <setar,add> <jogador> <valor>.");
 							return true;
 						}
 						if (args.length == 2) {
 							p.sendMessage(
-									String.valueOf(Manager.prefix) + " §cUse: /chaves <setar,add> <jogador> <valor>.");
+									String.valueOf(Manager.prefix) + " ï¿½cUse: /chaves <setar,add> <jogador> <valor>.");
 							return true;
 						}
 						if (args.length > 3) {
 							p.sendMessage(
-									String.valueOf(Manager.prefix) + " §cUse: /chaves <setar,add> <jogador> <valor>.");
+									String.valueOf(Manager.prefix) + " ï¿½cUse: /chaves <setar,add> <jogador> <valor>.");
 							return true;
 						}
 						if (args.length == 3) {
@@ -1928,18 +1928,18 @@ public class ComandosUteis implements CommandExecutor {
 									final int numerototal = Manager.pegarCaixas(p) + Manager.pegarChaves(p);
 									if (numerototal + numero3 > 28 && numero3 != 0) {
 										p.sendMessage(String.valueOf(Manager.prefix)
-												+ " §cDesculpe Mas Voce N\u00c3O Pode Setar §f" + numero3
-												+ " §cChaves.");
+												+ " ï¿½cDesculpe Mas Voce N\u00c3O Pode Setar ï¿½f" + numero3
+												+ " ï¿½cChaves.");
 										return true;
 									}
-									p.sendMessage(String.valueOf(Manager.prefix) + " §aVoce O Numero De Chaves De §f"
-											+ target.getName() + " §aPara §f" + Manager.modificarCoins(numero3)
-											+ " Chaves§a.");
-									target.sendMessage(String.valueOf(Manager.prefix) + " §f" + p.getName()
-											+ " §aSetou Seu Numero De Chaves Para §f" + Manager.modificarCoins(numero3)
-											+ " Chaves§a.");
+									p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce O Numero De Chaves De ï¿½f"
+											+ target.getName() + " ï¿½aPara ï¿½f" + Manager.modificarCoins(numero3)
+											+ " Chavesï¿½a.");
+									target.sendMessage(String.valueOf(Manager.prefix) + " ï¿½f" + p.getName()
+											+ " ï¿½aSetou Seu Numero De Chaves Para ï¿½f" + Manager.modificarCoins(numero3)
+											+ " Chavesï¿½a.");
 								} catch (Exception e3) {
-									p.sendMessage(String.valueOf(Manager.prefix) + " §cDesculpe Mas " + args[2]
+									p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cDesculpe Mas " + args[2]
 											+ " Nao Em Um Numero.");
 								}
 								return true;
@@ -1954,25 +1954,25 @@ public class ComandosUteis implements CommandExecutor {
 									final int numerototal = Manager.pegarCaixas(p) + Manager.pegarChaves(p);
 									if (numerototal + numero3 > 28 && numero3 != 0) {
 										p.sendMessage(String.valueOf(Manager.prefix)
-												+ " §cDesculpe Mas Voce N\u00c3O Pode Adicionar Mas §f" + numero3
-												+ " §cChaves.");
+												+ " ï¿½cDesculpe Mas Voce N\u00c3O Pode Adicionar Mas ï¿½f" + numero3
+												+ " ï¿½cChaves.");
 										return true;
 									}
 									Manager.adicionarChaves(target, numero3);
-									p.sendMessage(String.valueOf(Manager.prefix) + " §aVoce Adicionou §f"
-											+ Manager.modificarCoins(numero3) + " Chaves §aNa Conta De §f"
-											+ target.getName() + "§a.");
+									p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aVoce Adicionou ï¿½f"
+											+ Manager.modificarCoins(numero3) + " Chaves ï¿½aNa Conta De ï¿½f"
+											+ target.getName() + "ï¿½a.");
 									target.sendMessage(
-											String.valueOf(Manager.prefix) + " §f" + p.getName() + "§a Adicionou §f"
-													+ Manager.modificarCoins(numero3) + " chaves §aNa Sua Conta§a.");
+											String.valueOf(Manager.prefix) + " ï¿½f" + p.getName() + "ï¿½a Adicionou ï¿½f"
+													+ Manager.modificarCoins(numero3) + " chaves ï¿½aNa Sua Contaï¿½a.");
 								} catch (Exception e3) {
-									p.sendMessage(String.valueOf(Manager.prefix) + " §cDesculpe Mas " + args[2]
+									p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cDesculpe Mas " + args[2]
 											+ " Nao Em Um Numero.");
 								}
 								return true;
 							} else {
 								p.sendMessage(String.valueOf(Manager.prefix)
-										+ " §cUse: /chaves <setar,add> <jogador> <valor>.");
+										+ " ï¿½cUse: /chaves <setar,add> <jogador> <valor>.");
 							}
 						}
 					}
@@ -1992,40 +1992,40 @@ public class ComandosUteis implements CommandExecutor {
 						}
 						if (modo.equalsIgnoreCase("0")) {
 							if (target2.getGameMode() == GameMode.SURVIVAL) {
-								sender.sendMessage(String.valueOf(Manager.prefix) + " §cDesculpe, Mas §f"
-										+ target2.getName() + " §cJa Esta No Modo §fSurvival§c.");
+								sender.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cDesculpe, Mas ï¿½f"
+										+ target2.getName() + " ï¿½cJa Esta No Modo ï¿½fSurvivalï¿½c.");
 							} else {
 								target2.setGameMode(GameMode.SURVIVAL);
 								target2.sendMessage(
-										String.valueOf(Manager.prefix) + " §aModo De Jogo Alterado Para §fSurvival§a.");
-								p.sendMessage(String.valueOf(Manager.prefix) + " §aModo De Jogo De §f"
-										+ target2.getName() + " §aAlterado Para §fSurvival§a.");
+										String.valueOf(Manager.prefix) + " ï¿½aModo De Jogo Alterado Para ï¿½fSurvivalï¿½a.");
+								p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aModo De Jogo De ï¿½f"
+										+ target2.getName() + " ï¿½aAlterado Para ï¿½fSurvivalï¿½a.");
 							}
 							return true;
 						}
 						if (modo.equalsIgnoreCase("1")) {
 							if (target2.getGameMode() == GameMode.CREATIVE) {
-								sender.sendMessage(String.valueOf(Manager.prefix) + " §cDesculpe, Mas §f"
-										+ target2.getName() + " §cJa Esta No Modo §fCriativo§c.");
+								sender.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cDesculpe, Mas ï¿½f"
+										+ target2.getName() + " ï¿½cJa Esta No Modo ï¿½fCriativoï¿½c.");
 							} else {
 								target2.setGameMode(GameMode.CREATIVE);
 								target2.sendMessage(
-										String.valueOf(Manager.prefix) + " §aModo De Jogo Alterado Para §fCriativo§a.");
-								p.sendMessage(String.valueOf(Manager.prefix) + " §aModo De Jogo De §f"
-										+ target2.getName() + " §aAlterado Para §fCriativo§a.");
+										String.valueOf(Manager.prefix) + " ï¿½aModo De Jogo Alterado Para ï¿½fCriativoï¿½a.");
+								p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aModo De Jogo De ï¿½f"
+										+ target2.getName() + " ï¿½aAlterado Para ï¿½fCriativoï¿½a.");
 							}
 							return true;
 						}
 						if (modo.equalsIgnoreCase("2")) {
 							if (target2.getGameMode() == GameMode.ADVENTURE) {
-								sender.sendMessage(String.valueOf(Manager.prefix) + " §cDesculpe, Mas §f"
-										+ target2.getName() + " §cJa Esta No Modo §fAdventure§c.");
+								sender.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cDesculpe, Mas ï¿½f"
+										+ target2.getName() + " ï¿½cJa Esta No Modo ï¿½fAdventureï¿½c.");
 							} else {
 								target2.setGameMode(GameMode.ADVENTURE);
 								target2.sendMessage(String.valueOf(Manager.prefix)
-										+ " §aModo De Jogo Alterado Para §fAdventure§a.");
-								p.sendMessage(String.valueOf(Manager.prefix) + " §aModo De Jogo De §f"
-										+ target2.getName() + " §aAlterado Para §fAdventure§a.");
+										+ " ï¿½aModo De Jogo Alterado Para ï¿½fAdventureï¿½a.");
+								p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aModo De Jogo De ï¿½f"
+										+ target2.getName() + " ï¿½aAlterado Para ï¿½fAdventureï¿½a.");
 							}
 							return true;
 						}
@@ -2041,28 +2041,28 @@ public class ComandosUteis implements CommandExecutor {
 				if (modo.equalsIgnoreCase("0")) {
 					if (p.getGameMode() == GameMode.SURVIVAL) {
 						p.sendMessage(
-								String.valueOf(Manager.prefix) + " §cDesculpe, Mas Voce Ja Esta No Modo §fSurvival§c.");
+								String.valueOf(Manager.prefix) + " ï¿½cDesculpe, Mas Voce Ja Esta No Modo ï¿½fSurvivalï¿½c.");
 					} else {
 						p.setGameMode(GameMode.SURVIVAL);
-						p.sendMessage(String.valueOf(Manager.prefix) + " §aModo De Jogo Alterado Para §fSurvival§a.");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aModo De Jogo Alterado Para ï¿½fSurvivalï¿½a.");
 					}
 					return true;
 				}
 				if (modo.equalsIgnoreCase("1")) {
 					if (p.getGameMode() == GameMode.CREATIVE) {
 						p.sendMessage(
-								String.valueOf(Manager.prefix) + " §cDesculpe, Mas Voce Ja Esta No Modo §fCriativo§c.");
+								String.valueOf(Manager.prefix) + " ï¿½cDesculpe, Mas Voce Ja Esta No Modo ï¿½fCriativoï¿½c.");
 					} else {
 						p.setGameMode(GameMode.CREATIVE);
-						p.sendMessage(String.valueOf(Manager.prefix) + " §aModo De Jogo Alterado Para §fCriativo§a.");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aModo De Jogo Alterado Para ï¿½fCriativoï¿½a.");
 					}
 				} else if (modo.equalsIgnoreCase("2")) {
 					if (p.getGameMode() == GameMode.ADVENTURE) {
 						p.sendMessage(String.valueOf(Manager.prefix)
-								+ " §cDesculpe, Mas Voce Ja Esta No Modo §fAdventure§c.");
+								+ " ï¿½cDesculpe, Mas Voce Ja Esta No Modo ï¿½fAdventureï¿½c.");
 					} else {
 						p.setGameMode(GameMode.ADVENTURE);
-						p.sendMessage(String.valueOf(Manager.prefix) + " §aModo De Jogo Alterado Para §fAdventure§a.");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aModo De Jogo Alterado Para ï¿½fAdventureï¿½a.");
 					}
 				} else {
 					p.sendMessage(

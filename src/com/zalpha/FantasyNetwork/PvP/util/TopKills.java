@@ -14,7 +14,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
 
-import com.zalpha.FantasyNetwork.PvP.FantasyKits;
+import com.github.caaarlowsz.fantasymc.kitpvp.FantasyPvP;
 
 public class TopKills {
 	public static ArrayList<Location> locations;
@@ -46,7 +46,7 @@ public class TopKills {
 
 	public static List<String> getTops() {
 		try {
-			final Statement st = FantasyKits.getMain().storage.getConnection().createStatement();
+			final Statement st = FantasyPvP.getMain().storage.getConnection().createStatement();
 			final ResultSet rs = st.executeQuery("SELECT * FROM kitpvp");
 			final List<String> mysqlzao = new ArrayList<String>();
 			while (rs.next()) {
@@ -78,7 +78,7 @@ public class TopKills {
 
 	public static List<String> getTops_Lost() {
 		try {
-			final Statement st = FantasyKits.getMain().storage.getConnection().createStatement();
+			final Statement st = FantasyPvP.getMain().storage.getConnection().createStatement();
 			final ResultSet rs = st.executeQuery("SELECT * FROM `Kitpvp` ORDER BY `Kills` DESC LIMIT 5");
 			final List<String> mysqlzao = new ArrayList<String>();
 			while (rs.next()) {
@@ -131,7 +131,7 @@ public class TopKills {
 		TopKills.armors.add(a5);
 		final ArrayList<String> Hologram = new ArrayList<String>();
 		for (final String s : ConfigAPI.pegarConfig().pegarconfigMensagens().getStringList("Top.Hologram")) {
-			Hologram.add(s.replace("\u00c2", "").replace("&", "§"));
+			Hologram.add(s.replace("\u00c2", "").replace("&", "ï¿½"));
 		}
 		TopKills.holograms.add(new Holograms_Fixed(getLocation("Hologram_Cord"), Hologram));
 	}
@@ -144,19 +144,19 @@ public class TopKills {
 					.setHelmet(Manager.criarItemSkull("", new String[0], lists.get(x).split(" : ")[0], 1));
 			String placement = "";
 			if (id == 1) {
-				placement = "§b§lANCESTRAL";
+				placement = "ï¿½bï¿½lANCESTRAL";
 			}
 			if (id == 2) {
-				placement = "§f§lIMPERIAL";
+				placement = "ï¿½fï¿½lIMPERIAL";
 			}
 			if (id == 3) {
-				placement = "§6§lLEND\u00c1RIO";
+				placement = "ï¿½6ï¿½lLEND\u00c1RIO";
 			}
 			if (id == 4) {
-				placement = "§7§lMESTRE";
+				placement = "ï¿½7ï¿½lMESTRE";
 			}
 			if (id == 5) {
-				placement = "§3§lAMADOR";
+				placement = "ï¿½3ï¿½lAMADOR";
 			}
 			final ArrayList<String> Hologram_Top = new ArrayList<String>();
 			for (final String s : ConfigAPI.pegarConfig().pegarconfigMensagens().getStringList("Top.Hologram_Top")) {
@@ -166,7 +166,7 @@ public class TopKills {
 								String.valueOf(Manager.modificarCoins(Integer.parseInt(lists.get(x).split(" : ")[1]))))
 										.toString())
 						.replace("<nick>", new StringBuilder(String.valueOf(lists.get(x).split(" : ")[0])).toString())
-						.replace("\u00c2", "").replace("&", "§"));
+						.replace("\u00c2", "").replace("&", "ï¿½"));
 			}
 			TopKills.holograms.add(new Holograms_Fixed(TopKills.locations.get(x).add(0.0, 0.8, 0.0), Hologram_Top));
 			TopKills.armors.get(x).setBasePlate(false);
@@ -176,7 +176,7 @@ public class TopKills {
 			TopKills.armors.get(x).setGravity(false);
 			TopKills.armors.get(x).setVisible(true);
 			TopKills.armors.get(x).setMarker(false);
-			TopKills.armors.get(x).setCustomName("§7" + id + "º " + lists.get(x).split(" - ")[0]);
+			TopKills.armors.get(x).setCustomName("ï¿½7" + id + "ï¿½ " + lists.get(x).split(" - ")[0]);
 			TopKills.armors.get(x).setCustomNameVisible(false);
 			if (id == 5) {
 				TopKills.armors.get(x).setChestplate(

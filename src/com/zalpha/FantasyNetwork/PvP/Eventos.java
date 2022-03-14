@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.github.caaarlowsz.fantasymc.kitpvp.FantasyPvP;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Material;
@@ -96,22 +97,22 @@ public class Eventos implements Listener {
 				if (!online.hasPermission("fantasy.veravisos") && !Manager.comStaffAtivado(online)) {
 					continue;
 				}
-				online.sendMessage("§7\u276a §c§lSTAFFCHAT §7| " + p.getDisplayName() + " §7\u276b "
-						+ e.getMessage().replace("&", "§"));
+				online.sendMessage("ï¿½7\u276a ï¿½cï¿½lSTAFFCHAT ï¿½7| " + p.getDisplayName() + " ï¿½7\u276b "
+						+ e.getMessage().replace("&", "ï¿½"));
 			}
 		}
 	}
 
 	@EventHandler
 	public static void armorstand(final PlayerArmorStandManipulateEvent e) {
-		if (e.getRightClicked().getCustomName().contains("º")) {
+		if (e.getRightClicked().getCustomName().contains("ï¿½")) {
 			e.setCancelled(true);
 		}
 	}
 
 	@EventHandler
 	public static void armorstand(final EntityDamageEvent e) {
-		if (e.getEntity() instanceof ArmorStand && e.getEntity().getCustomName().contains("º")) {
+		if (e.getEntity() instanceof ArmorStand && e.getEntity().getCustomName().contains("ï¿½")) {
 			e.setCancelled(true);
 		}
 	}
@@ -122,8 +123,8 @@ public class Eventos implements Listener {
 			final float yawDif = Math.abs(e.getFrom().getYaw() - e.getTo().getYaw());
 			final float pitchDif = Math.abs(e.getFrom().getPitch() - e.getTo().getPitch());
 			if (yawDif != 0.0f || pitchDif != 0.0f) {
-				FantasyKits.getMain().times.remove(e.getPlayer());
-				FantasyKits.getMain().times.put(e.getPlayer(), System.currentTimeMillis());
+				FantasyPvP.getMain().times.remove(e.getPlayer());
+				FantasyPvP.getMain().times.put(e.getPlayer(), System.currentTimeMillis());
 			}
 		}
 	}
@@ -131,7 +132,7 @@ public class Eventos implements Listener {
 	@EventHandler
 	public void onJoin(final PlayerJoinEvent e) {
 		if (!e.getPlayer().hasPermission("fantasy.afk")) {
-			FantasyKits.getMain().times.put(e.getPlayer(), System.currentTimeMillis());
+			FantasyPvP.getMain().times.put(e.getPlayer(), System.currentTimeMillis());
 		}
 	}
 
@@ -163,7 +164,7 @@ public class Eventos implements Listener {
 		final Player p = (Player) e.getDamager();
 		final Player t = (Player) e.getEntity();
 		if (Manager.comKit(t) && !Manager.pegarKit(t).equalsIgnoreCase("1v1")) {
-			Manager.sendActionBar(p, "§b" + t.getName() + " - " + Manager.pegarKit(t));
+			Manager.sendActionBar(p, "ï¿½b" + t.getName() + " - " + Manager.pegarKit(t));
 		}
 	}
 
@@ -178,46 +179,46 @@ public class Eventos implements Listener {
 			final Player jogador2 = Bukkit.getPlayer(names);
 			if (jogador2 == p) {
 				p.kickPlayer(String.valueOf(Manager.prefix)
-						+ "\n   \n       §cOcorreu um erro ao entrar no servidor\n   §cPossivel motivo: §fVoc\u00ea encontra-se na lista-negra do servidor.\n    \n§cPara mais informa\u00e7\u00f5es:\n \n§cSite: §f"
-						+ ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site") + "\n §cTwitter: §f"
+						+ "\n   \n       ï¿½cOcorreu um erro ao entrar no servidor\n   ï¿½cPossivel motivo: ï¿½fVoc\u00ea encontra-se na lista-negra do servidor.\n    \nï¿½cPara mais informa\u00e7\u00f5es:\n \nï¿½cSite: ï¿½f"
+						+ ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site") + "\n ï¿½cTwitter: ï¿½f"
 						+ ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Twitter")
-						+ "\n §cTeamSpeak: §fts.fantasynetwork.com.br");
+						+ "\n ï¿½cTeamSpeak: ï¿½fts.fantasynetwork.com.br");
 			}
 		}
-		Manager.mandarTituloCima(p, "§5§lFANTASY §7- §e§lKITPVP");
-		Manager.mandarTituloBaixo(p, "§7Escolha um kit");
+		Manager.mandarTituloCima(p, "ï¿½5ï¿½lFANTASY ï¿½7- ï¿½eï¿½lKITPVP");
+		Manager.mandarTituloBaixo(p, "ï¿½7Escolha um kit");
 		new BukkitRunnable() {
 			public void run() {
 				if (p.isOnline()) {
-					Manager.mandarTituloCima(p, "§5§lFANTASY §7- §e§lKITPVP");
-					Manager.mandarTituloBaixo(p, "§7Busque um oponente");
+					Manager.mandarTituloCima(p, "ï¿½5ï¿½lFANTASY ï¿½7- ï¿½eï¿½lKITPVP");
+					Manager.mandarTituloBaixo(p, "ï¿½7Busque um oponente");
 				}
 			}
-		}.runTaskLater(FantasyKits.getPlugin(), 40L);
+		}.runTaskLater(FantasyPvP.getPlugin(), 40L);
 		new BukkitRunnable() {
 			public void run() {
 				if (p.isOnline()) {
-					Manager.mandarTituloCima(p, "§5§lFANTASY §7- §e§lKITPVP");
-					Manager.mandarTituloBaixo(p, "§7Lute e mate-o");
+					Manager.mandarTituloCima(p, "ï¿½5ï¿½lFANTASY ï¿½7- ï¿½eï¿½lKITPVP");
+					Manager.mandarTituloBaixo(p, "ï¿½7Lute e mate-o");
 				}
 			}
-		}.runTaskLater(FantasyKits.getPlugin(), 60L);
+		}.runTaskLater(FantasyPvP.getPlugin(), 60L);
 		new BukkitRunnable() {
 			public void run() {
 				if (p.isOnline()) {
-					Manager.mandarTituloCima(p, "§5§lFANTASY §7- §e§lKITPVP");
-					Manager.mandarTituloBaixo(p, "§7E seja o melhor");
+					Manager.mandarTituloCima(p, "ï¿½5ï¿½lFANTASY ï¿½7- ï¿½eï¿½lKITPVP");
+					Manager.mandarTituloBaixo(p, "ï¿½7E seja o melhor");
 				}
 			}
-		}.runTaskLater(FantasyKits.getPlugin(), 80L);
+		}.runTaskLater(FantasyPvP.getPlugin(), 80L);
 		new BukkitRunnable() {
 			public void run() {
 				if (p.isOnline()) {
-					Manager.mandarTituloCima(p, "§5§lFANTASY §7- §e§lKITPVP");
-					Manager.mandarTituloBaixo(p, "§7E seja o melhor");
+					Manager.mandarTituloCima(p, "ï¿½5ï¿½lFANTASY ï¿½7- ï¿½eï¿½lKITPVP");
+					Manager.mandarTituloBaixo(p, "ï¿½7E seja o melhor");
 				}
 			}
-		}.runTaskLater(FantasyKits.getPlugin(), 100L);
+		}.runTaskLater(FantasyPvP.getPlugin(), 100L);
 		p.getInventory().clear();
 		e.setJoinMessage((String) null);
 		p.teleport(p.getWorld().getSpawnLocation());
@@ -228,15 +229,15 @@ public class Eventos implements Listener {
 					p.setLevel(-100);
 				}
 			}
-		}.runTaskLater(FantasyKits.getPlugin(), 20L);
+		}.runTaskLater(FantasyPvP.getPlugin(), 20L);
 		if (p.hasPermission("fantasy.fly")) {
 			p.setAllowFlight(true);
-			p.sendMessage(String.valueOf(Manager.prefix) + " §7Fly Ativado.");
+			p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Fly Ativado.");
 		}
 		for (final String msg : ConfigAPI.pegarConfig().pegarconfigMensagens().getStringList("Mensagem_Entrar")) {
 			p.sendMessage(msg
 					.replace("<online>", new StringBuilder(String.valueOf(Bukkit.getOnlinePlayers().size())).toString())
-					.replace("<jogador>", p.getName()).replace("&", "§"));
+					.replace("<jogador>", p.getName()).replace("&", "ï¿½"));
 		}
 		Manager.darItens(p);
 		if (!Manager.Tell.containsKey(p.getName())) {
@@ -247,11 +248,11 @@ public class Eventos implements Listener {
 		}
 		if (!Manager.comTellAtivado(p)) {
 			p.sendMessage(String.valueOf(Manager.prefix)
-					+ " §cAten\u00e7ao!, Voce N\u00e3o Esta Recebendo Mensagens De Tell, Caso Queira Ativar Use /toggle.");
+					+ " ï¿½cAten\u00e7ao!, Voce N\u00e3o Esta Recebendo Mensagens De Tell, Caso Queira Ativar Use /toggle.");
 		}
 		if (!Manager.comReportAtivado(p) && p.hasPermission("fantasy.veravisos")) {
 			p.sendMessage(String.valueOf(Manager.prefix)
-					+ " §cAten\u00e7ao!, Voce N\u00e3o Esta Recebendo Reports, Caso Queira Ativar Use /toggle.");
+					+ " ï¿½cAten\u00e7ao!, Voce N\u00e3o Esta Recebendo Reports, Caso Queira Ativar Use /toggle.");
 		}
 		String finaltag = Manager.pegarTagDisplay(p);
 		if (finaltag.length() > 16) {
@@ -264,17 +265,17 @@ public class Eventos implements Listener {
 		final Player jogador = e.getPlayer();
 		if (e.getResult() == PlayerLoginEvent.Result.ALLOWED && !jogador.hasPermission("fantasy.full")) {
 			jogador.kickPlayer(String.valueOf(Manager.prefix)
-					+ "\n   \n       §cOcorreu um erro ao entrar no servidor\n   §cpossivel motivo: §fO Servidor encontra-se cheio!.\n    \n§cPara mais informa\u00e7\u00f5es:\n \n§cSite: §f"
-					+ ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site") + "\n §cTwitter: §f"
+					+ "\n   \n       ï¿½cOcorreu um erro ao entrar no servidor\n   ï¿½cpossivel motivo: ï¿½fO Servidor encontra-se cheio!.\n    \nï¿½cPara mais informa\u00e7\u00f5es:\n \nï¿½cSite: ï¿½f"
+					+ ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site") + "\n ï¿½cTwitter: ï¿½f"
 					+ ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Twitter")
-					+ "\n §cTeamSpeak: §fts.fantasynetwork.com.br");
+					+ "\n ï¿½cTeamSpeak: ï¿½fts.fantasynetwork.com.br");
 		}
 		if (e.getResult() == PlayerLoginEvent.Result.KICK_WHITELIST) {
 			jogador.kickPlayer(String.valueOf(Manager.prefix)
-					+ "\n   \n       §cOcorreu um erro ao entrar no servidor\n   §cpossivel motivo: §fO servidor encontra-se em manuten\u00e7\u00e3o.\n    \n§cPara mais informa\u00e7\u00f5es:\n \n§cSite: §f"
-					+ ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site") + "\n §cTwitter: §f"
+					+ "\n   \n       ï¿½cOcorreu um erro ao entrar no servidor\n   ï¿½cpossivel motivo: ï¿½fO servidor encontra-se em manuten\u00e7\u00e3o.\n    \nï¿½cPara mais informa\u00e7\u00f5es:\n \nï¿½cSite: ï¿½f"
+					+ ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site") + "\n ï¿½cTwitter: ï¿½f"
 					+ ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Twitter")
-					+ "\n §cTeamSpeak: §ffantasynet.dnahost.com");
+					+ "\n ï¿½cTeamSpeak: ï¿½ffantasynet.dnahost.com");
 		}
 	}
 
@@ -282,61 +283,61 @@ public class Eventos implements Listener {
 	public void onPreProcessCommand(final PlayerCommandPreprocessEvent event) {
 		if (event.getMessage().toLowerCase().startsWith("/me ")) {
 			event.getPlayer().sendMessage(String.valueOf(Manager.prefix)
-					+ " §cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
+					+ " ï¿½cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
 			event.setCancelled(true);
 		}
 		if (event.getMessage().toLowerCase().equalsIgnoreCase("/me")) {
 			event.getPlayer().sendMessage(String.valueOf(Manager.prefix)
-					+ " §cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
+					+ " ï¿½cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
 			event.setCancelled(true);
 		}
 		if (event.getMessage().toLowerCase().startsWith("/ver ")) {
 			event.getPlayer().sendMessage(String.valueOf(Manager.prefix)
-					+ " §cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
+					+ " ï¿½cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
 			event.setCancelled(true);
 		}
 		if (event.getMessage().toLowerCase().equalsIgnoreCase("/ver")) {
 			event.getPlayer().sendMessage(String.valueOf(Manager.prefix)
-					+ " §cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
+					+ " ï¿½cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
 			event.setCancelled(true);
 		}
 		if (event.getMessage().toLowerCase().startsWith("/help")) {
 			event.getPlayer().sendMessage(String.valueOf(Manager.prefix)
-					+ " §cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
+					+ " ï¿½cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
 			event.setCancelled(true);
 		}
 		if (event.getMessage().toLowerCase().startsWith("/help ")) {
 			event.getPlayer().sendMessage(String.valueOf(Manager.prefix)
-					+ " §cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
+					+ " ï¿½cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
 			event.setCancelled(true);
 		}
 		if (event.getMessage().toLowerCase().startsWith("/plugins")
 				&& !event.getMessage().toLowerCase().startsWith("/pl")
 				&& !event.getMessage().toLowerCase().startsWith("/plot")) {
 			event.getPlayer().sendMessage("");
-			event.getPlayer().sendMessage("§e§l\u279c §7Plugin FantasyNetwork §f- §aKitPvP");
+			event.getPlayer().sendMessage("ï¿½eï¿½l\u279c ï¿½7Plugin FantasyNetwork ï¿½f- ï¿½aKitPvP");
 			event.getPlayer().sendMessage(
-					"§e§l\u279c §7Site §f" + ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site"));
+					"ï¿½eï¿½l\u279c ï¿½7Site ï¿½f" + ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site"));
 			event.getPlayer().sendMessage("");
 			event.setCancelled(true);
 		}
 		if (event.getMessage().toLowerCase().startsWith("/pl")
 				&& !event.getMessage().toLowerCase().startsWith("/plot")) {
 			event.getPlayer().sendMessage("");
-			event.getPlayer().sendMessage("§e§l\u279c §7Plugin FantasyNetwork §f- §aKitPvP");
+			event.getPlayer().sendMessage("ï¿½eï¿½l\u279c ï¿½7Plugin FantasyNetwork ï¿½f- ï¿½aKitPvP");
 			event.getPlayer().sendMessage(
-					"§e§l\u279c §7Site §f" + ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site"));
+					"ï¿½eï¿½l\u279c ï¿½7Site ï¿½f" + ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site"));
 			event.getPlayer().sendMessage("");
 			event.setCancelled(true);
 		}
 		if (event.getMessage().toLowerCase().startsWith("/server ")) {
 			event.getPlayer().sendMessage(String.valueOf(Manager.prefix)
-					+ " §cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
+					+ " ï¿½cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
 			event.setCancelled(true);
 		}
 		if (event.getMessage().split(" ")[0].contains(":")) {
 			event.getPlayer().sendMessage(String.valueOf(Manager.prefix)
-					+ " §cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
+					+ " ï¿½cDesculpe, Mas Este Comando N\u00e3o Foi Encontrado No Banco De Dados Do Servidor.");
 			event.setCancelled(true);
 		}
 	}
@@ -359,7 +360,7 @@ public class Eventos implements Listener {
 					Duelx1.playersIn1v1.remove(p);
 					Duelx1.teleport1v1(p);
 				}
-			}.runTaskLater(FantasyKits.getPlugin(), 2L);
+			}.runTaskLater(FantasyPvP.getPlugin(), 2L);
 		}
 	}
 
@@ -410,7 +411,7 @@ public class Eventos implements Listener {
 			e.getItem().setType(Material.BOWL);
 			final ItemStack pote = new ItemStack(Material.BOWL);
 			final ItemMeta potem = pote.getItemMeta();
-			potem.setDisplayName("§c\u25ba Pote");
+			potem.setDisplayName("ï¿½c\u25ba Pote");
 			pote.setItemMeta(potem);
 			p.setItemInHand(pote);
 		}
@@ -437,12 +438,12 @@ public class Eventos implements Listener {
 		final Long tempoDeEspera = this.cooldowncomando.get(p.getName());
 		if (!p.hasPermission("fantasy.vip") && !Manager.Chat) {
 			e.setCancelled(true);
-			e.getPlayer().sendMessage(String.valueOf(Manager.prefix) + " §cDesculpe, mas o chat esta desabilitado.");
+			e.getPlayer().sendMessage(String.valueOf(Manager.prefix) + " ï¿½cDesculpe, mas o chat esta desabilitado.");
 			return;
 		}
 		if (this.cooldowncomando.containsKey(p.getName())) {
 			if (cooldown - tempoDeEspera < 3L && !p.hasPermission("fantasy.cchat")) {
-				p.sendMessage(String.valueOf(Manager.prefix) + " §cAguarde Para Escrever Novamente.");
+				p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cAguarde Para Escrever Novamente.");
 				e.setCancelled(true);
 				return;
 			}
@@ -455,7 +456,7 @@ public class Eventos implements Listener {
 		if (p.hasPermission("fantasy.chatcolor")) {
 			if (!Manager.comStaffAtivado(p)) {
 				for (final Player player : e.getRecipients()) {
-					Manager.sendMessageChat(p, player, "§f" + e.getMessage().replace("&", "§"));
+					Manager.sendMessageChat(p, player, "ï¿½f" + e.getMessage().replace("&", "ï¿½"));
 					e.setCancelled(true);
 				}
 			}
@@ -474,7 +475,7 @@ public class Eventos implements Listener {
 		final Long tempoDeEspera = this.cooldowncomando.get(p.getName());
 		if (this.cooldowncomando.containsKey(p.getName())) {
 			if (cooldown - tempoDeEspera < 3L && !p.hasPermission("fantasy.ccomando")) {
-				p.sendMessage(String.valueOf(Manager.prefix) + " §cAguarde para ultilizar outro comando.");
+				p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cAguarde para ultilizar outro comando.");
 				e.setCancelled(true);
 				return;
 			}
@@ -483,11 +484,11 @@ public class Eventos implements Listener {
 		this.cooldowncomando.put(p.getName(), cooldown);
 		if (!e.isCancelled()) {
 			final String cmd = e.getMessage().split(" ")[0];
-			final HelpTopic help = FantasyKits.getMain().getServer().getHelpMap().getHelpTopic(cmd);
+			final HelpTopic help = FantasyPvP.getMain().getServer().getHelpMap().getHelpTopic(cmd);
 			if (help == null) {
 				e.setCancelled(true);
 				e.getPlayer().sendMessage(String.valueOf(Manager.prefix)
-						+ " §cDesculpe, mas este comando n\u00e3o foi encontrado no banco de dados do servidor.");
+						+ " ï¿½cDesculpe, mas este comando n\u00e3o foi encontrado no banco de dados do servidor.");
 			}
 		}
 	}
@@ -533,14 +534,14 @@ public class Eventos implements Listener {
 	@EventHandler
 	private void tabcolorido(final PlayerJoinEvent e) {
 		final Player p = e.getPlayer();
-		Manager.sendTabColor(p, "\n §5§lFANTASY §e§lNETWORK \n§eSeja bem-vindo §f" + p.getName() + "\n",
-				"\n    \n§cPara mais informa\u00e7\u00f5es:\n \n§cSite: §f"
+		Manager.sendTabColor(p, "\n ï¿½5ï¿½lFANTASY ï¿½eï¿½lNETWORK \nï¿½eSeja bem-vindo ï¿½f" + p.getName() + "\n",
+				"\n    \nï¿½cPara mais informa\u00e7\u00f5es:\n \nï¿½cSite: ï¿½f"
 						+ ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site")
-						+ "\n§cTwitter: §f@FantasyServer_\n§cTeamSpeak: §fts.fantasynetwork.com.br\n\n§aServidor atual: §fKitPvP\n");
+						+ "\nï¿½cTwitter: ï¿½f@FantasyServer_\nï¿½cTeamSpeak: ï¿½fts.fantasynetwork.com.br\n\nï¿½aServidor atual: ï¿½fKitPvP\n");
 		for (final Player pl : Duelx1.playersIn1v1) {
 			pl.hidePlayer(p);
 		}
-		FantasyKits.getMain().getPlayerHideManager().hideForAll(p);
+		FantasyPvP.getMain().getPlayerHideManager().hideForAll(p);
 	}
 
 	@EventHandler
@@ -559,16 +560,16 @@ public class Eventos implements Listener {
 	@EventHandler
 	private void placas(final SignChangeEvent e) {
 		if (e.getLine(0).contains("&")) {
-			e.setLine(0, e.getLine(0).replace("&", "§"));
+			e.setLine(0, e.getLine(0).replace("&", "ï¿½"));
 		}
 		if (e.getLine(1).contains("&")) {
-			e.setLine(1, e.getLine(1).replace("&", "§"));
+			e.setLine(1, e.getLine(1).replace("&", "ï¿½"));
 		}
 		if (e.getLine(2).contains("&")) {
-			e.setLine(2, e.getLine(2).replace("&", "§"));
+			e.setLine(2, e.getLine(2).replace("&", "ï¿½"));
 		}
 		if (e.getLine(3).contains("&")) {
-			e.setLine(3, e.getLine(3).replace("&", "§"));
+			e.setLine(3, e.getLine(3).replace("&", "ï¿½"));
 		}
 	}
 
@@ -644,20 +645,20 @@ public class Eventos implements Listener {
 				if (datamatador.getKillStreak() >= 10) {
 					Manager.mandamensagemKillStreak(datamatador);
 				}
-				matador.sendMessage(String.valueOf(Manager.prefix) + " §7Voce Matou " + vitima.getName() + "§7.");
-				matador.sendMessage(String.valueOf(Manager.prefix) + " §6Voce Ganhou " + adddinheiro + "$§6.");
+				matador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voce Matou " + vitima.getName() + "ï¿½7.");
+				matador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½6Voce Ganhou " + adddinheiro + "$ï¿½6.");
 				matador.playSound(matador.getLocation(), Sound.ORB_PICKUP, 2.0f, 2.0f);
-				matador.sendMessage("§7+§a" + addscore + " §7Score §7(§a\u25b2" + datamatador.getScore() + "§7)");
-				vitima.sendMessage("§7-§c" + addscore + " §7Score §7(§c\u25bc" + datavitima.getScore() + "§7)");
-				vitima.sendMessage(String.valueOf(Manager.prefix) + " §7Voce Morreu Para " + matador.getName() + "§7.");
-				vitima.sendMessage(String.valueOf(Manager.prefix) + " §cVoce Perdeu " + removerdinheiro + "$§c.");
+				matador.sendMessage("ï¿½7+ï¿½a" + addscore + " ï¿½7Score ï¿½7(ï¿½a\u25b2" + datamatador.getScore() + "ï¿½7)");
+				vitima.sendMessage("ï¿½7-ï¿½c" + addscore + " ï¿½7Score ï¿½7(ï¿½c\u25bc" + datavitima.getScore() + "ï¿½7)");
+				vitima.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voce Morreu Para " + matador.getName() + "ï¿½7.");
+				vitima.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cVoce Perdeu " + removerdinheiro + "$ï¿½c.");
 				Manager.removerArrays(vitima);
 				Bukkit.getPluginManager()
 						.callEvent(new PlayerDeathInWarpEvent(vitima, matador, Manager.pegarKit(vitima)));
 				for (final Player pl : Duelx1.playersIn1v1) {
 					pl.hidePlayer(vitima);
 				}
-				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(FantasyKits.getPlugin(),
+				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(FantasyPvP.getPlugin(),
 						new Runnable() {
 							@Override
 							public void run() {
@@ -671,7 +672,7 @@ public class Eventos implements Listener {
 				e.getDrops().clear();
 			}
 		} else {
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(FantasyKits.getPlugin(),
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(FantasyPvP.getPlugin(),
 					new Runnable() {
 						@Override
 						public void run() {
@@ -681,11 +682,11 @@ public class Eventos implements Listener {
 							}
 						}
 					}, 1L);
-			vitima.sendMessage(String.valueOf(Manager.prefix) + " §cVoc\u00ea morreu.");
+			vitima.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cVoc\u00ea morreu.");
 			for (final Player pl2 : Duelx1.playersIn1v1) {
 				pl2.hidePlayer(vitima);
 			}
-			FantasyKits.getMain().getPlayerHideManager().hideForAll(vitima);
+			FantasyPvP.getMain().getPlayerHideManager().hideForAll(vitima);
 			Manager.removerArrays(vitima);
 			Bukkit.getPluginManager()
 					.callEvent(new PlayerDeathInWarpEvent(vitima, null, Manager.pegarKit(vitima)));
@@ -716,7 +717,7 @@ public class Eventos implements Listener {
 
 	@EventHandler
 	private void motd(final ServerListPingEvent e) {
-		e.setMotd(ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Motd").replace("&", "§").replace("<linha>",
+		e.setMotd(ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Motd").replace("&", "ï¿½").replace("<linha>",
 				"\n"));
 	}
 
@@ -772,7 +773,7 @@ public class Eventos implements Listener {
 				&& !Manager.comKit(p)) {
 			p.updateInventory();
 			e.setCancelled(true);
-			p.sendMessage(String.valueOf(Manager.prefix) + " §7Site: §a"
+			p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Site: ï¿½a"
 					+ ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site"));
 		}
 		if (p.getItemInHand().getType() == Material.SKULL_ITEM && e.getAction().name().contains("RIGHT_")
@@ -843,8 +844,8 @@ public class Eventos implements Listener {
 							continue;
 						}
 						achou = true;
-						jogador.sendMessage(String.valueOf(Manager.prefix) + " §aBussola apontando para §f"
-								+ jogadorencontrado.getName() + "§a.");
+						jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aBussola apontando para ï¿½f"
+								+ jogadorencontrado.getName() + "ï¿½a.");
 					}
 				}
 				if (achou) {
@@ -852,7 +853,7 @@ public class Eventos implements Listener {
 				}
 			}
 			if (!achou) {
-				jogador.sendMessage(String.valueOf(Manager.prefix) + " §aBussola apontado para §fSpawn§a.");
+				jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½aBussola apontado para ï¿½fSpawnï¿½a.");
 				jogador.setCompassTarget(Bukkit.getWorlds().get(0).getSpawnLocation());
 			}
 		}
@@ -948,19 +949,19 @@ public class Eventos implements Listener {
 				}
 				Manager.Combate.add(p);
 				Manager.Combate.add(hitter);
-				p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea §aentrou §7de combate com §f"
-						+ hitter.getName() + "§7.");
-				hitter.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea §aentrou §7de combate com §f"
-						+ p.getName() + "§7.");
-				Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyKits.getPlugin(), new Runnable() {
+				p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea ï¿½aentrou ï¿½7de combate com ï¿½f"
+						+ hitter.getName() + "ï¿½7.");
+				hitter.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea ï¿½aentrou ï¿½7de combate com ï¿½f"
+						+ p.getName() + "ï¿½7.");
+				Bukkit.getScheduler().scheduleSyncDelayedTask(FantasyPvP.getPlugin(), new Runnable() {
 					@Override
 					public void run() {
 						Manager.Combate.remove(p);
 						Manager.Combate.remove(hitter);
-						p.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea §csaiu §7de combate com §f"
-								+ hitter.getName() + "§7.");
-						hitter.sendMessage(String.valueOf(Manager.prefix) + " §7Voc\u00ea §csaiu §7de combate com §f"
-								+ p.getName() + "§7.");
+						p.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea ï¿½csaiu ï¿½7de combate com ï¿½f"
+								+ hitter.getName() + "ï¿½7.");
+						hitter.sendMessage(String.valueOf(Manager.prefix) + " ï¿½7Voc\u00ea ï¿½csaiu ï¿½7de combate com ï¿½f"
+								+ p.getName() + "ï¿½7.");
 					}
 				}, 800L);
 			}
@@ -971,7 +972,7 @@ public class Eventos implements Listener {
 	private void naosair(final PlayerQuitEvent e) {
 		final Player p = e.getPlayer();
 		if (!p.isDead() && Manager.pegarCombat(p)) {
-			Manager.mandarMensagem(String.valueOf(Manager.prefix) + " §f" + p.getName() + " §7deslogou em combate.");
+			Manager.mandarMensagem(String.valueOf(Manager.prefix) + " ï¿½f" + p.getName() + " ï¿½7deslogou em combate.");
 			p.damage(1000.0);
 		}
 	}
@@ -985,21 +986,21 @@ public class Eventos implements Listener {
 				|| event.getMessage().toLowerCase().startsWith("/warp"))) {
 			event.setCancelled(true);
 			p.sendMessage(
-					String.valueOf(Manager.prefix) + " §cDesculpe, Mas E Este Comando Esta Bloqueado Em Combate.");
+					String.valueOf(Manager.prefix) + " ï¿½cDesculpe, Mas E Este Comando Esta Bloqueado Em Combate.");
 		}
 	}
 
 	@EventHandler
 	private void placasinv(final SignChangeEvent e) {
 		if (e.getLine(0).equalsIgnoreCase("Sopa")) {
-			e.setLine(0, "§5Fantasy§eKits");
-			e.setLine(1, "§a\u25ba Sopas");
-			e.setLine(3, "§eClique!");
+			e.setLine(0, "ï¿½5Fantasyï¿½eKits");
+			e.setLine(1, "ï¿½a\u25ba Sopas");
+			e.setLine(3, "ï¿½eClique!");
 		}
 		if (e.getLine(0).equalsIgnoreCase("Recraft")) {
-			e.setLine(0, "§5Fantasy§eKits");
-			e.setLine(1, "§c\u25ba Recraft");
-			e.setLine(3, "§eClique!");
+			e.setLine(0, "ï¿½5Fantasyï¿½eKits");
+			e.setLine(1, "ï¿½c\u25ba Recraft");
+			e.setLine(3, "ï¿½eClique!");
 		}
 	}
 
@@ -1011,11 +1012,11 @@ public class Eventos implements Listener {
 						|| e.getClickedBlock().getType() == Material.SIGN_POST)) {
 			final Sign s = (Sign) e.getClickedBlock().getState();
 			final String[] lines = s.getLines();
-			if (lines.length > 0 && lines[0].equals("§5Fantasy§eKits") && lines.length > 1
-					&& lines[1].equals("§a\u25ba Sopas")) {
-				final Inventory inve = Bukkit.getServer().createInventory(p, 54, "§a\u25ba Sopas");
-				final ItemStack primary = Manager.criarItem2(Material.MUSHROOM_SOUP, "§a\u25ba Sopa", (short) 0, 1,
-						new String[] { "§7Tome Para Regenerar Sua Vida." });
+			if (lines.length > 0 && lines[0].equals("ï¿½5Fantasyï¿½eKits") && lines.length > 1
+					&& lines[1].equals("ï¿½a\u25ba Sopas")) {
+				final Inventory inve = Bukkit.getServer().createInventory(p, 54, "ï¿½a\u25ba Sopas");
+				final ItemStack primary = Manager.criarItem2(Material.MUSHROOM_SOUP, "ï¿½a\u25ba Sopa", (short) 0, 1,
+						new String[] { "ï¿½7Tome Para Regenerar Sua Vida." });
 				for (int sopas = 0; sopas < inve.getSize(); ++sopas) {
 					while (inve.getItem(sopas) == null) {
 						inve.setItem(sopas, primary);
@@ -1023,14 +1024,14 @@ public class Eventos implements Listener {
 				}
 				p.openInventory(inve);
 			}
-			if (lines.length > 0 && lines[0].equals("§5Fantasy§eKits") && lines.length > 1
-					&& lines[1].equals("§c\u25ba Recraft")) {
+			if (lines.length > 0 && lines[0].equals("ï¿½5Fantasyï¿½eKits") && lines.length > 1
+					&& lines[1].equals("ï¿½c\u25ba Recraft")) {
 				p.getInventory().addItem(new ItemStack[] {
-						Manager.criarItem2(Material.BOWL, "§b\u25ba Tigela", (short) 0, 64, new String[0]) });
+						Manager.criarItem2(Material.BOWL, "ï¿½b\u25ba Tigela", (short) 0, 64, new String[0]) });
 				p.getInventory().addItem(new ItemStack[] {
-						Manager.criarItem2(Material.RED_MUSHROOM, "§c\u25ba Cogumelo", (short) 0, 64, new String[0]) });
+						Manager.criarItem2(Material.RED_MUSHROOM, "ï¿½c\u25ba Cogumelo", (short) 0, 64, new String[0]) });
 				p.getInventory().addItem(new ItemStack[] { Manager.criarItem2(Material.BROWN_MUSHROOM,
-						"§6\u25ba Cogumelo", (short) 0, 64, new String[0]) });
+						"ï¿½6\u25ba Cogumelo", (short) 0, 64, new String[0]) });
 				p.updateInventory();
 			}
 		}
@@ -1133,27 +1134,27 @@ public class Eventos implements Listener {
 		final Player jogador = (Player) e.getWhoClicked();
 		if (e.getCurrentItem() != null && e.getCurrentItem().getItemMeta() != null
 				&& e.getCurrentItem().getItemMeta().getDisplayName() != null) {
-			if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§a\u279c §7Loja")) {
+			if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("ï¿½a\u279c ï¿½7Loja")) {
 				e.setCancelled(true);
 				jogador.updateInventory();
-			} else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§e\u279c §7Kits")) {
+			} else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("ï¿½e\u279c ï¿½7Kits")) {
 				e.setCancelled(true);
 				jogador.updateInventory();
-			} else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§b\u279c §7Seu perfil")) {
+			} else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("ï¿½b\u279c ï¿½7Seu perfil")) {
 				e.setCancelled(true);
 				jogador.updateInventory();
-			} else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§b\u279c §7Warps")) {
-				e.setCancelled(true);
-				jogador.updateInventory();
-			}
-			if (e.getInventory().getTitle().equalsIgnoreCase("§7Ranks do servidor \u25ba")) {
+			} else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("ï¿½b\u279c ï¿½7Warps")) {
 				e.setCancelled(true);
 				jogador.updateInventory();
 			}
-			if (e.getInventory().getTitle().equalsIgnoreCase("§7Estat\u00edsticas \u25ba ")) {
+			if (e.getInventory().getTitle().equalsIgnoreCase("ï¿½7Ranks do servidor \u25ba")) {
 				e.setCancelled(true);
 				jogador.updateInventory();
-				if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§bVoltar")) {
+			}
+			if (e.getInventory().getTitle().equalsIgnoreCase("ï¿½7Estat\u00edsticas \u25ba ")) {
+				e.setCancelled(true);
+				jogador.updateInventory();
+				if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("ï¿½bVoltar")) {
 					e.setCancelled(true);
 					jogador.updateInventory();
 					Inventarios.inventarioperfil(jogador);
@@ -1162,68 +1163,68 @@ public class Eventos implements Listener {
 				e.setCancelled(true);
 				jogador.updateInventory();
 			}
-			if (e.getInventory().getTitle().equalsIgnoreCase("§7Perfil \u25ba")) {
+			if (e.getInventory().getTitle().equalsIgnoreCase("ï¿½7Perfil \u25ba")) {
 				e.setCancelled(true);
 				jogador.updateInventory();
-				if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§e\u25ba Prefer\u00eancias")) {
+				if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("ï¿½e\u25ba Prefer\u00eancias")) {
 					e.setCancelled(true);
 					jogador.updateInventory();
 					Inventarios.inventariotoggle(jogador, MenuPaged.Type.PERFIL);
 					jogador.playSound(jogador.getLocation(), Sound.ORB_PICKUP, 2.0f, 2.0f);
 				}
-				if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§a\u25ba Estat\u00edsticas")) {
+				if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("ï¿½a\u25ba Estat\u00edsticas")) {
 					e.setCancelled(true);
 					jogador.updateInventory();
 					Inventarios.inventarioestatisticas(jogador);
 					jogador.playSound(jogador.getLocation(), Sound.ORB_PICKUP, 2.0f, 2.0f);
 				}
 			}
-			if (e.getInventory().getTitle().equalsIgnoreCase("§7Op\u00e7\u00f5es \u25ba ")) {
+			if (e.getInventory().getTitle().equalsIgnoreCase("ï¿½7Op\u00e7\u00f5es \u25ba ")) {
 				e.setCancelled(true);
 				jogador.updateInventory();
-				if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§bVoltar")) {
+				if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("ï¿½bVoltar")) {
 					e.setCancelled(true);
 					jogador.updateInventory();
 					Inventarios.inventarioperfil(jogador);
 					jogador.playSound(jogador.getLocation(), Sound.ORB_PICKUP, 2.0f, 2.0f);
 				}
 				if (e.getCurrentItem().getItemMeta().getDisplayName()
-						.equalsIgnoreCase("§c\u25ba Voce N\u00e3o Tem Esta Op\u00e7\u00e3o")) {
+						.equalsIgnoreCase("ï¿½c\u25ba Voce N\u00e3o Tem Esta Op\u00e7\u00e3o")) {
 					e.setCancelled(true);
 					jogador.updateInventory();
 					jogador.playSound(jogador.getLocation(), Sound.IRONGOLEM_HIT, 2.0f, 2.0f);
-					jogador.sendMessage(String.valueOf(Manager.prefix) + " §cVoce N\u00e3o Tem Esta Op\u00e7\u00e3o.");
+					jogador.sendMessage(String.valueOf(Manager.prefix) + " ï¿½cVoce N\u00e3o Tem Esta Op\u00e7\u00e3o.");
 				} else if (e.getCurrentItem().getItemMeta().getDisplayName()
-						.equalsIgnoreCase("§a\u25ba Receber Report - Ativado")) {
+						.equalsIgnoreCase("ï¿½a\u25ba Receber Report - Ativado")) {
 					e.setCancelled(true);
 					jogador.updateInventory();
 					jogador.playSound(jogador.getLocation(), Sound.CLICK, 2.0f, 2.0f);
-					e.setCurrentItem(Manager.criarItem(Material.INK_SACK, "§c\u25ba Receber Report - Desativado",
-							(short) 8, new String[] { "", "§7Clique Para Alterar." }));
+					e.setCurrentItem(Manager.criarItem(Material.INK_SACK, "ï¿½c\u25ba Receber Report - Desativado",
+							(short) 8, new String[] { "", "ï¿½7Clique Para Alterar." }));
 					Manager.Report.put(jogador.getName(), false);
 				} else if (e.getCurrentItem().getItemMeta().getDisplayName()
-						.equalsIgnoreCase("§c\u25ba Receber Report - Desativado")) {
+						.equalsIgnoreCase("ï¿½c\u25ba Receber Report - Desativado")) {
 					e.setCancelled(true);
 					jogador.updateInventory();
 					jogador.playSound(jogador.getLocation(), Sound.CLICK, 2.0f, 2.0f);
-					e.setCurrentItem(Manager.criarItem(Material.INK_SACK, "§a\u25ba Receber Report - Ativado",
-							(short) 10, new String[] { "", "§7Clique Para Alterar." }));
+					e.setCurrentItem(Manager.criarItem(Material.INK_SACK, "ï¿½a\u25ba Receber Report - Ativado",
+							(short) 10, new String[] { "", "ï¿½7Clique Para Alterar." }));
 					Manager.Report.put(jogador.getName(), true);
 				} else if (e.getCurrentItem().getItemMeta().getDisplayName()
-						.equalsIgnoreCase("§a\u25ba Receber Tell - Ativado")) {
+						.equalsIgnoreCase("ï¿½a\u25ba Receber Tell - Ativado")) {
 					e.setCancelled(true);
 					jogador.updateInventory();
 					jogador.playSound(jogador.getLocation(), Sound.CLICK, 2.0f, 2.0f);
-					e.setCurrentItem(Manager.criarItem(Material.INK_SACK, "§c\u25ba Receber Tell - Desativado",
-							(short) 8, new String[] { "", "§7Clique Para Alterar." }));
+					e.setCurrentItem(Manager.criarItem(Material.INK_SACK, "ï¿½c\u25ba Receber Tell - Desativado",
+							(short) 8, new String[] { "", "ï¿½7Clique Para Alterar." }));
 					Manager.Tell.put(jogador.getName(), false);
 				} else if (e.getCurrentItem().getItemMeta().getDisplayName()
-						.equalsIgnoreCase("§c\u25ba Receber Tell - Desativado")) {
+						.equalsIgnoreCase("ï¿½c\u25ba Receber Tell - Desativado")) {
 					e.setCancelled(true);
 					jogador.updateInventory();
 					jogador.playSound(jogador.getLocation(), Sound.CLICK, 2.0f, 2.0f);
-					e.setCurrentItem(Manager.criarItem(Material.INK_SACK, "§a\u25ba Receber Tell - Ativado", (short) 10,
-							new String[] { "", "§7Clique Para Alterar." }));
+					e.setCurrentItem(Manager.criarItem(Material.INK_SACK, "ï¿½a\u25ba Receber Tell - Ativado", (short) 10,
+							new String[] { "", "ï¿½7Clique Para Alterar." }));
 					Manager.Tell.put(jogador.getName(), true);
 				}
 			}
@@ -1249,7 +1250,7 @@ public class Eventos implements Listener {
 				|| Manager.pegarKit(e.getPlayer()).equalsIgnoreCase("Potion")
 				|| Manager.pegarKit(e.getPlayer()).equalsIgnoreCase("Main")) && !e.getMessage().startsWith("/spawn")) {
 			e.getPlayer().sendMessage(
-					String.valueOf(Manager.prefix) + " §cDesculpe,mas voc\u00ea n\u00e3o pode usar Comandos em warps.");
+					String.valueOf(Manager.prefix) + " ï¿½cDesculpe,mas voc\u00ea n\u00e3o pode usar Comandos em warps.");
 			e.setCancelled(true);
 		}
 	}

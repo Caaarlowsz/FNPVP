@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-import com.zalpha.FantasyNetwork.PvP.FantasyKits;
+import com.github.caaarlowsz.fantasymc.kitpvp.FantasyPvP;
 import com.zalpha.FantasyNetwork.PvP.util.ConfigAPI;
 import com.zalpha.FantasyNetwork.PvP.util.Enums;
 import com.zalpha.FantasyNetwork.PvP.util.Manager;
@@ -32,7 +32,7 @@ public class PlayerData {
 	private int caixas;
 	private int chaves;
 	private static Map<Player, PlayerData> datas;
-	private FantasyKits plugin;
+	private FantasyPvP plugin;
 	private Player player;
 	private SQLDatabase data;
 
@@ -40,7 +40,7 @@ public class PlayerData {
 		PlayerData.datas = new HashMap<Player, PlayerData>();
 	}
 
-	public FantasyKits getPlugin() {
+	public FantasyPvP getPlugin() {
 		return this.plugin;
 	}
 
@@ -83,16 +83,16 @@ public class PlayerData {
 		} else {
 			this.scoreb = true;
 			ScoreBoard.unrankedSidebarDisplay(this.player,
-					new String[] { "§5§lFANTASY §e§lKITPVP", "§1", "§fGrupo: " + Manager.pegarRank(this.player),
-							"§fLiga: " + this.getRank(), "§fDinheiro: " + Manager.modificarCoins(this.getMoney()) + "$",
-							"§4", "§fKills: §a" + this.getKills(), "§fMortes: §c" + this.getDeaths(), "§0",
-							"§fKS: §9" + this.getKillStreak(), "§fK.D: §e" + Manager.getKDR(this.player) + "%",
-							"§fPontua\u00e7\u00e3o: §5" + Manager.modificarCoins(this.getScore()), "§2",
-							"§ewww." + ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site") });
+					new String[] { "ï¿½5ï¿½lFANTASY ï¿½eï¿½lKITPVP", "ï¿½1", "ï¿½fGrupo: " + Manager.pegarRank(this.player),
+							"ï¿½fLiga: " + this.getRank(), "ï¿½fDinheiro: " + Manager.modificarCoins(this.getMoney()) + "$",
+							"ï¿½4", "ï¿½fKills: ï¿½a" + this.getKills(), "ï¿½fMortes: ï¿½c" + this.getDeaths(), "ï¿½0",
+							"ï¿½fKS: ï¿½9" + this.getKillStreak(), "ï¿½fK.D: ï¿½e" + Manager.getKDR(this.player) + "%",
+							"ï¿½fPontua\u00e7\u00e3o: ï¿½5" + Manager.modificarCoins(this.getScore()), "ï¿½2",
+							"ï¿½ewww." + ConfigAPI.pegarConfig().pegarconfigMensagens().getString("Site") });
 		}
 	}
 
-	public PlayerData(final FantasyKits plugin, final Player p) {
+	public PlayerData(final FantasyPvP plugin, final Player p) {
 		this.admin = false;
 		this.scoreb = true;
 		this.clan = "Nenhum";
@@ -333,7 +333,7 @@ public class PlayerData {
 		if (PlayerData.datas.containsKey(p)) {
 			return get(p);
 		}
-		PlayerData.datas.put(p, new PlayerData(FantasyKits.getMain(), p));
+		PlayerData.datas.put(p, new PlayerData(FantasyPvP.getMain(), p));
 		return get(p);
 	}
 
@@ -355,11 +355,11 @@ public class PlayerData {
 	}
 
 	public enum Ranks {
-		UNRANKED("UNRANKED", 0, "§fNOT RANKED", "§f-", 400), SILVER("SILVER", 1, "§7SILVER", "§7=", 800),
-		GOLD("GOLD", 2, "§6GOLD", "§6\u2630", 1400), CRYSTAL("CRYSTAL", 3, "§dCRYSTAL", "§d\u2637", 2000),
-		MASTER("MASTER", 4, "§8MASTER", "§8\u2736", 2600), CHAMPION("CHAMPION", 5, "§CCHAMPION", "§c\u2737", 3200),
-		TITAN("TITAN", 6, "§eTITAN", "§e\u2737", 4100), LEGENDARY1("LEGENDARY1", 7, "§4LEGENDARY", "§4\u2742", 5000),
-		LEGENDARY("LEGENDARY", 8, "§4LEGENDARY", "§4\u2742", Integer.MAX_VALUE);
+		UNRANKED("UNRANKED", 0, "ï¿½fNOT RANKED", "ï¿½f-", 400), SILVER("SILVER", 1, "ï¿½7SILVER", "ï¿½7=", 800),
+		GOLD("GOLD", 2, "ï¿½6GOLD", "ï¿½6\u2630", 1400), CRYSTAL("CRYSTAL", 3, "ï¿½dCRYSTAL", "ï¿½d\u2637", 2000),
+		MASTER("MASTER", 4, "ï¿½8MASTER", "ï¿½8\u2736", 2600), CHAMPION("CHAMPION", 5, "ï¿½CCHAMPION", "ï¿½c\u2737", 3200),
+		TITAN("TITAN", 6, "ï¿½eTITAN", "ï¿½e\u2737", 4100), LEGENDARY1("LEGENDARY1", 7, "ï¿½4LEGENDARY", "ï¿½4\u2742", 5000),
+		LEGENDARY("LEGENDARY", 8, "ï¿½4LEGENDARY", "ï¿½4\u2742", Integer.MAX_VALUE);
 
 		private String rankdisplay;
 		private String symbol;

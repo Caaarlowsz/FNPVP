@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import com.zalpha.FantasyNetwork.PvP.FantasyKits;
+import com.github.caaarlowsz.fantasymc.kitpvp.FantasyPvP;
 
 public class SQLDatabase {
 	private Player player;
@@ -22,7 +22,7 @@ public class SQLDatabase {
 		return this.connection;
 	}
 
-	public SQLDatabase(final FantasyKits plugin, final Player p) {
+	public SQLDatabase(final FantasyPvP plugin, final Player p) {
 		this.player = p;
 		this.connection = plugin.getStorage().getConnection();
 		try {
@@ -43,7 +43,7 @@ public class SQLDatabase {
 			}
 			rs.close();
 		} catch (SQLException e) {
-			Bukkit.getConsoleSender().sendMessage("§aFailed to create account using sql:");
+			Bukkit.getConsoleSender().sendMessage("ï¿½aFailed to create account using sql:");
 			e.printStackTrace();
 		}
 	}
@@ -67,7 +67,7 @@ public class SQLDatabase {
 			rs.close();
 			return obj;
 		} catch (SQLException e) {
-			Bukkit.getConsoleSender().sendMessage("§aFailed to get value in sql:");
+			Bukkit.getConsoleSender().sendMessage("ï¿½aFailed to get value in sql:");
 			e.printStackTrace();
 			return obj;
 		}
@@ -88,7 +88,7 @@ public class SQLDatabase {
 			rs.close();
 			return number;
 		} catch (SQLException e) {
-			Bukkit.getConsoleSender().sendMessage("§aFailed to get int in sql:");
+			Bukkit.getConsoleSender().sendMessage("ï¿½aFailed to get int in sql:");
 			e.printStackTrace();
 			return number;
 		}
@@ -109,7 +109,7 @@ public class SQLDatabase {
 			rs.close();
 			return number;
 		} catch (SQLException e) {
-			Bukkit.getConsoleSender().sendMessage("§aFailed to get long in sql:");
+			Bukkit.getConsoleSender().sendMessage("ï¿½aFailed to get long in sql:");
 			e.printStackTrace();
 			return number;
 		}
@@ -130,7 +130,7 @@ public class SQLDatabase {
 			rs.close();
 			return str;
 		} catch (SQLException e) {
-			Bukkit.getConsoleSender().sendMessage("§aFailed to get string in sql:");
+			Bukkit.getConsoleSender().sendMessage("ï¿½aFailed to get string in sql:");
 			e.printStackTrace();
 			return str;
 		}
